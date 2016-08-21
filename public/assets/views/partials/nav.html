@@ -1,0 +1,39 @@
+<!-- start: MAIN NAVIGATION MENU -->
+<div class="navbar-title">
+    <span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
+</div>
+<ul class="main-navigation-menu">
+    <li ui-sref-active="active">
+        <a ui-sref="dashboard.home">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Home' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Home </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ng-class="{'active open':$state.includes('dashboard.hmo')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'HMOs' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="HMOs"> HMOs </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard.hmo.create"> <span class="title" translate="Create"> Create </span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard.hmo.view"> <span class="title" translate="View"> View </span> </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<!-- end: FEATURES -->
