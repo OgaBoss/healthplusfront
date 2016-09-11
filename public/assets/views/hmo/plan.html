@@ -1,0 +1,38 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Gold Plan</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: USER PROFILE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
+            <div >
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="Overview">
+                        <div class="row">
+                            <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-info.html' "></ng-include>
+                            <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/medical-history.html' "></ng-include>
+                        </div>
+                    </uib-tab>
+                    <!-- end: TAB OVERVIEW -->
+                    <!-- start: TAB EDIT ACCOUNT -->
+                    <uib-tab heading="Edit">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-edit.html' "></ng-include>
+                    </uib-tab>
+
+                    <uib-tab heading="Create">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-edit.html' "></ng-include>
+                    </uib-tab>
+                    <!-- end: TAB EDIT ACCOUNT -->
+                    </uib-tabset>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: USER PROFILE -->

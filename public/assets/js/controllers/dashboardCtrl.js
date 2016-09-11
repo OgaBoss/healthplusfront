@@ -51,6 +51,7 @@ function($scope) {
 	};
 
 }]);
+
 app.controller('SalesCtrl', ["$scope",
 function($scope) {
 	$scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
@@ -477,4 +478,3 @@ function($scope) {
     };
 
 }]);
-

@@ -4,7 +4,7 @@
 </div>
 <ul class="main-navigation-menu">
     <li ui-sref-active="active">
-        <a ui-sref="dashboard.home">
+        <a ui-sref="app.admin">
             <div class="item-content">
                 <div class="item-media">
                     <letter-icon data="{{ 'Home' | translate }}" char-count="2" size="sm"></letter-icon>
@@ -15,7 +15,7 @@
             </div>
         </a>
     </li>
-    <li ng-class="{'active open':$state.includes('dashboard.hmo')}">
+    <li ng-class="{'active open':$state.includes('app.hmo')}">
         <a href="javascript:void(0)">
             <div class="item-content">
                 <div class="item-media">
@@ -28,10 +28,73 @@
         </a>
         <ul class="sub-menu">
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.hmo.create"> <span class="title" translate="Create"> Create </span> </a>
+                <a ui-sref="app.hmo.create"> <span class="title" translate="Create"> Create </span> </a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.hmo.view"> <span class="title" translate="View"> View </span> </a>
+                <a ui-sref="app.hmo.view"> <span class="title" translate="View"> View </span> </a>
+            </li>
+        </ul>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('partners.home')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Hospitals' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="Hospitals"> Hospitals </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ui-sref-active="active">
+                <a ui-sref="partners.home"> <span class="title" translate="Create"> Create </span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard.hospital.view"> <span class="title" translate="View"> View </span> </a>
+            </li>
+        </ul>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('dashboard.organization')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Organizations' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="Organizations"> Organizations </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard.organization.create"> <span class="title" translate="Create"> Create </span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard.organization.view"> <span class="title" translate="View"> View </span> </a>
+            </li>
+        </ul>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('dashboard.pharmacy')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Pharmacies' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="Pharmacies"> Pharmacies </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ui-sref-activ e="active">
+                <a ui-sref="dashboard.pharmacy.create"> <span class="title" translate="Create"> Create </span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard.pharmacy.view"> <span class="title" translate="View"> View </span> </a>
             </li>
         </ul>
     </li>

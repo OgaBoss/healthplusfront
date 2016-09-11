@@ -1,0 +1,45 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">MTN Africa Profile</h4><small><span class="label label-danger"><small>organization</small></span></small>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: USER PROFILE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div >
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable" active="orgCtrl.overview">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="Overview">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/org/overview.html' "></ng-include>
+                    </uib-tab>
+                    <!-- end: TAB OVERVIEW -->
+                    <!-- start: TAB EDIT ACCOUNT -->
+                    <uib-tab heading="Edit" >
+                        <ng-include src=" 'assets/views/hmo/clients-partials/org/organization-edit-tab.html' "></ng-include>
+                    </uib-tab>
+                    <!-- end: TAB EDIT ACCOUNT -->
+                    <!-- start: TAB PROJECTS -->
+                    <uib-tab heading="Claims">
+                    </uib-tab>
+
+                    <uib-tab heading="Enrollee">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/org/enrolle-data.html' "></ng-include>
+                    </uib-tab>
+
+                    <!-- end: TAB PROJECTS -->
+
+                    <uib-tab heading="Premiums">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/org/premiums.html' "></ng-include>
+                    </uib-tab>
+
+                </uib-tabset>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: USER PROFILE -->

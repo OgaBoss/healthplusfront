@@ -1,0 +1,187 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="user-left">
+            <div class="center">
+                <div flow-init="{singleFile:true}" flow-name="obj.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+                    <div class="user-image">
+                        <div class="thumbnail">
+                            <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th colspan="3">Contact Information</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Organization Name</td>
+                    <td>
+                        <a href="#">
+                            MTN Africa, Lagos
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <a href>
+                            mtnafrca@mtn.com
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td>+234 80-98567-234</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>
+                        <a href>
+                            No 12 Awolowo way, Lekki Lagos, Nogeria
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>HMO Reg Code</td>
+                    <td>
+                        <a href>
+                            hmo34hjt/119/001
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><span class="label label-success">active</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th colspan="3">Administrator Data</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>{{currentUser.data.name}}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{currentUser.data.email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>+234-808-1234-789</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="panel panel-white" id="activities">
+            <div class="panel-heading border-light">
+                <h4 class="panel-title text-primary">Health Plans Statistics</h4>
+                <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
+            </div>
+            <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel panel-pink no-border no-radius">
+                                <ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>
+                                <div class="panel-body no-padding">
+                                    <div class="space10 padding-15">
+                                        <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin">Gold Plan <i class="fa fa-arrow-circle-o-right"></i></h5>
+                                        <div class="min-height-40">
+                                            <div class="padding-top-20">
+                                                <uib-progressbar value="70" class="progress-striped no-radius active background-dark" type="success">70%</uib-progressbar>
+                                            </div>
+                                        </div>
+                                        <h2 class="text-white margin-top-15 margin-bottom-10">5,635 </h2>
+                                        <span class="label label-success margin-right-5"><a href="#" ng-click="orgCtrl.setTabIndex(3,'active','gold')">70%</a></span><span class="text-extra-small">Active Enrollees <small>(4,500)</small></span>
+                                        <br>
+                                        <br>
+                                        <span class="label label-danger margin-right-5"><a href="#">30%</a></span><span class="text-extra-small">Inactive Enrollee <small>(1,135)</small></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-azure no-border no-radius">
+                                <ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>
+                                <div class="panel-body no-padding">
+                                    <div class="space10 padding-15">
+                                        <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin">Diamond Plan <i class="fa fa-arrow-circle-o-right"></i></h5>
+                                        <div class="min-height-40">
+                                            <div class="padding-top-20">
+                                                <uib-progressbar value="60" class="progress-striped no-radius active background-dark" type="success">60%</uib-progressbar>
+                                            </div>
+                                        </div>
+                                        <h2 class="text-white margin-top-15 margin-bottom-10">3,000</h2>
+                                        <span class="label label-success margin-right-5"><a href="#">60%</a></span><span class="text-extra-small">Active Enrollees <small>(1,800)</small></span>
+                                        <br>
+                                        <br>
+                                        <span class="label label-danger margin-right-5"><a href="#">40%</a></span><span class="text-extra-small">Inactive Enrollee <small>(1,200)</small></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-green no-border no-radius">
+                                <ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>
+                                <div class="panel-body no-padding">
+                                    <div class="space10 padding-15">
+                                        <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin">Silver Plan <i class="fa fa-arrow-circle-o-right"></i></h5>
+                                        <div class="min-height-40">
+                                            <div class="padding-top-20">
+                                                <uib-progressbar value="40" class="progress-striped no-radius active background-dark" type="success">40%</uib-progressbar>
+                                            </div>
+                                        </div>
+                                        <h2 class="text-white margin-top-15 margin-bottom-10">8,000 </h2>
+                                        <span class="label label-success margin-right-5"><a href="#">40%</a></span><span class="text-extra-small">Active Enrollees <small>(3,200)</small></span>
+                                        <br>
+                                        <br>
+                                        <span class="label label-danger margin-right-5"><a href="#">60%</a></span><span class="text-extra-small">Inactive Enrollee <small>(4,800)</small></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-purple no-border no-radius">
+                                <ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>
+                                <div class="panel-body no-padding">
+                                    <div class="space10 padding-15">
+                                        <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin">Bronze Plan <i class="fa fa-arrow-circle-o-right"></i></h5>
+                                        <div class="min-height-40">
+                                            <div class="padding-top-20">
+                                                <uib-progressbar value="70" class="progress-striped no-radius active background-dark" type="success">70%</uib-progressbar>
+                                            </div>
+                                        </div>
+                                        <h2 class="text-white margin-top-15 margin-bottom-10">10,000 </h2>
+                                        <span class="label label-success margin-right-5"><a href="#">70%</a></span><span class="text-extra-small">Active Enrollees <small>(7,000)</small></span>
+                                        <br>
+                                        <br>
+                                        <span class="label label-danger margin-right-5"><a href="#">30%</a></span><span class="text-extra-small">Inactive Enrollee <small>(3,000)</small></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

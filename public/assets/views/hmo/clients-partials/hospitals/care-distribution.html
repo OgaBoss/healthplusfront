@@ -1,0 +1,134 @@
+<div class="col-md-8">
+    <div class="panel panel-white" id="medical-history">
+        <div class="panel-heading border-light">
+            <h4 class="panel-title text-primary">Care Distribution</h4>
+            <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
+        </div>
+        <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+            <div class="panel-body">
+                <div class="row">
+                    <div>
+                        <div class="col-sm-6">
+                            <div class="text-center margin-bottom-15">
+                                <canvas class="chart chart-doughnut" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors" chart-legend="true"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <div class="form-group">
+                                    <label for="daterange1" class="control-label">
+                                        Date Range
+                                    </label>
+                                    <input type="daterange" class="form-control" ng-model="dates2" ranges="ranges" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="partition-light-grey padding-15 text-center margin-bottom-25">
+                            <h4 class="no-margin">Monthly Statistics</h4>
+                            <span class="text-light">based on the major browsers</span>
+                        </div>
+                        <v-accordion class="vAccordion--default">
+                            <!-- add expanded attribute to open first section -->
+                            <v-pane expanded>
+                                <v-pane-header>
+                                    Primary
+                                </v-pane-header>
+                                <v-pane-content>
+                                    <table class="table margin-bottom-5">
+                                        <tbody>
+                                        <tr>
+                                            <td><strong>Diagnosis</strong></td>
+                                            <td class="center"><strong>Amount</strong></td>
+                                            <td class="center"><strong>Count</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mozilla Firefox</td>
+                                            <td class="center">3857</td>
+                                            <td><i class="fa fa-caret-up text-green"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Safari</td>
+                                            <td class="center">1789</td>
+                                            <td><i class="fa fa-caret-up text-green"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Internet Explorer</td>
+                                            <td class="center">612</td>
+                                            <td><i class="fa fa-caret-down text-red"></i></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </v-pane-content>
+                                <v-pane>
+                                    <v-pane-header>
+                                        Secondary
+                                    </v-pane-header>
+                                    <v-pane-content>
+                                        <table class="table margin-bottom-5">
+                                            <tbody>
+                                            <tr>
+                                                <td><strong>Diagnosis</strong></td>
+                                                <td class="center"><strong>Amount</strong></td>
+                                                <td class="center"><strong>Count</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mozilla Firefox</td>
+                                                <td class="center">3857</td>
+                                                <td><i class="fa fa-caret-up text-green"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Safari</td>
+                                                <td class="center">1789</td>
+                                                <td><i class="fa fa-caret-up text-green"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Internet Explorer</td>
+                                                <td class="center">612</td>
+                                                <td><i class="fa fa-caret-down text-red"></i></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </v-pane-content>
+                            </v-pane>
+                            <v-pane>
+                                <v-pane-header>
+                                    Tertiary
+                                </v-pane-header>
+                                <v-pane-content>
+                                    <table class="table margin-bottom-5">
+                                        <tbody>
+                                        <tr>
+                                            <td>Google Chrome</td>
+                                            <td class="center">5228</td>
+                                            <td><i class="fa fa-caret-up text-green"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mozilla Firefox</td>
+                                            <td class="center">2853</td>
+                                            <td><i class="fa fa-caret-up text-green"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Safari</td>
+                                            <td class="center">1948</td>
+                                            <td><i class="fa fa-caret-up text-green"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Internet Explorer</td>
+                                            <td class="center">456</td>
+                                            <td><i class="fa fa-caret-down text-red"></i></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </v-pane-content>
+                            </v-pane>
+                        </v-accordion>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+require('dotenv').config();
 var bodyParser = require('body-parser');
 var rootPath = path.normalize(__dirname + "/");
 

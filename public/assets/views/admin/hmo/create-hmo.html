@@ -1,0 +1,251 @@
+<!-- start: BREADCRUMB -->
+<!--<div class="breadcrumb-wrapper">-->
+    <!--<h4 class="mainTitle no-margin" translate="Create HMOs">Create HMOs</h4>-->
+
+    <!--<div ncy-breadcrumb class="pull-right"></div>-->
+<!--</div>-->
+
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="dashboard.WELCOME" translate-values="{ appName: app.name }">WELCOME TO CLIP-TWO</h4>
+    <span class="mainDescription">overview &amp; stats </span>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15">HMO <span class="text-bold">form</span></h5>
+                    <p>
+                        Please fill in the form accurately
+                    </p>
+                    <div class="row margin-top-30">
+                        <div class="col-lg-6 col-md-12" ng-hide="hideEntityForm">
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">HMO Creation</h5>
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form" name="Form" ng-submit="hmo.create(Form)">
+                                        <div class="form-group" ng-class="{'has-error':Form.name.$dirty && Form.name.$invalid, 'has-success':Form.name.$valid}">
+                                            <label class="control-label"> HMO Name <span class="symbol required"></span> </label>
+                                            <input type="text" placeholder="Please Enter the name of the HMO" class="form-control" name="name" ng-model="hmo.hmoForm.name" required />
+                                            <span class="error text-small block" ng-if="Form.name.$dirty && Form.name.$invalid">HMOs Name is required</span>
+                                            <span class="success text-small" ng-if="Form.name.$valid">Thank You!</span>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
+                                            <label for="">State <span class="symbol required"></span></label>
+                                            <select class="cs-select cs-skin-slide" ng-change="hmo.getLgs()" ng-model="hmo.hmoForm.state" name="state" ng-options=" state.state for state in states"required>
+                                            </select>
+                                            <span class="error text-small block" ng-if="Form.state.$dirty && Form.state.$error.required">State is required.</span>
+                                            <span class="success text-small block" ng-if="Form.state.$valid">Lovely place!</span>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error':Form.lg.$dirty && Form.lg.$invalid, 'has-success':Form.lg.$valid}">
+                                            <label for="">LG<span class="symbol required"></span></i></label>
+                                            <select class="cs-select cs-skin-slide" ng-options="lg.lga for lg in lgs" ng-model="hmo.hmoForm.lg" name="lg" required></select>
+                                            <span class="error text-small block" ng-if="Form.lg.$dirty && Form.lg.$error.required">lg is required.</span>
+                                            <span class="success text-small block" ng-if="Form.lg.$valid">Lovely place!</span>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error':Form.city.$dirty && Form.city.$invalid, 'has-success':Form.city.$valid}">
+                                            <label for="">
+                                                City/Area
+                                            </label>
+                                            <input type="text" class="form-control" id="city" placeholder="e.g Lekki," name="city" ng-model="hmo.hmoForm.city" required>
+                                            <span class="error text-small block" ng-if="Form.city.$dirty && Form.city.$error.required">City is required.</span>
+                                            <span class="success text-small block" ng-if="Form.city.$valid">Lovely place!</span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="">
+                                                Street Address
+                                            </label>
+                                            <input type="text" class="form-control" id="address" placeholder="e.g No 12 Thompson street," name="street" ng-model="hmo.hmoForm.street">
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error':Form.phone_mobile.$dirty && Form.phone_mobile.$invalid, 'has-success':Form.phone_mobile.$valid}">
+                                            <label for="">Phone (mobile) <span class="symbol required"></span> </label>
+                                                <input type="text" placeholder="Please Enter a mobile number (+234-123-4567-899)" class="form-control" name="phone_mobile" ng-model="hmo.hmoForm.phone_mobile" ng-pattern="mobileNumber" ng-maxlength="17" required />
+                                                <span class="error" ng-show="Form.phone_mobile.$error.pattern">Please match pattern [+234-123-4567-899 || 234-123-4567-899]</span>
+                                                <span class="error" ng-show="Form.phone_mobile.$error.maxLength">The max character length is 17</span>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error':Form.phone_office.$dirty && Form.phone_office.$invalid, 'has-success':Form.phone_office.$valid}">
+                                            <label for="">Phone (Office)</label>
+                                            <input type="text" placeholder="Please Enter a office number (01-123-4567)" class="form-control" name="phone_office" ng-model="hmo.hmoForm.phone_office" ng-pattern="mobileOffice" ng-maxlength="15" required/>
+                                            <span class="error" ng-show="Form.phone_office.$error.pattern">Please match pattern [01-123-4567]</span>
+                                            <span class="error" ng-show="Form.phone_office.$error.maxLength">The max character length is 11</span>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid, 'has-success':Form.email.$valid}">
+                                            <label class="control-label"> Email <span class="symbol required"></span> </label>
+                                            <input type="email" placeholder="Enter a valid E-mail" class="form-control" name="email" ng-model="hmo.hmoForm.email" required>
+                                            <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$error.required">Email is required.</span>
+                                            <span class="error text-small block" ng-if="Form.email.$error.email">Please, enter a valid email address.</span>
+                                            <span class="success text-small" ng-if="Form.email.$valid">It's a valid e-mail!</span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">
+                                                Creator
+                                            </label>
+                                            <input type="text" class="form-control" id="" placeholder="Password" ng-disabled="true" ng-model="hmo.hmoForm.creator">
+                                        </div>
+
+                                        <button type="submit" class="btn btn-o btn-primary">
+                                            Create
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12" ng-hide="hideAdminForm">
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">Attach Administrator to  </h5>
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form" ng-submit="hmo.attach(form1)" name="form1">
+                                        <div class="form-group" ng-class="{'has-error':Form.first_name.$dirty && Form.first_name.$invalid, 'has-success':Form.first_name.$valid}">
+                                            <label class="control-label"> First Name <span class="symbol required"></span> </label>
+                                            <input type="text" placeholder="Please Enter the first name" class="form-control" name="first_name" ng-model="hmo.hmoAdminForm.first_name" required />
+                                            <span class="error text-small block" ng-if="Form.first_name.$dirty && Form.first_name.$invalid">First Name is required</span>
+                                            <span class="success text-small" ng-if="Form.first_name.$valid">Thank You!</span>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error':Form.last_name.$dirty && Form.last_name.$invalid, 'has-success':Form.last_name.$valid}">
+                                            <label class="control-label"> Last Name <span class="symbol required"></span> </label>
+                                            <input type="text" placeholder="Please Enter the last name" class="form-control" name="last_name" ng-model="hmo.hmoAdminForm.last_name" required />
+                                            <span class="error text-small block" ng-if="Form.last_name.$dirty && Form.last_name.$invalid">First Name is required</span>
+                                            <span class="success text-small" ng-if="Form.last_name.$valid">Thank You!</span>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{'has-error':Form.user_email.$dirty && Form.user_email.$invalid, 'has-success':Form.user_email.$valid}">
+                                            <label class="control-label"> Email <span class="symbol required"></span> </label>
+                                            <input type="text" placeholder="Please Enter email" class="form-control" name="user_email" ng-model="hmo.hmoAdminForm.user_email" required />
+                                            <span class="error text-small block" ng-if="Form.user_email.$dirty && Form.user_email.$error.required">Email is required.</span>
+                                            <span class="error text-small block" ng-if="Form.user_email.$error.email">Please, enter a valid email address.</span>
+                                            <span class="success text-small" ng-if="Form.user_email.$valid">It's a valid e-mail!</span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label"> Role <span class="symbol required"></span> </label>
+                                            <input type="text" placeholder="Please Enter the role" class="form-control" name="role" ng-model="hmo.hmoAdminForm.role" ng-disabled="true"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label"> Entity <span class="symbol required"></span> </label>
+                                            <input type="text" placeholder="Please Enter the entity" class="form-control" name="entity" ng-model="hmo.hmoAdminForm.entity" ng-disabled="true" required/>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-o btn-primary">
+                                            Attach
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15">Uploads <span class="text-bold">CSV files only</span></h5>
+                    <p>
+                        with canvas preview
+                    </p>
+                    <!-- /// controller:  'UploadCtrl' -  localtion: assets/js/controllers/uploadCtrl.js /// -->
+                    <div  nv-file-drop="" uploader="uploaderImages">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Select files</h5>
+                                <div class="panel panel-white">
+                                    <div class="panel-body">
+                                        <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+                                        <span class="btn btn-primary btn-o btn-file">
+                                            Select an image file
+                                            <input type="file" nv-file-select="" uploader="uploaderImages" multiple />
+                                        </span>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9 file-upload" style="margin-bottom: 40px">
+                                <h4>The queue</h4>
+                                <p>
+                                    Queue length: {{ uploaderImages.queue.length }}
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th width="50%">Name</th>
+                                            <th ng-show="uploaderImages.isHTML5">Size</th>
+                                            <th ng-show="uploaderImages.isHTML5">Progress</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="item in uploaderImages.queue">
+                                            <td><strong>{{ item.file.name }}</strong><!-- Image preview --><!--auto height--><!--<div ng-thumb="{ file: item.file, width: 100 }"></div>--><!--auto width--><div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div><!--fixed width and height --><!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>--></td>
+                                            <td ng-show="uploaderImages.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                            <td ng-show="uploaderImages.isHTML5">
+                                                <div class="progress progress-xs margin-bottom-0">
+                                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                            <td nowrap>
+                                                <button type="button" class="btn btn-primary btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                                </button>
+                                                <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                                    <span class="glyphicon glyphicon-trash"></span> Remove
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <div>
+                                        Queue progress:
+                                        <div class="progress progress-xs margin-top-5 margin-bottom-20">
+                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploaderImages.progress + '%' }"></div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-s" ng-click="uploaderImages.uploadAll()" ng-disabled="!uploaderImages.getNotUploadedItems().length">
+                                        <span class="glyphicon glyphicon-upload"></span> Upload all
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-o btn-s" ng-click="uploaderImages.cancelAll()" ng-disabled="!uploaderImages.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-o btn-s" ng-click="uploaderImages.clearQueue()" ng-disabled="!uploaderImages.queue.length">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove all
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end: YOUR CONTENT HERE -->

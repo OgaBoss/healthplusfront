@@ -1,0 +1,96 @@
+<!-- start: MAIN NAVIGATION MENU -->
+<div class="navbar-title">
+    <span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
+</div>
+<ul class="main-navigation-menu">
+    <li ui-sref-active="active">
+        <a ui-sref="partners.home">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Dashboard' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Dashboard </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ng-class="{'active open':$state.includes('partners.clients')}">
+            <a ui-sref="partners.clients.home">
+                <div class="item-content">
+                    <div class="item-media">
+                        <letter-icon data="{{ 'Clients' | translate }}" char-count="2" size="sm"></letter-icon>
+                    </div>
+                    <div class="item-inner">
+                        <span class="title" translate="Clients"> Clients </span>
+                    </div>
+                </div>
+            </a>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('partners.care-providers')}">
+        <a ui-sref="partners.care-providers.home">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Care Providers' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="Care Providers"> Care Providers </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('healthPlan')}">
+        <a ui-sref="healthPlan.home">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Health Plans' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="Health Plans"> Health Plans </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('dashboard.pharmacy')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Staff' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="Staff"> Staff </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('dashboard.pharmacy')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Reports' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="Reports"> Reports </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('dashboard.pharmacy')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'Settings' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="Settings"> Settings </span>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+<!-- end: FEATURES -->

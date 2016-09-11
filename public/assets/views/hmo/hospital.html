@@ -1,0 +1,31 @@
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Inlad Medicals Profile</h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
+            <div >
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="Overview">
+                        <div class="row">
+                            <ng-include src=" 'assets/views/hmo/clients-partials/hospitals/overview.html' "></ng-include>
+                            <ng-include src=" 'assets/views/hmo/clients-partials/hospitals/care-distribution.html' "></ng-include>
+                        </div>
+                    </uib-tab>
+                    <!-- end: TAB OVERVIEW -->
+                    <!-- start: TAB EDIT ACCOUNT -->
+                    <uib-tab heading="Referral" active="editActive">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/hospitals/referral.html' "></ng-include>
+                    </uib-tab>
+                </uib-tabset>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>
+

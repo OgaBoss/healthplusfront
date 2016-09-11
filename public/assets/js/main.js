@@ -1,20 +1,27 @@
 var app = angular.module('app', ['packet']);
-app.run(['$rootScope', '$state', '$stateParams',
-function ($rootScope, $state, $stateParams) {
-	
+app.run(['$rootScope', '$state', '$stateParams','$location','$localStorage', '$auth',
+function ($rootScope, $state, $stateParams, $location, $localStorage, $auth) {
+    // Check if user is logged in
+    // Redirect if not
+    // TODO create array of auth needed route
+
+
     // Attach Fastclick for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
     FastClick.attach(document.body);
 
     // Set some reference to access them from any scope
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    if($localStorage.currentUser !== null){
+        $rootScope.currentUser = $localStorage.currentUser;
+    }
 
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'Packet', // name of your project
-        author: 'ClipTheme', // author's name or company name
-        description: 'Angular Bootstrap Admin Template', // brief description
+        name: 'HealthPlus', // name of your project
+        author: 'HealthPlus.ng', // author's name or company name
+        description: 'A Platfrom to bring all health practitioners together', // brief description
         version: '1.0', // current version
         year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
         isMobile: (function () {// true if the browser is a mobile device
@@ -24,6 +31,7 @@ function ($rootScope, $state, $stateParams) {
             };
             return check;
         })(),
+
         defaultLayout: {
             isNavbarFixed: true, //true if you want to initialize the template with fixed header
             isSidebarFixed: true, // true if you want to initialize the template with fixed sidebar
@@ -32,17 +40,44 @@ function ($rootScope, $state, $stateParams) {
             isBoxedPage: false, // true if you want to initialize the template with boxed layout
             theme: 'lyt1-theme-1', // indicate the theme chosen for your project
             logo: 'assets/images/logo.png', // relative path of the project logo
-            logoCollapsed: 'assets/images/logo-collapsed.png' // relative path of the collapsed logo
+            logoCollapsed: 'assets/images/logo-collapsed.png',  // relative path of the collapsed logo
+            className: ''
         },
         layout: ''
     };
+
+
     $rootScope.app.layout = angular.copy($rootScope.app.defaultLayout);
-    $rootScope.user = {
-        name: 'Peter',
-        job: 'ng-Dev',
-        picture: 'app/img/user/02.jpg'
-    };
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+        if($localStorage.currentUser){
+            if($localStorage.currentUser.data.entity.data.name !== 'admin'){
+                $rootScope.app.layout.theme = 'lyt3-theme-1';
+                $rootScope.app.layout.className = 'lyt-3';
+            }else{
+                $rootScope.app.layout.theme = 'lyt1-theme-1';
+                $rootScope.app.layout.className = '';
+            }
+        }
+    });
+
+    //Logout function
+    $rootScope.logout = function(){
+        $auth.logout();
+        $localStorage.$reset();
+        $state.go('login');
+    }
 }]);
+app.service('authInterceptor', function($q, $state) {
+    var service = this;
+
+    service.responseError = function(response) {
+        if (response.status == 401){
+            $state.go('login');
+        }
+        return $q.reject(response);
+    };
+})
 // translate config
 app.config(['$translateProvider',
 function ($translateProvider) {
@@ -73,19 +108,21 @@ function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
 
 }]);
+
+
 // Angular-breadcrumb
 // configuration
 app.config(function ($breadcrumbProvider) {
     $breadcrumbProvider.setOptions({
-        template: '<ul class="breadcrumb"><li><a ui-sref="app.dashboard"><i class="fa fa-home margin-right-5 text-large text-dark"></i>Home</a></li><li ng-repeat="step in steps">{{step.ncyBreadcrumbLabel}}</li></ul>'
+        template: '<ul class="breadcrumb"><li><a ui-sref="dashboard.home"><i class="fa fa-home margin-right-5 text-large text-dark"></i>Home</a></li><li ng-repeat="step in steps">{{step.ncyBreadcrumbLabel}}</li></ul>'
     });
 });
 // ng-storage
 //set a prefix to avoid overwriting any local storage variables
-app.config(['$localStorageProvider',
-    function ($localStorageProvider) {
-        $localStorageProvider.setKeyPrefix('PacketLtr1');
-    }]);
+//app.config(['$localStorageProvider',
+//    function ($localStorageProvider) {
+//        $localStorageProvider.setKeyPrefix('PacketLtr1');
+//    }]);
 //filter to convert html to plain text
 app.filter('htmlToPlaintext', function () {
       return function (text) {

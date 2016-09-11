@@ -1,0 +1,225 @@
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-white no-radius no-margin">
+                <div class="panel-heading border-light padding-30">
+                    <div class="row">
+                        <div class="col-lg-4 col-xs-5">
+                            <button id="split-button" type="button" class="btn btn-azure btn-sm" ng-disabled="orgCtrl.allBtn" ng-model="allBtn" ng-click="orgCtrl.enrolleeFilter('all')">
+                                <span class="text-bold">All</span>
+                            </button>
+                            <button id="split-button" type="button" class="btn btn-azure btn-sm" ng-disabled="orgCtrl.activeBtn" ng-model="activeBtn" ng-click="orgCtrl.enrolleeFilter('active')">
+                                <span class="text-bold">Active</span>
+                            </button>
+                            <button id="split-button" type="button" class="btn btn-azure btn-sm" ng-disabled="orgCtrl.inActiveBtn"  ng-model="inActiveBtn" ng-click="orgCtrl.enrolleeFilter('inactive')">
+                                <span class="text-bold">Inactive</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-white no-radius no-margin">
+                <div class="panel-body padding-top-0">
+                    <table class="table no-margin" ng-show="orgCtrl.allEnrollees">
+                        <tbody>
+                        <tr ng-show="orgCtrl.activeEnrollees">
+                            <td class="max-width-100">
+                                <div class="icons-effect">
+                                    <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
+                                </div>
+                            </td>
+                            <td class="width-400">
+                                <div class="padding-10">
+                                    <div class="block">
+                                        <strong><a ui-sref="partners.clients.organization({id: 1})">MTN Africa</a></strong>
+                                    </div>
+                                    <span class="text-small text-muted">Ikoyi, Lagos </span><span class="text-azure"><strong>Nigeria</strong></span>
+                                    <div class="block margin-top-10">
+                                        <span class="label label-success">active</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="">
+                                    <a href="#" class="block">
+                                        <i class="fa fa-medkit text-azure"></i> 7 total plans
+                                    </a>
+
+                                    <a href="#" class="block">
+                                        <i class="fa fa-check-circle text-green"></i> 1200 active enrollees
+                                    </a>
+
+                                    <a href="#" class="block">
+                                        <i class="fa fa-ban text-red"></i> 20 inactive enrollees
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="visible-lg table-actions">
+                                <div class="col-xs-4 no-padding text-center border-right border-dark">
+                                    <div class="padding-5">
+                                        <a href="#">
+                                            <strong><i class="fa fa-pencil-square-o text-green" aria-hidden="true"></i></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 no-padding text-center">
+                                    <div class=" padding-5">
+                                        <a href="#">
+                                            <strong><i class="fa fa-trash-o text-red" aria-hidden="true"></i></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr ng-show="orgCtrl.inActiveEnrollees">
+                            <td class="max-width-100">
+                                <div class="icons-effect">
+                                    <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="padding-10">
+                                    <div class="block">
+                                        <strong><a ui-sref="partners.clients.enrollee({id: 1})">Jane Doe</a></strong>
+                                    </div>
+                                    <span class="text-small text-muted">Cover expires by </span><span class="text-azure"><strong>September 16, 2100</strong></span>
+                                    <div class="block margin-top-10">
+                                        <span class="label label-danger">inactive</span>
+                                    </div>
+                                </div></td>
+                            <td class="hidden-xs">
+                                <div class="block">
+                                    <a href="#" class="block">
+                                        <i class="fa fa-medkit text-azure"></i> Gold Outreach Plan
+                                    </a>
+                                    <a href="#" class="block">
+                                        <i class="fa fa-check-circle text-green"></i> Active Months : 16.5
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="visible-lg table-actions">
+                                <div class="col-xs-4 no-padding text-center border-right border-dark">
+                                    <div class=" padding-5">
+                                        <a href="#">
+                                            <strong><i class="fa fa-pencil-square-o text-green" aria-hidden="true"></i></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 no-padding text-center">
+                                    <div class=" padding-5">
+                                        <a href="#">
+                                            <strong><i class="fa fa-trash-o text-red" aria-hidden="true"></i></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr ng-show="orgCtrl.activeEnrollees">
+                            <td class="max-width-100">
+                                <div class="icons-effect">
+                                    <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
+                                </div>
+                            </td>
+                            <td class="width-400">
+                                <div class="padding-10">
+                                    <div class="block">
+                                        <strong><a ui-sref="partners.clients.organization({id: 1})">MTN Africa</a></strong>
+                                    </div>
+                                    <span class="text-small text-muted">Ikoyi, Lagos </span><span class="text-azure"><strong>Nigeria</strong></span>
+                                    <div class="block margin-top-10">
+                                        <span class="label label-success">active</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="">
+                                    <a href="#" class="block">
+                                        <i class="fa fa-medkit text-azure"></i> 7 total plans
+                                    </a>
+
+                                    <a href="#" class="block">
+                                        <i class="fa fa-check-circle text-green"></i> 1200 active enrollees
+                                    </a>
+
+                                    <a href="#" class="block">
+                                        <i class="fa fa-ban text-red"></i> 20 inactive enrollees
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="visible-lg table-actions">
+                                <div class="col-xs-4 no-padding text-center border-right border-dark">
+                                    <div class="padding-5">
+                                        <a href="#">
+                                            <strong><i class="fa fa-pencil-square-o text-green" aria-hidden="true"></i></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 no-padding text-center">
+                                    <div class=" padding-5">
+                                        <a href="#">
+                                            <strong><i class="fa fa-trash-o text-red" aria-hidden="true"></i></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr ng-show="orgCtrl.inActiveEnrollees">
+                            <td class="max-width-100">
+                                <div class="icons-effect">
+                                    <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="padding-10">
+                                    <div class="block">
+                                        <strong><a ui-sref="partners.clients.enrollee({id: 1})">Jane Doe</a></strong>
+                                    </div>
+                                    <span class="text-small text-muted">Cover expires by </span><span class="text-azure"><strong>September 16, 2100</strong></span>
+                                    <div class="block margin-top-10">
+                                        <span class="label label-danger">inactive</span>
+                                    </div>
+                                </div></td>
+                            <td class="hidden-xs">
+                                <div class="block">
+                                    <a href="#" class="block">
+                                        <i class="fa fa-medkit text-azure"></i> Gold Outreach Plan
+                                    </a>
+                                    <a href="#" class="block">
+                                        <i class="fa fa-check-circle text-green"></i> Active Months : 16.5
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="visible-lg table-actions">
+                                <div class="col-xs-4 no-padding text-center border-right border-dark">
+                                    <div class=" padding-5">
+                                        <a href="#">
+                                            <strong><i class="fa fa-pencil-square-o text-green" aria-hidden="true"></i></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 no-padding text-center">
+                                    <div class=" padding-5">
+                                        <a href="#">
+                                            <strong><i class="fa fa-trash-o text-red" aria-hidden="true"></i></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

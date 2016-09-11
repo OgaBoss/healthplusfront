@@ -11,15 +11,15 @@
 </div>
 <!-- end: SEARCH FORM -->
 <!-- start: USER OPTIONS -->
-<div class="nav-user-wrapper">
+<div class="nav-user-wrapper" ng-controller="DashBoardController">
     <div class="media">
         <div class="media-left">
             <a class="profile-card-photo" href="#"><img alt="" src="assets/images/avatar-1.jpg"></a>
         </div>
         <div class="media-body">
-            <span class="media-heading text-white">Peter Clark</span>
+            <span class="media-heading text-white">{{currentUser.data.name}}</span>
             <div class="text-small text-white-transparent">
-                UI Designer
+                {{ currentUser.data.role.data.name }}
             </div>
         </div>
 
@@ -28,20 +28,20 @@
                 <a href class="dropdown-toggle btn btn-transparent text-white" uib-dropdown-toggle><i class="fa fa-caret-down"></i> </a>
                 <ul class="dropdown-menu pull-right animated fadeInRight">
                     <li>
-                        <a ui-sref="app.pages.user" translate="topbar.user.PROFILE"> My Profile </a>
+                        <a translate="topbar.user.PROFILE"> My Profile </a>
                     </li>
                     <li>
-                        <a ui-sref="app.pages.calendar" translate="topbar.user.CALENDAR"> My Calendar </a>
+                        <a translate="topbar.user.CALENDAR"> My Calendar </a>
                     </li>
                     <li>
-                        <a ui-sref="app.pages.messages" translate="topbar.user.MESSAGES"> My Messages (3) </a>
+                        <a translate="topbar.user.MESSAGES"> My Messages (3) </a>
                     </li>
                     <li>
-                        <a ui-sref="login.lockscreen" translate="topbar.user.LOCKSCREEN"> Lock Screen </a>
+                        <a translate="topbar.user.LOCKSCREEN"> Lock Screen </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a ui-sref="login.signin" translate="topbar.user.LOGOUT"> Log Out </a>
+                        <a translate="topbar.user.LOGOUT"ng-click="logout()" > Log Out </a>
                     </li>
                 </ul>
             </div>
@@ -50,5 +50,10 @@
 </div>
 <!-- end: USER OPTIONS -->
 <!-- start: SIDEBAR -->
-<nav data-ng-include=" 'assets/views/partials/nav.html' "></nav>
+<div ng-if="currentUser.data.entity.data.name == 'admin'">
+    <nav data-ng-include=" 'assets/views/partials/nav.html' "></nav>
+</div>
+<div ng-if="currentUser.data.entity.data.name != 'admin'">
+    <nav data-ng-include=" 'assets/views/partials/hmo/nav-hmo.html' "></nav>
+</div>
 <!-- end: SIDEBAR -->

@@ -3,8 +3,8 @@
 /**
  * Config for the router
  */
-app.config(['$authProvider','$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$ocLazyLoadProvider', 'JS_REQUIRES',
-function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $ocLazyLoadProvider, jsRequires) {
+app.config(['$authProvider','$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$ocLazyLoadProvider', '$httpProvider','JS_REQUIRES',
+function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $ocLazyLoadProvider,$httpProvider,jsRequires) {
 
     app.controller = $controllerProvider.register;
     app.directive = $compileProvider.directive;
@@ -18,7 +18,23 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
        apiBaseUrl: 'http://healthplusapi.app/api/v1/'
     });
 
-
+    $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+        return {
+            'request': function (config) {
+                config.headers = config.headers || {};
+                if ($localStorage.satellizer_token) {
+                    config.headers.Authorization = 'Bearer ' + $localStorage.satellizer_token;
+                }
+                return config;
+            },
+            'responseError': function (response) {
+                if (response.status === 401 || response.status === 403) {
+                    $location.path('/login');
+                }
+                return $q.reject(response);
+            }
+        };
+    }]);
 
     // LAZY MODULES
 
@@ -29,7 +45,6 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     });
 
     $authProvider.loginUrl = 'http://healthplusapi.app/api/v1/authenticate';
-    $authProvider.httpInterceptor = false;
 
     // Register Login Url
 
@@ -38,41 +53,171 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     // For any unmatched url, redirect to /app/dashboard
     $urlRouterProvider.otherwise("/login");
     // Set up the states
-    $stateProvider.state('dashboard', {
-        url: "/dashboard",
+    $stateProvider.state('login', {
+        url: '/login',
+        templateUrl: 'assets/views/auth/login.html',
+        controller: 'LoginController',
+        controllerAs: 'login',
+        resolve: loadSequence('healthNotify', 'ngNotify', 'LoginService'),
+    })
+
+    // Admin Route
+    .state('app', {
+        url: "/admin",
         templateUrl: "assets/views/app.html",
-        resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl', 'loginRequired'),
-        abstract: true
-    }).state('dashboard.home', {
-        url: "/home",
+        resolve: loadSequence('ngNotify'),
+        abstract: true,
+        controller: 'DashBoardController',
+        controllerAs: 'dashboard'
+    }).state('app.admin', {
+        url: "/dashboard/home",
         templateUrl: "assets/views/admin/home.html",
-        resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
         title: 'Dashboard',
         ncyBreadcrumb: {
             label: 'Dashboard'
         }
-    }).state('dashboard.hmo', {
-        url: '/hmo',
+    }).state('app.hmo', {
+        url: '/dashboard/hmo',
         template: '<div ui-view class="fade-in-up"></div>',
         title: 'HMOs',
         ncyBreadcrumb: {
             label: 'HMOs'
         }
-    }).state('dashboard.hmo.create', {
+    }).state('app.hmo.create', {
         url: '/create-hmo',
-        templateUrl: "assets/views/admin/create-hmo.html",
+        templateUrl: "assets/views/admin/hmo/create-hmo.html",
+        controller: 'HmoController',
+        controllerAs: 'hmo',
         title: 'Create',
+        resolve: loadSequence('angularFileUpload'),
         ncyBreadcrumb: {
             label: 'Create'
         }
-    }).state('login', {
-        url: '/login',
-        templateUrl: 'assets/views/auth/login.html',
-        controller: 'LoginController',
-        controllerAs: 'login',
-        resolve: loadSequence('healthNotify', 'ngNotify'),
-
+    }).state('app.hmo.view', {
+        url: '/create-view',
+        templateUrl: "assets/views/admin/hmo/view-hmo.html",
+        controller: 'HmoController',
+        controllerAs: 'hmo',
+        title: 'View',
+        ncyBreadcrumb: {
+            label: 'View'
+        }
     })
+
+    // HMO Route
+    .state('partners', {
+        url: "/partners",
+        templateUrl: "assets/views/app.html",
+        resolve: loadSequence('ngNotify'),
+        abstract: true,
+        controller: 'DashBoardController',
+        controllerAs: 'dashboard'
+    }).state('partners.home', {
+        url: "/dashboard/home",
+        templateUrl: "assets/views/hmo/home.html",
+        title: 'Dashboard',
+        ncyBreadcrumb: {
+            label: 'Dashboard'
+        }
+    }).state('partners.clients', {
+        url: '/dashboard/clients',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'Clients Page',
+        ncyBreadcrumb: {
+            label: 'Clients'
+        }
+    }).state('partners.clients.home', {
+        url: '/home',
+        templateUrl: 'assets/views/hmo/clients.html',
+        controller: 'HmoClientController',
+        controllerAs: 'hmoClient',
+        title: 'Clients Page',
+        ncyBreadcrumb: {
+            label: 'Home'
+        }
+    }).state('partners.clients.organization', {
+        url: '/organization/:id',
+        templateUrl: 'assets/views/hmo/organization.html',
+        title: 'Organization Profile',
+        controller:'OrganizationController',
+        controllerAs: 'orgCtrl',
+        resolve: loadSequence('healthNotify','ngNotify'),
+        ncyBreadcrumb: {
+            label: 'Organization Profile'
+        }
+    }).state('partners.clients.enrollee', {
+        url: '/enrollee/:id',
+        templateUrl: 'assets/views/hmo/enrollee.html',
+        title: 'Enrollee Profile',
+        controller:'EnrolleeController',
+        controllerAs: 'enrolleeCtrl',
+        ncyBreadcrumb: {
+            label: 'Enrollee Profile'
+        }
+    }).state('partners.care-providers', {
+        url: '/dashboard/care-providers',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'DashBoard',
+        ncyBreadcrumb: {
+            label: 'DashBoard'
+        }
+    }).state('partners.care-providers.home', {
+        url: '/home',
+        templateUrl: 'assets/views/hmo/care-providers.html',
+        title: 'Care Providers',
+        ncyBreadcrumb: {
+            label: 'Care Providers'
+        }
+    }).state('partners.care-providers.hospital', {
+        url: '/hospital/:id',
+        templateUrl: 'assets/views/hmo/hospital.html',
+        title: 'Hospital',
+        controller:'HospitalController',
+        controllerAs: 'hospitalCtrl',
+        resolve: loadSequence('chartjs', 'chart.js'),
+        ncyBreadcrumb: {
+        label: 'Hospital'
+        }
+    }).state('partners.care-providers.pharmacy', {
+        url: '/pharmacy/:id',
+        templateUrl: 'assets/views/hmo/pharmacy.html',
+        title: 'Pharmacy',
+        ncyBreadcrumb: {
+            label: 'Pharmacy'
+        }
+    })
+
+    // Hmo Health Plans Route
+    .state('healthPlan', {
+        url: "/health-plan",
+        templateUrl: "assets/views/app.html",
+        resolve: loadSequence('ngNotify'),
+        abstract: true,
+        controller: 'HealthPlanController',
+        controllerAs: 'healthPlanCtrl',
+        ncyBreadcrumb: {
+            label: 'HealthPlans'
+        }
+    }).state('healthPlan.home', {
+        url: "/home",
+        templateUrl: "assets/views/hmo/health-plan.html",
+        resolve: loadSequence('ngNotify'),
+        controller: 'HealthPlanController',
+        controllerAs: 'healthPlanCtrl',
+        ncyBreadcrumb: {
+            label: 'Home'
+        }
+    }).state('healthPlan.plan', {
+            url: "/plan/:id",
+            templateUrl: "assets/views/hmo/plan.html",
+            resolve: loadSequence('ngNotify'),
+            controller: 'HealthPlanController',
+            controllerAs: 'healthPlanCtrl',
+            ncyBreadcrumb: {
+                label: 'Plan'
+            }
+        })
+
     // Generates a resolve object previously configured in constant.JS_REQUIRES (config.constant.js)
     function loadSequence() {
         var _args = arguments;

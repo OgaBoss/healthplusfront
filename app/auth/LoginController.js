@@ -3,7 +3,7 @@
  */
 
 app.controller('LoginController',
-    function LoginController($scope, $location, $auth, $state, healthNotify, currentUser, $localStorage) {
+    function LoginController($scope, $location, $auth, $state, healthNotify, $localStorage, currentUser, $rootScope, LoginService) {
         //Set Env
         var vm = this;
         vm.user = {};
@@ -19,21 +19,18 @@ app.controller('LoginController',
             $auth.login({
                 email: vm.user.email,
                 password: vm.user.password
-            }).then(function(response) {
+            }).then(function() {
                 $scope.loading = true;
                 currentUser.getCurrentUser().then(function(response){
-                    $localStorage.currentUser = response;
+                    $localStorage.currentUser = response.user_data;
+                    LoginService.loginSort(response.user_data);
                 });
-                $scope.currentUser = $localStorage.currentUser;
-                $state.go('dashboard.home');
-                healthNotify.set('Hey Administrator you just got logged in', 'success');
+
                 // If login is successful, redirect to the users state
             }).catch(function(response){
                 var msg = response.data.error
                 healthNotify.set(msg, 'error');
                 $scope.loading = true;
-
-
             })
         }
     }

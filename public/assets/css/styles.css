@@ -4492,6 +4492,10 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
   margin-bottom: 5px !important;
 }
 
+.margin-top-minus-5{
+    margin-top: -5px !important;
+}
+
 .margin-bottom-10 {
   margin-bottom: 10px !important;
 }
@@ -4928,12 +4932,16 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
   width: 200px !important;
 }
 
+.width-400 {
+    width: 400px !important;
+}
+
 .max-width-50 {
   max-width: 50px !important;
 }
 
 .max-width-100 {
-  max-width: 100px !important;
+  max-width: 40px !important;
 }
 
 .max-width-150 {
@@ -7417,6 +7425,9 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
   line-height: 1.2 !important;
   padding: 5px 4px !important;
   box-shadow: none !important;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }
 textarea:hover, input[type="text"]:hover, input[type="password"]:hover, input[type="datetime"]:hover, input[type="daterange"]:hover, input[type="datetime-local"]:hover, input[type="date"]:hover, input[type="month"]:hover, input[type="time"]:hover, input[type="week"]:hover, input[type="number"]:hover, input[type="email"]:hover, input[type="url"]:hover, input[type="search"]:hover, input[type="tel"]:hover, input[type="color"]:hover {
   border-color: #aeacb4 !important;

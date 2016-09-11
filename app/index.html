@@ -14,6 +14,9 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
     <!-- Themify Icons -->
@@ -51,6 +54,7 @@
     <link rel="stylesheet" href="lib/slick-carousel/slick/slick-theme.css">
     <!-- Packet CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <!-- Packet Theme -->
     <link rel="stylesheet" data-ng-href="assets/css/themes/{{ app.layout.theme }}.css" />
@@ -58,10 +62,18 @@
     <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body ng-controller="AppCtrl">
-<div ui-view id="app" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>
+<div ui-view id="app" class="{{ app.layout.className }}" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>
+
+<!--<div ng-if="currentUser.data.entity.data.name == 'admin'">-->
+    <!--<div ui-view id="app" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>-->
+<!--</div>-->
+
+<!--<div ng-if="currentUser.data.entity.data.name != 'admin'">-->
+    <!--<div ui-view id="app" class="lyt-3" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>-->
+<!--</div>-->
 
 <!-- jQuery -->
-<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Fastclick -->
 <script src="/lib/fastclick/lib/fastclick.js"></script>
 <!-- Modernizr -->
@@ -165,12 +177,32 @@
 <!--Services-->
 <script src="assets/js/services/notify.js"></script>
 <script src="assets/js/services/currentUser.js"></script>
+<script src="assets/js/services/country.js"></script>
+<script src="assets/js/services/tokenCheck.js"></script>
+<script src="assets/js/services/entity.js"></script>
+<script src="assets/js/services/login.js"></script>
+<script src="assets/js/services/FileUploadService.js"></script>
 
 <!-- Packet Controllers -->
 <script src="assets/js/controllers/mainCtrl.js"></script>
 <script src="assets/js/controllers/inboxCtrl.js"></script>
 <script src="assets/js/controllers/bootstrapCtrl.js"></script>
 <script src="auth/LoginController.js"></script>
+<script src="admin/HmoController.js"></script>
+<script src="admin/DashBoardController.js"></script>
+<script src="hmo/HmoClientController.js"></script>
+<script src="hmo/DateController.js"></script>
+<script src="hmo/OrganizationController.js"></script>
+<script src="hmo/EnrolleeController.js"></script>
+<script src="hmo/HealthPlanController.js"></script>
+<script src="hmo/PharmacyController.js"></script>
+<script src="hmo/HospitalController.js"></script>
+
+<!--Custom JS-->
+<script src="assets/js/custom/animatedModal.min.js"></script>
+<script>
+    $("#demo01").animatedModal();
+</script>
 
 
 </body>
