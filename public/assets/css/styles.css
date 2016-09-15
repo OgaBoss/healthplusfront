@@ -14777,7 +14777,7 @@ figure.effect-goliath:hover p {
 /* ---------------------------------------------------------------------- */
 .pricing-table .plan {
   border: none;
-  margin: 20px 0;
+  /*margin: 20px 0;*/
   position: relative;
   padding: 0;
   list-style: none;
