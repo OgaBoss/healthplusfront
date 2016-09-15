@@ -4,7 +4,7 @@
 app.factory('currentUser', ['$http','$auth','apiConfig', function($http, $auth, apiConfig){
     return {
         getCurrentUser: function(){
-            return $http.get(apiConfig.apiBaseUrl + 'currentAuthUser/').then(handleSuccess, handleError);
+            return $http.get(apiConfig.apiBaseUrl + 'currentAuthUser').then(handleSuccess, handleError);
         }
     }
 
