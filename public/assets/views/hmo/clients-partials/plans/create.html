@@ -1,0 +1,45 @@
+<form action="#" role="form" id="form">
+    <fieldset>
+        <legend>
+            Plan Information
+        </legend>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">
+                        Title
+                    </label>
+                    <input type="text" placeholder="Title" class="form-control" name="name" value="">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">
+                        Premuim
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-addon">N</span>
+                        <input type="text" class="form-control" value="" placeholder="Premium">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">
+                        Cover Limit
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-addon">N</span>
+                        <input type="text" class="form-control" VALUE="" placeholder="Cover Limit">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <ng-include src=" 'assets/views/hmo/clients-partials/plans/primary-care.html' "></ng-include>
+    <ng-include src=" 'assets/views/hmo/clients-partials/plans/secondary.html' "></ng-include>
+    <ng-include src=" 'assets/views/hmo/clients-partials/plans/tertiary.html' "></ng-include>
+
+    <a href="#" class="btn btn-success btn-lg" ng-click="update()"> Update </a>
+</form>
+
+
+

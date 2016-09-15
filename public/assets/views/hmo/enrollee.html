@@ -1,6 +1,7 @@
 <!-- start: BREADCRUMB -->
 <div class="breadcrumb-wrapper">
-    <h4 class="mainTitle no-margin">Jane Doe Profile</h4><small><span class="label label-danger"><small>enrollee</small></span></small>
+    <h4 class="mainTitle no-margin"><strong><span class="text-super-large text-muted">Jane Doe Profile</span></strong></h4>
+    <span class="mainDescription text-azure">Enrollee</span>
     <div ncy-breadcrumb class="pull-right"></div>
 </div>
 <!-- end: BREADCRUMB -->
@@ -27,6 +28,7 @@
                     <!-- end: TAB EDIT ACCOUNT -->
                     <!-- start: TAB PROJECTS -->
                     <uib-tab heading="Claims">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/claims.html' "></ng-include>
                     </uib-tab>
                     <!-- end: TAB PROJECTS -->
 

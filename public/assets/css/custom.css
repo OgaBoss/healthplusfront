@@ -12,3 +12,11 @@
     height: 150px;
     border: dashed 1px black;
 }
+
+.panel-dami {
+    background-color: #F1F3FA;
+}
+
+.font-10{
+    font-size: 10px !important;
+}

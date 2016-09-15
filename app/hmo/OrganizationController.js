@@ -32,6 +32,8 @@ app.controller('OrganizationController', function($scope, healthNotify){
         vm.overview = index;
         if(type == 'active'){
             vm.inActiveEnrollees = false;
+        }else if(type == 'inactive'){
+            vm.activeEnrollees = false
         }
     }
 

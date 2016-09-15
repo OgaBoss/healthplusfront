@@ -1,6 +1,6 @@
 <!-- start: BREADCRUMB -->
 <div class="breadcrumb-wrapper">
-    <h4 class="mainTitle no-margin">Gold Plan</h4>
+    <h4 class="mainTitle no-margin">{{pageName}}</h4>
     <div ncy-breadcrumb class="pull-right"></div>
 </div>
 <!-- end: BREADCRUMB -->
@@ -8,25 +8,44 @@
 <div class="container-fluid container-fullw">
     <div class="row">
         <div class="col-md-12">
-            <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
             <div >
                 <!-- start: USER TABSET -->
-                <uib-tabset class="tabbable">
+                <uib-tabset class="tabbable" active="healthPlanCtrl.tabIndex">
                     <!-- start: TAB OVERVIEW -->
                     <uib-tab heading="Overview">
                         <div class="row">
-                            <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-info.html' "></ng-include>
-                            <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/medical-history.html' "></ng-include>
+                            <div class="col-md-8">
+                                <ng-include src=" 'assets/views/hmo/clients-partials/plans/overview.html' "></ng-include>
+                            </div>
                         </div>
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
                     <!-- start: TAB EDIT ACCOUNT -->
                     <uib-tab heading="Edit">
-                        <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-edit.html' "></ng-include>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <ng-include src=" 'assets/views/hmo/clients-partials/plans/edit.html' "></ng-include>
+                                <div class="panel panel-white space20 margin-top-20">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">Delete Plan</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <button type="button" class="btn btn-wide btn-danger" style="width: 100%">
+                                                    Delete Plan !
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </uib-tab>
 
                     <uib-tab heading="Create">
-                        <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-edit.html' "></ng-include>
+                        <ng-include src=" 'assets/views/hmo/clients-partials/plans/create.html' "></ng-include>
+
                     </uib-tab>
                     <!-- end: TAB EDIT ACCOUNT -->
                     </uib-tabset>

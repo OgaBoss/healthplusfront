@@ -1,0 +1,27 @@
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">John Doe <span class="label label-success" style="font-size: 10px !important;">IT Administrator</span></h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div >
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="Overview">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/staff/overview.html' "></ng-include>
+                    </uib-tab>
+
+                    <uib-tab heading="Create">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/staff/create.html' "></ng-include>
+                    </uib-tab>
+
+
+                </uib-tabset>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>

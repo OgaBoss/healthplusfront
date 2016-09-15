@@ -14,9 +14,15 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     app.constant = $provide.constant;
     app.value = $provide.value;
 
-    app.value('apiConfig',{
-       apiBaseUrl: 'http://healthplusapi.app/api/v1/'
-    });
+    if(location.host == 'localhost:5000' ){
+        app.value('apiConfig',{
+            apiBaseUrl: 'http://healthplusapi.app/api/v1/'
+        });
+    }else{
+        app.value('apiConfig',{
+            apiBaseUrl: 'https://healthplusapi.herokuapp.com/api/v1/'
+        });
+    }
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
         return {
@@ -150,6 +156,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         templateUrl: 'assets/views/hmo/enrollee.html',
         title: 'Enrollee Profile',
         controller:'EnrolleeController',
+        resolve: loadSequence('chartjs', 'chart.js'),
         controllerAs: 'enrolleeCtrl',
         ncyBreadcrumb: {
             label: 'Enrollee Profile'
@@ -208,15 +215,46 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
             label: 'Home'
         }
     }).state('healthPlan.plan', {
-            url: "/plan/:id",
-            templateUrl: "assets/views/hmo/plan.html",
-            resolve: loadSequence('ngNotify'),
-            controller: 'HealthPlanController',
-            controllerAs: 'healthPlanCtrl',
-            ncyBreadcrumb: {
-                label: 'Plan'
-            }
-        })
+        url: "/plan/:id?tabIndex",
+        templateUrl: "assets/views/hmo/plan.html",
+        resolve: loadSequence('ngNotify'),
+        controller: 'HealthPlanController',
+        controllerAs: 'healthPlanCtrl',
+        ncyBreadcrumb: {
+            label: 'Plan'
+        }
+    })
+
+    //Staff Route
+    .state('staff', {
+        url: "/staff",
+        abstract: true,
+        templateUrl: "assets/views/app.html",
+        resolve: loadSequence('ngNotify'),
+        controller: 'StaffController',
+        controllerAs: 'staffCtrl',
+        ncyBreadcrumb: {
+            label: 'Staff'
+        }
+    }).state('staff.home', {
+        url: "/home",
+        templateUrl: "assets/views/hmo/staff.html",
+        resolve: loadSequence('ngNotify'),
+        controller: 'StaffController',
+        controllerAs: 'staffCtrl',
+        ncyBreadcrumb: {
+            label: 'Home'
+        }
+    }).state('staff.info', {
+        url: "/info/:id?tabIndex&pageName",
+        templateUrl: "assets/views/hmo/staff-info.html",
+        resolve: loadSequence('ngNotify'),
+        controller: 'StaffController',
+        controllerAs: 'staffCtrl',
+        ncyBreadcrumb: {
+            label: 'Overview'
+        }
+    })
 
     // Generates a resolve object previously configured in constant.JS_REQUIRES (config.constant.js)
     function loadSequence() {

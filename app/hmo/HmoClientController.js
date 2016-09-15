@@ -10,9 +10,20 @@ app.controller('HmoClientController', ['$scope', function($scope){
     vm.buttonFilter.enrIsDisabled = false;
     vm.buttonFilter.enrEnabled = false
     vm.buttonFilter.orgEnabled = false
+
+    vm.clientsDisplay = {};
+    vm.clientsDisplay.enrollee = true;
+    vm.clientsDisplay.organization = true;
+
+
+
     // Handle on click of any major filter
     vm.majorFilter = function(type){
         if(type == 'org'){
+            // Show Organization
+            vm.clientsDisplay.enrollee = false;
+            vm.clientsDisplay.organization = true;
+
             // Re-Oder the Major Filters
             vm.buttonFilter.allIsDisabled = false;
             vm.buttonFilter.orgIsDisabled = true;
@@ -20,17 +31,30 @@ app.controller('HmoClientController', ['$scope', function($scope){
 
             // Re-Order the Sub Filters
             $scope.showSubFilters = true;
-            vm.buttonFilter.enrEnabled = true;
+            vm.buttonFilter.enrEnabled = false;
+            vm.buttonFilter.orgEnabled = true;
 
 
         } else if(type  == 'enr'){
+            // Show Enrollee
+            vm.clientsDisplay.enrollee = true;
+            vm.clientsDisplay.organization = false;
+
             vm.buttonFilter.allIsDisabled = false;
             vm.buttonFilter.orgIsDisabled = false;
             vm.buttonFilter.enrIsDisabled = true
+
+            // Re-Order the Sub Filters
+            $scope.showSubFilters = true;
+            vm.buttonFilter.enrEnabled = true;
+            vm.buttonFilter.orgEnabled = false;
         } else if(type == 'all'){
             vm.buttonFilter.allIsDisabled = true;
             vm.buttonFilter.orgIsDisabled = false;
             vm.buttonFilter.enrIsDisabled = false
+
+            $scope.showSubFilters = false;
+
         }
     }
 

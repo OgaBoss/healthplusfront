@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white">
+            <div class="panel-heading border-light">
+                <h4 class="panel-title text-primary">Claims
+                    <input type="daterange" class="pull-right" ng-model="dates2" ranges="ranges" />
+                </h4>
+                <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
+            </div>
+            <div uib-collapse="activities"  class="panel-wrapper">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="padding-10 block text-center">
+                                <p>
+                                    <span class="text-bold">Marketing Channels</span><span class="text-light"> (7 days)</span>
+                                </p>
+                                <div >
+                                    <div class="text-center margin-bottom-15">
+                                        <canvas ng-if="renderChart" class="chart chart-doughnut" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors" chart-legend="true"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="">
+                                <div class="partition-light-grey padding-15 text-center margin-bottom-25">
+                                    <h4 class="no-margin">Periodic Claims</h4>
+                                    <span class="text-light">Filter with the Date Range</span>
+                                </div>
+                                <v-accordion class="vAccordion--default">
+                                    <!-- add expanded attribute to open first section -->
+                                    <v-pane expanded>
+                                        <v-pane-header>
+                                            Hospital
+                                        </v-pane-header>
+                                        <v-pane-content>
+                                            <table class="table margin-bottom-5">
+                                                <tbody>
+                                                <tr>
+                                                    <td><strong>Care Provider</strong></td>
+                                                    <td class="center"><strong>Amount</strong></td>
+                                                    <td class="center"><strong>Period</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Inlad Medicals</td>
+                                                    <td class="center">N 25,000</td>
+                                                    <td class="center">{{dates2.startDate | date:'shortDate'}} - {{dates2.endDate | date:'shortDate'}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>MaryLand Memorial Clinic</td>
+                                                    <td class="center">N 15,000</td>
+                                                    <td class="center">{{dates2.startDate | date:'shortDate'}} - {{dates2.endDate | date:'shortDate'}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Thomas Hopkins Teaching Hospital</td>
+                                                    <td class="center">N 25,500</td>
+                                                    <td class="center">{{dates2.startDate | date:'shortDate'}} - {{dates2.endDate | date:'shortDate'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </v-pane-content>
+                                        <v-pane>
+                                            <v-pane-header>
+                                                Pharmacy
+                                            </v-pane-header>
+                                            <v-pane-content>
+                                                <table class="table margin-bottom-5">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><strong>Care Provider</strong></td>
+                                                        <td class="center"><strong>Amount</strong></td>
+                                                        <td class="center"><strong>Period</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Inlad Medicals</td>
+                                                        <td class="center">N 25,000</td>
+                                                        <td class="center">{{dates2.startDate | date:'shortDate'}} - {{dates2.endDate | date:'shortDate'}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MaryLand Memorial Clinic</td>
+                                                        <td class="center">N 15,000</td>
+                                                        <td class="center">{{dates2.startDate | date:'shortDate'}} - {{dates2.endDate | date:'shortDate'}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Thomas Hopkins Teaching Hospital</td>
+                                                        <td class="center">N 25,500</td>
+                                                        <td class="center">{{dates2.startDate | date:'shortDate'}} - {{dates2.endDate | date:'shortDate'}}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </v-pane-content>
+                                        </v-pane>
+                                    </v-pane>
+                                </v-accordion>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

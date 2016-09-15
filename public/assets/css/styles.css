@@ -344,19 +344,19 @@ h5.over-title {
   position: relative;
 }
 .container-fullw:before {
-  content: " ";
-  position: absolute;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background-image: -o-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);
-  background-image: -webkit-gradient(linear, left center, transparent, rgba(0, 0, 0, 0.1), transparent);
-  background-image: -ms-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);
-  background-image: -moz-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);
-  background-image: -webkit-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);
-  background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  /*content: " ";*/
+  /*position: absolute;*/
+  /*height: 1px;*/
+  /*bottom: 0;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*width: 100%;*/
+  /*background-image: -o-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);*/
+  /*background-image: -webkit-gradient(linear, left center, transparent, rgba(0, 0, 0, 0.1), transparent);*/
+  /*background-image: -ms-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);*/
+  /*background-image: -moz-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);*/
+  /*background-image: -webkit-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);*/
+  /*background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));*/
 }
 @media (max-width: 768px) {
   .container-fullw {
@@ -4068,6 +4068,10 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
   border-color: rgba(0, 0, 0, 0.07) !important;
 }
 
+.panel-dami .border-light, .partition-white .border-light {
+    border-color: rgba(0, 0, 0, 0.07) !important;
+}
+
 .border-dark {
   border-color: rgba(0, 0, 0, 0.2);
 }
@@ -4990,6 +4994,10 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
 
 .text-extra-large {
   font-size: 17px !important;
+}
+
+.text-super-large {
+    font-size: 22px !important;
 }
 
 h1.text-extra-large {
@@ -6525,6 +6533,13 @@ hr.white-line {
   position: relative;
   color: #5b5b60;
   border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.panel-dami, .partition-white {
+    background-color: #ffffff;
+    position: relative;
+    color: #5b5b60;
+    border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .panel-dark, .partition-dark {
