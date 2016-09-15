@@ -73,13 +73,14 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     .state('app', {
         url: "/admin",
         templateUrl: "assets/views/app.html",
-        resolve: loadSequence('ngNotify'),
+        resolve: loadSequence('ngNotify', 'countTo'),
         abstract: true,
         controller: 'DashBoardController',
         controllerAs: 'dashboard'
     }).state('app.admin', {
         url: "/dashboard/home",
         templateUrl: "assets/views/admin/home.html",
+        resolve: loadSequence('ngNotify', 'countTo'),
         title: 'Dashboard',
         ncyBreadcrumb: {
             label: 'Dashboard'
@@ -124,6 +125,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         url: "/dashboard/home",
         templateUrl: "assets/views/hmo/home.html",
         title: 'Dashboard',
+        resolve: loadSequence('ngNotify', 'countTo', 'chartjs', 'chart.js'),
         ncyBreadcrumb: {
             label: 'Dashboard'
         }
@@ -210,7 +212,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     }).state('healthPlan.home', {
         url: "/home",
         templateUrl: "assets/views/hmo/health-plan.html",
-        resolve: loadSequence('ngNotify'),
+        resolve: loadSequence('chartjs', 'chart.js'),
         controller: 'HealthPlanController',
         controllerAs: 'healthPlanCtrl',
         ncyBreadcrumb: {

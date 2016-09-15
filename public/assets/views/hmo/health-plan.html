@@ -18,89 +18,66 @@
                 <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
                     <div class="panel-body">
                         <div class="row">
-                            <a ui-sref="healthPlan.plan({id: 1, pageName:'Gold'})">
-                                <div class="col-md-2">
-                                    <div class="panel panel-pink no-border no-radius">
-                                        <div class="panel-body no-padding">
-
-                                            <div class="space10 padding-15">
-                                                <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin"><a ui-sref="healthPlan.plan({id: 1, pageName:'Gold'})">Gold Plan</a></h5>
-                                                <h2 class="text-white margin-top-15 margin-bottom-10">N 2,000 </h2>
-                                                <span class="label label-success margin-right-5"><a href="#">N 350,000</a></span><span class="text-extra-small">Cover Limit</span>
-                                                <div class="min-height-40">
-                                                    <div class="padding-top-20">
-                                                        <uib-progressbar class="progress-sm no-radius no-margin background-dark" value="22" type="warning"></uib-progressbar>
-                                                        <p class="no-margin">
-                                                            <span class="text-extra-small text-white pull-left">22%(1000)</span>
-                                                            <span class="text-extra-small text-white pull-right">of all the enrollees</span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-
-                            <div class="col-md-2">
-                                <div class="panel panel-pink no-border no-radius">
+                            <div class="col-sm-3 hvr-grow-shadow" onclick="location.href='#/health-plan/plan/1';" style="cursor: pointer;">
+                                <div class="panel panel-green no-border no-radius">
                                     <div class="panel-body no-padding">
                                         <div class="space10 padding-15">
-                                            <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin"><a ui-sref="healthPlan.plan({id: 1})">Diamond Plan</a></h5>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 2,500 </h2>
-                                            <span class="label label-success margin-right-5"><a href="#">N 350,000</a></span><span class="text-extra-small">Cover Limit</span>
-                                            <div class="min-height-40">
-                                                <div class="padding-top-20">
-                                                    <uib-progressbar class="progress-sm no-radius no-margin background-dark" value="25" type="warning"></uib-progressbar>
-                                                    <p class="no-margin">
-                                                        <span class="text-extra-small text-white pull-left">25%(1000)</span>
-                                                        <span class="text-extra-small text-white pull-right">of all the enrollees</span>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            <h5 class="text-bold text-super-large  text-uppercase no-margin">Gold Plan</h5>
+                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 2,500 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Premium</span></h2>
+                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 250,000 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Cover Limit</span></h2>
+                                            <span class="label background-light text-dark margin-top-10 margin-right-5">150</span><span class="text-extra-small">45% of all Enrollees</span>
+                                        </div>
+                                        <div>
+                                            <canvas class="chart chart-line height-80" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
-                                <div class="panel panel-pink no-border no-radius">
+                            <div class="col-sm-3 hvr-grow-shadow" onclick="location.href='#/health-plan/plan/1';" style="cursor: pointer;">
+                                <div class="panel panel-azure no-border no-radius">
                                     <div class="panel-body no-padding">
                                         <div class="space10 padding-15">
-                                            <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin"><a ui-sref="healthPlan.plan({id: 1})">Silver Plan</a></h5>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 4,000 </h2>
-                                            <span class="label label-success margin-right-5"><a href="#">N 500,000</a></span><span class="text-extra-small">Cover Limit</span>
-                                            <div class="min-height-40">
-                                                <div class="padding-top-20">
-                                                    <uib-progressbar class="progress-sm no-radius no-margin background-dark" value="35" type="warning"></uib-progressbar>
-                                                    <p class="no-margin">
-                                                        <span class="text-extra-small text-white pull-left">35%(1000)</span>
-                                                        <span class="text-extra-small text-white pull-right">of all the enrollees</span>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            <h5 class="text-bold text-super-large  text-uppercase no-margin">Diamond Plan</h5>
+                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 3,500 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Premium</span></h2>
+                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 350,000 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Cover Limit</span></h2>
+                                            <span class="label background-light text-dark margin-top-10 margin-right-5">110</span><span class="text-extra-small">45% of all Enrollees</span>
+                                        </div>
+                                        <div>
+                                            <canvas class="chart chart-line height-80" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-sm-3 hvr-grow-shadow" onclick="location.href='#/health-plan/plan/1';" style="cursor: pointer;">
                                 <div class="panel panel-pink no-border no-radius">
                                     <div class="panel-body no-padding">
                                         <div class="space10 padding-15">
-                                            <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase no-margin"><a ui-sref="healthPlan.plan({id: 1})">Bronze Plan</a></h5>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 6,000 </h2>
-                                            <span class="label label-success margin-right-5"><a href="#">N 700,000</a></span><span class="text-extra-small">Cover Limit</span>
-                                            <div class="min-height-40">
-                                                <div class="padding-top-20">
-                                                    <uib-progressbar class="progress-sm no-radius no-margin background-dark" value="15" type="warning"></uib-progressbar>
-                                                    <p class="no-margin">
-                                                        <span class="text-extra-small text-white pull-left">15%(1000)</span>
-                                                        <span class="text-extra-small text-white pull-right">of all the enrollees</span>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            <h5 class="text-bold text-super-large  text-uppercase no-margin">Bronze Plan</h5>
+                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 4,500 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Premium</span></h2>
+                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 550,000 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Cover Limit</span></h2>
+                                            <span class="label background-light text-dark margin-top-10 margin-right-5">90</span><span class="text-extra-small">25% of all Enrollees</span>
+                                        </div>
+                                        <div>
+                                            <canvas class="chart chart-line height-80" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3 hvr-grow-shadow" onclick="location.href='#/health-plan/plan/1';" style="cursor: pointer;">
+                                <div class="panel panel-purple no-border no-radius">
+                                    <div class="panel-body no-padding">
+                                        <div class="space10 padding-15">
+                                            <h5 class="text-bold text-super-large  text-uppercase no-margin">Silver Plan</h5>
+                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 5,500 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Premium</span></h2>
+                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 750,000 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Cover Limit</span></h2>
+                                            <span class="label background-light text-dark margin-top-10 margin-right-5">70</span><span class="text-extra-small">15% of all Enrollees</span>
+                                        </div>
+                                        <div>
+                                            <canvas class="chart chart-line height-80" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
                                         </div>
                                     </div>
                                 </div>
