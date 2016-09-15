@@ -18,10 +18,13 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         app.value('apiConfig',{
             apiBaseUrl: 'http://healthplusapi.app/api/v1/'
         });
+        $authProvider.loginUrl = 'http://healthplusapi.app/api/v1/authenticate';
     }else{
         app.value('apiConfig',{
             apiBaseUrl: 'https://healthplusapi.herokuapp.com/api/v1/'
         });
+        $authProvider.loginUrl = 'https://healthplusapi.herokuapp.com/api/v1/authenticate';
+
     }
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
@@ -50,7 +53,6 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         modules: jsRequires.modules
     });
 
-    $authProvider.loginUrl = 'http://healthplusapi.app/api/v1/authenticate';
 
     // Register Login Url
 
