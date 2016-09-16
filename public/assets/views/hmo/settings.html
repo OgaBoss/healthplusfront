@@ -1,0 +1,41 @@
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin"><strong><span class="text-super-large text-muted">Settings</span></strong></h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
+            <div >
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="Add Hospital">
+                        <div class="row">
+                            <ng-include src=" 'assets/views/hmo/clients-partials/settings/add-hospital.html' "></ng-include>
+                        </div>
+                    </uib-tab>
+                    <!-- end: TAB OVERVIEW -->
+                    <!-- start: TAB EDIT ACCOUNT -->
+                    <uib-tab heading="Add Pharmacy" active="editActive">
+                    </uib-tab>
+                    <!-- end: TAB EDIT ACCOUNT -->
+                    <!-- start: TAB PROJECTS -->
+                    <uib-tab heading="Add Enrollee">
+                    </uib-tab>
+                    <!-- end: TAB PROJECTS -->
+
+                    <uib-tab heading="Drug Price List">
+                    </uib-tab>
+
+                    <uib-tab heading="Claims Price List">
+                    </uib-tab>
+
+
+                </uib-tabset>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>

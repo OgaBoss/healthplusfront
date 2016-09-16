@@ -1,0 +1,60 @@
+<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+    <div class="panel-body">
+        <form action="#" role="form" id="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Name
+                        </label>
+                        <input type="text" placeholder="Name" class="form-control" name="name" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            Phone
+                        </label>
+                        <input type="text" placeholder="Phone Number" class="form-control" name="name" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            Email
+                        </label>
+                        <input type="text" placeholder="Email" class="form-control" name="name" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-select-2">
+                            Role
+                        </label>
+                        <select class="cs-select cs-skin-elastic">
+                            <option value="" disabled selected>Select a Branh</option>
+                            <option value="france"  >IT Administrator</option>
+                            <option value="brazil" >Accountant</option>
+                            <option value="argentina" >Analyst</option>
+                            <option value="shopping" >MD</option>
+                            <option value="shopping" >MD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-select-2">
+                            Branch
+                        </label>
+                        <select class="cs-select cs-skin-elastic">
+                            <option value="" disabled selected >Select a Branh</option>
+                            <option value="france"  >Lagos</option>
+                            <option value="brazil" >Port Harcout</option>
+                            <option value="argentina" >Abuja</option>
+                            <option value="shopping" >Ibadan</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <a href="#" class="btn btn-success btn-lg" ng-click="update()"> Create </a>
+        </form>
+
+    </div>
+</div>

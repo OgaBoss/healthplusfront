@@ -260,6 +260,29 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         }
     })
 
+    //Settings Route
+    .state('settings', {
+        url: "/dashboard/settings",
+        abstract: true,
+        templateUrl: "assets/views/app.html",
+        resolve: loadSequence('ngNotify'),
+        controller: 'SettingsController',
+        controllerAs: 'settingsCtrl',
+        ncyBreadcrumb: {
+            label: 'Settings'
+        }
+    }).state('settings.home', {
+        url: "/home",
+        templateUrl: "assets/views/hmo/settings.html",
+        resolve: loadSequence('ngNotify'),
+        controller: 'SettingsController',
+        controllerAs: 'settingsCtrl',
+        ncyBreadcrumb: {
+            label: 'Settings'
+        }
+    })
+
+
     // Generates a resolve object previously configured in constant.JS_REQUIRES (config.constant.js)
     function loadSequence() {
         var _args = arguments;
