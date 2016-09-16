@@ -12,9 +12,9 @@
             <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
             <div >
                 <!-- start: USER TABSET -->
-                <uib-tabset class="tabbable">
+                <uib-tabset class="tabbable" active="enrolleeCtrl.tabIndex">
                     <!-- start: TAB OVERVIEW -->
-                    <uib-tab heading="Overview">
+                    <uib-tab heading="Overview" >
                         <div class="row">
                             <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-info.html' "></ng-include>
                             <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/medical-history.html' "></ng-include>
@@ -22,7 +22,7 @@
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
                     <!-- start: TAB EDIT ACCOUNT -->
-                    <uib-tab heading="Edit" active="editActive">
+                    <uib-tab heading="Edit">
                         <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-edit.html' "></ng-include>
                     </uib-tab>
                     <!-- end: TAB EDIT ACCOUNT -->
@@ -40,6 +40,9 @@
                         <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/premiums.html' "></ng-include>
                     </uib-tab>
 
+                    <uib-tab heading="Edit Medical Records" ng-if="currentUser.data.role.data.name == 'claims'"">
+                    <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/claims-medical-history.html' "></ng-include>
+                    </uib-tab>
 
                 </uib-tabset>
                 <!-- end: USER TABSET -->

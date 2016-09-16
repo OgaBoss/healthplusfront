@@ -156,7 +156,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
             label: 'Organization Profile'
         }
     }).state('partners.clients.enrollee', {
-        url: '/enrollee/:id',
+        url: '/enrollee/:id?tabIndex',
         templateUrl: 'assets/views/hmo/enrollee.html',
         title: 'Enrollee Profile',
         controller:'EnrolleeController',

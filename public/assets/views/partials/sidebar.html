@@ -50,10 +50,13 @@
 </div>
 <!-- end: USER OPTIONS -->
 <!-- start: SIDEBAR -->
-<div ng-if="currentUser.data.entity.data.name == 'admin'">
+<div ng-if="currentUser.data.role.data.name == 'super_admin'">
     <nav data-ng-include=" 'assets/views/partials/nav.html' "></nav>
 </div>
-<div ng-if="currentUser.data.entity.data.name != 'admin'">
+<div ng-if="currentUser.data.role.data.name == 'admin'">
     <nav data-ng-include=" 'assets/views/partials/hmo/nav-hmo.html' "></nav>
+</div>
+<div ng-if="currentUser.data.role.data.name == 'claims'">
+    <nav data-ng-include=" 'assets/views/partials/hmo/nav-claims.html' "></nav>
 </div>
 <!-- end: SIDEBAR -->

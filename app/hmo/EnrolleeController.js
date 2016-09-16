@@ -1,7 +1,25 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('EnrolleeController', function($scope, $timeout){
+app.controller('EnrolleeController', function($scope, $timeout,$state,$stateParams){
+
+    var vm = this;
+
+    if($stateParams.tabIndex){
+        var index = parseInt($stateParams.tabIndex)
+        vm.tabIndex = index
+    }else{
+        vm.tabIndex = 0;
+    }
+
+    $scope.month_name = 'September';
+
+    $scope.setMonth = function(month){
+        $scope.month_name = month;
+    }
+
+    $scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'];
+
     $scope.max = 200;
 
     $scope.random = function() {
