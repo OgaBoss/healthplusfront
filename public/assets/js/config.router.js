@@ -282,6 +282,28 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         }
     })
 
+    //Reports Route
+    .state('reports', {
+        url: "/dashboard/reports",
+        abstract: true,
+        templateUrl: "assets/views/app.html",
+        resolve: loadSequence('chartjs', 'chart.js'),
+        controller: 'ReportController',
+        controllerAs: 'reportCtrl',
+        ncyBreadcrumb: {
+            label: 'Report'
+        }
+    }).state('reports.home', {
+        url: "/home",
+        templateUrl: "assets/views/hmo/report.html",
+        resolve: loadSequence('chartjs', 'chart.js'),
+        controller: 'ReportController',
+        controllerAs: 'reportCtrl',
+        ncyBreadcrumb: {
+            label: 'Report'
+        }
+    })
+
 
     // Generates a resolve object previously configured in constant.JS_REQUIRES (config.constant.js)
     function loadSequence() {

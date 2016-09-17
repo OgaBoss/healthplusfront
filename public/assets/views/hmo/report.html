@@ -1,0 +1,28 @@
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin"><strong><span class="text-super-large text-muted">Reports</span></strong></h4>
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+
+<div class="container-fluid container-fullw padding-bottom-10">
+    <div class="panel panel-dami" id="activities">
+        <div class="panel-heading border-light">
+            <h4 class="panel-title">Reports <small>(Claims)</small></h4>
+            <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
+        </div>
+        <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+            <div class="panel-body">
+                <div class="row">
+                    <div ng-if="currentUser.data.role.data.name == 'admin'">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/reports/admin-report.html' "></ng-include>
+                    </div>
+
+                    <div ng-if="currentUser.data.role.data.name == 'claims'">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/reports/claims-report.html' "></ng-include>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

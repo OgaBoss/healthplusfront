@@ -6184,7 +6184,7 @@ hr.white-line {
   color: #8e8e93;
   border: none;
   position: relative;
-    margin-bottom: 0px !important;
+    /*margin-bottom: 0px !important;*/
 }
 
 .panel-footer {
