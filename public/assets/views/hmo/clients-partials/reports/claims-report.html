@@ -68,3 +68,38 @@
         </div>
     </div>
 </div>
+
+<div class="col-md-6">
+    <div class="container-fluid container-fullw padding-bottom-10">
+        <div class="panel panel-white">
+            <div class="panel-heading border-light">
+                <h4 class="panel-title">Reports <small>(Premuims paid out for the month of {{month_name_claim}})</small></h4>
+                <ul class="panel-heading-tabs border-light">
+                    <li>
+                        <div class="pull-right">
+                            <div class="btn-group" uib-dropdown is-open="status.isopen">
+                                <button type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled" >
+                                    {{month_name_claim}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-repeat="month_claim in months_cliam">
+                                        <a href="#" ng-click="setMonthClaim(month_claim)">
+                                            {{month_claim}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <canvas class="chart chart-bar" chart-data="data_claims" chart-options="options_claims" chart-labels="labels_claims" chart-series="series_claims" chart-colours="colors_claims" chart-legend="true"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -300,7 +300,25 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         controller: 'ReportController',
         controllerAs: 'reportCtrl',
         ncyBreadcrumb: {
-            label: 'Report'
+            label: 'Home'
+        }
+    }).state('reports.hospitals', {
+        url: "/hospitals",
+        templateUrl: "assets/views/hmo/reports-hospitals.html",
+        resolve: loadSequence('chartjs', 'chart.js'),
+        controller: 'ReportController',
+        controllerAs: 'reportCtrl',
+        ncyBreadcrumb: {
+            label: 'Hospitals'
+        }
+    }).state('reports.enrollee', {
+        url: "/enrollee",
+        templateUrl: "assets/views/hmo/reports-enrollee.html",
+        resolve: loadSequence('chartjs', 'chart.js'),
+        controller: 'ReportController',
+        controllerAs: 'reportCtrl',
+        ncyBreadcrumb: {
+            label: 'Enrollee'
         }
     })
 
