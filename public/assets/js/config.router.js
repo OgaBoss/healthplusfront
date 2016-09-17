@@ -193,7 +193,11 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         url: '/pharmacy/:id',
         templateUrl: 'assets/views/hmo/pharmacy.html',
         title: 'Pharmacy',
-        ncyBreadcrumb: {
+            controller:'PharmacyController',
+            controllerAs: 'pharmacyCtrl',
+            resolve: loadSequence('chartjs', 'chart.js'),
+
+            ncyBreadcrumb: {
             label: 'Pharmacy'
         }
     })

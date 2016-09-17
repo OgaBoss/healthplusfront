@@ -11,18 +11,18 @@
                 <!-- start: USER TABSET -->
                 <uib-tabset class="tabbable">
                     <!-- start: TAB OVERVIEW -->
-                    <uib-tab heading="Add Hospital">
+                    <uib-tab heading="Add Hospital"  ng-if="currentUser.data.role.data.name != 'claims'">
                         <div class="row">
                             <ng-include src=" 'assets/views/hmo/clients-partials/settings/add-hospital.html' "></ng-include>
                         </div>
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
                     <!-- start: TAB EDIT ACCOUNT -->
-                    <uib-tab heading="Add Pharmacy" active="editActive">
+                    <uib-tab heading="Add Pharmacy" active="editActive"  ng-if="currentUser.data.role.data.name != 'claims'">
                     </uib-tab>
                     <!-- end: TAB EDIT ACCOUNT -->
                     <!-- start: TAB PROJECTS -->
-                    <uib-tab heading="Add Enrollee">
+                    <uib-tab heading="Add Enrollee"  ng-if="currentUser.data.role.data.name != 'claims'">
                     </uib-tab>
                     <!-- end: TAB PROJECTS -->
 
