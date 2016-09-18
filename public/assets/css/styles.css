@@ -14588,7 +14588,7 @@ figure.effect-goliath:hover p {
 .inbox {
   border-spacing: 0;
   height: 100%;
-  margin: 0 -15px;
+  /*margin: 0 -15px;*/
 }
 
 .inbox .col {

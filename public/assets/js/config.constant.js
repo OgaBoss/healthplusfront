@@ -29,7 +29,11 @@ app.constant('JS_REQUIRES', {
         'currentUser': 'assets/js/services/currentUser.js',
         'LoginService': 'assets/js/services/login.js',
         'skipIfLoggedIn': 'assets/js/config/loggedInMiddleware.js',
-        'loginRequired': 'assets/js/config/notLoggedInMiddleware.js'
+        'loginRequired': 'assets/js/config/notLoggedInMiddleware.js',
+
+
+        //*** Controllers
+        'InboxController': 'hmo/InboxController.js',
     },
     //*** angularJS Modules
     modules: [{

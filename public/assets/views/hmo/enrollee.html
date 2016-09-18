@@ -32,7 +32,7 @@
                     </uib-tab>
                     <!-- end: TAB PROJECTS -->
 
-                    <uib-tab heading="Activity Log">
+                    <uib-tab heading="Activity Log" ng-if="currentUser.data.role.data.name == 'admin'"">
                         <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/activity-log.html' "></ng-include>
                     </uib-tab>
 

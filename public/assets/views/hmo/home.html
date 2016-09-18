@@ -15,4 +15,8 @@
     <ng-include src=" 'assets/views/hmo/clients-partials/home/claims-medical-rcd.html' "></ng-include>
 </div>
 
+<div ng-if="currentUser.data.role.data.name == 'customer care'" ng-controller="InboxController">
+    <ng-include src=" 'assets/views/hmo/clients-partials/home/customer-care.html' "></ng-include>
+</div>
+
 

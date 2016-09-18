@@ -125,9 +125,19 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         url: "/dashboard/home",
         templateUrl: "assets/views/hmo/home.html",
         title: 'Dashboard',
-        resolve: loadSequence('ngNotify', 'countTo', 'chartjs', 'chart.js'),
+        resolve: loadSequence('ngNotify', 'countTo', 'chartjs', 'chart.js','InboxController'),
         ncyBreadcrumb: {
             label: 'Dashboard'
+        }
+    }).state('partners.home.inbox', {
+        url: "/messages/:id",
+        templateUrl: "assets/views/hmo/clients-partials/customer-care-inbox.html",
+        resolve: loadSequence('ngNotify', 'countTo'),
+        title: 'InBox Messages',
+        controller: 'ViewsMessageController',
+        controllerAs: 'viewMsgCtrl',
+        ncyBreadcrumb: {
+            label: 'InBox Messages'
         }
     }).state('partners.clients', {
         url: '/dashboard/clients',
