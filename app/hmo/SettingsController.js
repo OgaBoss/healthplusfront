@@ -1,7 +1,7 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/11/16.
  */
-app.controller('SettingsController', ['$scope','$state', '$stateParams',"$filter", "ngTableParams", function($scope, $state, $stateParams,$filter, ngTableParams){
+app.controller('SettingsController', ['$scope','$state', '$stateParams',"$filter", "ngTableParams","healthNotify", function($scope, $state, $stateParams,$filter, ngTableParams, healthNotify){
 
     var data = [{"id":1,"name":"CLONAZEPAM","price":"6774.16","date":"04/09/2016","description":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio."},
         {"id":2,"name":"COUMADIN","price":"34403.01","date":"17/09/2016","description":"Curabitur gravida nisi at nibh. In hac habitasse platea dictumst."},
@@ -69,4 +69,8 @@ app.controller('SettingsController', ['$scope','$state', '$stateParams',"$filter
     $scope.setEditId = function (pid) {
         $scope.editId = pid;
     };
+
+    $scope.saveDrug = function(){
+        healthNotify.set('Dug data successfully updated', 'success');
+    }
 }]);
