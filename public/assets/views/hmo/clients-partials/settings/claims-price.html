@@ -1,0 +1,35 @@
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <h5 class="over-title margin-bottom-15">Drugs <span class="text-bold">Price List</span></h5>
+                    <!-- /// controller:  'ngTableCtrl6' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
+                    <div>
+                        <div class="table-responsive">
+                            <table ng-table="tableParams_1" class="table">
+                                <tbody ng-repeat="p in drug">
+                                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                                    <td class="rowTd" data-title="'ID'" sortable="'id'">{{p.id}}</td>
+                                    <td class="rowTd" data-title="'Name'" sortable="'fn'">{{p.name}}</td>
+                                    <td class="rowTd" data-title="'Price (N)'" sortable="'ln'">{{p.price | number:0}}</td>
+                                    <td class="rowTd" data-title="'Date'" sortable="'dc'">{{p.date}}</td>
+                                    <td class="rowTd">
+                                        <div class="pull-right margin-right-10">
+                                            <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit"
+                                                   ng-click="setEditId(p.id)">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-show="editId===p.id" ng-if="editId===p.id">
+                                    <td colspan="7" ng-include src="'assets/views/hmo/clients-partials/settings/editRowClaims.html'"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

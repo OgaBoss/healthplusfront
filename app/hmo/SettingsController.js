@@ -64,9 +64,71 @@ app.controller('SettingsController', ['$scope','$state', '$stateParams',"$filter
         }
     });
 
+    $scope.tableParams_1 = new ngTableParams({
+        page: 1,
+        count: 10
+    }, {
+        total: data.length,
+        getData: function ($defer, params) {
+            var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
+            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+    });
+
     $scope.editId = -1;
 
     $scope.setEditId = function (pid) {
         $scope.editId = pid;
     };
+
+    $scope.drug = [{"id":1,"name":"Unspecified injury of left external jugular vein, sequela","price":"6480.68","date":"04/09/2016"},
+        {"id":2,"name":"Unspecified injury of other muscle(s) and tendon(s) of posterior muscle group at lower leg level, right leg, subsequent encounter","price":"85765.25","date":"18/09/2016"},
+        {"id":3,"name":"Infective myositis, unspecified site","price":"54512.71","date":"05/09/2016"},
+        {"id":4,"name":"Other cysts of oral region, not elsewhere classified","price":"12259.82","date":"18/09/2016"},
+        {"id":5,"name":"Nondisplaced fracture of pisiform, right wrist, sequela","price":"67625.74","date":"03/09/2016"},
+        {"id":6,"name":"Unspecified injury of other muscle(s) and tendon(s) of posterior muscle group at lower leg level, unspecified leg, initial encounter","price":"25873.80","date":"02/09/2016"},
+        {"id":7,"name":"Displaced fracture of middle third of navicular [scaphoid] bone of left wrist, subsequent encounter for fracture with delayed healing","price":"6696.09","date":"03/09/2016"},
+        {"id":8,"name":"Injury of internal jugular vein","price":"60642.22","date":"04/09/2016"},
+        {"id":9,"name":"Displaced fracture of neck of fifth metacarpal bone, left hand, subsequent encounter for fracture with malunion","price":"2255.69","date":"02/09/2016"},
+        {"id":10,"name":"Sprain of other part of unspecified wrist and hand, subsequent encounter","price":"96457.06","date":"07/09/2016"},
+        {"id":11,"name":"Intentional self-harm by paintball gun, subsequent encounter","price":"70317.57","date":"03/09/2016"},
+        {"id":12,"name":"Other specified injuries of unspecified thigh, sequela","price":"4002.45","date":"08/09/2016"},
+        {"id":13,"name":"Poisoning by, adverse effect of and underdosing of dental drugs, topically applied","price":"60585.06","date":"13/09/2016"},
+        {"id":14,"name":"Puncture wound without foreign body of unspecified part of head, subsequent encounter","price":"55744.29","date":"16/09/2016"},
+        {"id":15,"name":"Subluxation of carpometacarpal joint of left thumb, subsequent encounter","price":"86244.32","date":"13/09/2016"},
+        {"id":16,"name":"Person boarding or alighting a heavy transport vehicle injured in collision with railway train or railway vehicle, sequela","price":"5306.56","date":"04/09/2016"},
+        {"id":17,"name":"Laceration of axillary or brachial vein, left side","price":"77595.67","date":"04/09/2016"},
+        {"id":18,"name":"Secondary lacrimal gland atrophy, unspecified lacrimal gland","price":"78990.06","date":"17/09/2016"},
+        {"id":19,"name":"Other specified injury of unspecified muscle and tendon at ankle and foot level, right foot, subsequent encounter","price":"56276.56","date":"02/09/2016"},
+        {"id":20,"name":"Other foreign object in other parts of respiratory tract causing asphyxiation, initial encounter","price":"40764.98","date":"11/09/2016"},
+        {"id":21,"name":"Minor laceration of thoracic aorta, sequela","price":"23742.98","date":"03/09/2016"},
+        {"id":22,"name":"Animal-rider injured in collision with animal-drawn vehicle, subsequent encounter","price":"60280.14","date":"11/09/2016"},
+        {"id":23,"name":"External constriction of unspecified upper arm, initial encounter","price":"58670.72","date":"12/09/2016"},
+        {"id":24,"name":"Polyarthritis, unspecified","price":"58026.55","date":"06/09/2016"},
+        {"id":25,"name":"Hurricane, subsequent encounter","price":"12489.29","date":"01/09/2016"},
+        {"id":26,"name":"Toxic effect of corrosive acids and acid-like substances, undetermined, subsequent encounter","price":"20193.46","date":"12/09/2016"},
+        {"id":27,"name":"Other foreign object in trachea causing asphyxiation, initial encounter","price":"94546.90","date":"18/09/2016"},
+        {"id":28,"name":"Chronic atticoantral suppurative otitis media","price":"64258.74","date":"03/09/2016"},
+        {"id":29,"name":"Adverse effect of succinimides and oxazolidinediones","price":"36436.19","date":"18/09/2016"},
+        {"id":30,"name":"Burn due to localized fire on board sailboat, initial encounter","price":"42176.90","date":"02/09/2016"},
+        {"id":31,"name":"Non-ABO incompatibility with hemolytic transfusion reaction, unspecified, sequela","price":"46348.02","date":"05/09/2016"},
+        {"id":32,"name":"Glaucoma secondary to eye inflammation, left eye","price":"92437.47","date":"13/09/2016"},
+        {"id":33,"name":"Atherosclerosis of native arteries of the extremities","price":"17277.22","date":"02/09/2016"},
+        {"id":34,"name":"Unspecified injury of other muscle(s) and tendon(s) of posterior muscle group at lower leg level, left leg, initial encounter","price":"53082.25","date":"14/09/2016"},
+        {"id":35,"name":"Horseshoe tear of retina without detachment, unspecified eye","price":"64772.72","date":"05/09/2016"},
+        {"id":36,"name":"Displaced associated transverse-posterior fracture of unspecified acetabulum, sequela","price":"17063.24","date":"04/09/2016"},
+        {"id":37,"name":"Displaced comminuted fracture of shaft of right femur, subsequent encounter for open fracture type I or II with malunion","price":"75946.48","date":"13/09/2016"},
+        {"id":38,"name":"Other fracture of head and neck of unspecified femur","price":"58204.99","date":"07/09/2016"},
+        {"id":39,"name":"Nondisplaced Maisonneuve's fracture of unspecified leg, subsequent encounter for closed fracture with malunion","price":"40922.73","date":"07/09/2016"},
+        {"id":40,"name":"Nondisplaced pilon fracture of unspecified tibia, initial encounter for open fracture type IIIA, IIIB, or IIIC","price":"92813.02","date":"07/09/2016"},
+        {"id":41,"name":"Other fracture of fourth metacarpal bone, right hand, subsequent encounter for fracture with nonunion","price":"23373.04","date":"02/09/2016"},
+        {"id":42,"name":"Other congenital malformations of respiratory system","price":"61958.35","date":"05/09/2016"},
+        {"id":43,"name":"Burn of second degree of right thigh, subsequent encounter","price":"63236.47","date":"05/09/2016"},
+        {"id":44,"name":"Person injured in collision between car and two- or three-wheeled powered vehicle (traffic), initial encounter","price":"88913.27","date":"01/09/2016"},
+        {"id":45,"name":"Diabetes mellitus due to underlying condition with other skin ulcer","price":"92486.92","date":"04/09/2016"},
+        {"id":46,"name":"Toxic effect of contact with venomous toad, intentional self-harm, subsequent encounter","price":"82285.29","date":"18/09/2016"},
+        {"id":47,"name":"Fracture of mandible, unspecified, subsequent encounter for fracture with delayed healing","price":"75307.29","date":"11/09/2016"},
+        {"id":48,"name":"Unspecified injury of unspecified blood vessel at lower leg level, unspecified leg, subsequent encounter","price":"47359.87","date":"09/09/2016"},
+        {"id":49,"name":"Postprocedural hemorrhage of a nervous system organ or structure following a nervous system procedure","price":"49120.03","date":"02/09/2016"},
+        {"id":50,"name":"Subluxation of right acromioclavicular joint","price":"94282.82","date":"10/09/2016"}]
 }]);
