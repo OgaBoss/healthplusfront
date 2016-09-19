@@ -288,7 +288,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     }).state('settings.home', {
         url: "/home",
         templateUrl: "assets/views/hmo/settings.html",
-        resolve: loadSequence('ngNotify'),
+        resolve: loadSequence('ngTable'),
         controller: 'SettingsController',
         controllerAs: 'settingsCtrl',
         ncyBreadcrumb: {
