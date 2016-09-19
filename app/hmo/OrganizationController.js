@@ -1,14 +1,19 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('OrganizationController', function($scope, healthNotify, $timeout){
+app.controller('OrganizationController', function($scope, healthNotify, $timeout, $localStorage){
 
     var vm = this;
+
+    if($localStorage.currentUser.data.role.data.name == 'claims'){
+        vm.overview = 2;
+    }else{
+        vm.overview = 0;
+    }
 
     $scope.update = function(){
         healthNotify.set('Data Updated successfully', 'success');
     }
-    vm.overview = 0;
 
     vm.activeEnrollees = true
     vm.inActiveEnrollees = true

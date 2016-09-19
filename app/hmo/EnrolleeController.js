@@ -1,15 +1,21 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('EnrolleeController', function($scope, $timeout,$state,$stateParams){
+app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParams,$uibModal, $aside, $localStorage){
 
     var vm = this;
+
+
 
     if($stateParams.tabIndex){
         var index = parseInt($stateParams.tabIndex)
         vm.tabIndex = index
     }else{
-        vm.tabIndex = 0;
+        if($localStorage.currentUser.data.role.data.name == 'claims'){
+            vm.tabIndex = 2;
+        }else{
+            vm.tabIndex = 0;
+        }
     }
 
     $scope.month_name = 'September';
@@ -89,5 +95,25 @@ app.controller('EnrolleeController', function($scope, $timeout,$state,$statePara
         'Last 7 days': [moment().subtract(7, 'days'), moment()],
         'Last 30 days': [moment().subtract(30, 'days'), moment()],
         'This month': [moment().startOf('month'), moment().endOf('month')]
+    };
+
+    // Modals
+    $scope.openAside = function (position) {
+        $aside.open({
+            templateUrl: 'asideContent.html',
+            placement: position,
+            size: 'sm',
+            backdrop: true,
+            controller: function ($scope, $uibModalInstance) {
+                $scope.ok = function (e) {
+                    $uibModalInstance.close();
+                    e.stopPropagation();
+                };
+                $scope.cancel = function (e) {
+                    $uibModalInstance.dismiss();
+                    e.stopPropagation();
+                };
+            }
+        });
     };
 });

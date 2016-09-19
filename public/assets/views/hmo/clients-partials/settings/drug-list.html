@@ -12,7 +12,7 @@
                                 <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                                     <td class="rowTd" data-title="'ID'" sortable="'id'">{{p.id}}</td>
                                     <td class="rowTd" data-title="'Name'" sortable="'fn'">{{p.name}}</td>
-                                    <td class="rowTd" data-title="'Price (N)'" sortable="'ln'">{{p.price | number:0}}</td>
+                                    <td class="rowTd" data-title="'Price'" sortable="'ln'">N {{p.price | number:0}}</td>
                                     <td class="rowTd" data-title="'Description'" sortable="'ln'">{{p.description}}</td>
                                     <td class="rowTd" data-title="'Date'" sortable="'dc'">{{p.date}}</td>
                                     <td class="rowTd">

@@ -161,7 +161,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         title: 'Organization Profile',
         controller:'OrganizationController',
         controllerAs: 'orgCtrl',
-        resolve: loadSequence('healthNotify','ngNotify'),
+        resolve: loadSequence('healthNotify','ngNotify','chartjs', 'chart.js'),
         ncyBreadcrumb: {
             label: 'Organization Profile'
         }
@@ -288,7 +288,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     }).state('settings.home', {
         url: "/home",
         templateUrl: "assets/views/hmo/settings.html",
-        resolve: loadSequence('ngTable'),
+        resolve: loadSequence('ngTable','ngNotify'),
         controller: 'SettingsController',
         controllerAs: 'settingsCtrl',
         ncyBreadcrumb: {

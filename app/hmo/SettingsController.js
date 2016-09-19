@@ -1,7 +1,7 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/11/16.
  */
-app.controller('SettingsController', ['$scope','$state', '$stateParams',"$filter", "ngTableParams", function($scope, $state, $stateParams,$filter, ngTableParams){
+app.controller('SettingsController', ['$scope','$state', '$stateParams',"$filter", "ngTableParams","healthNotify", function($scope, $state, $stateParams,$filter, ngTableParams, healthNotify){
 
     var data = [{"id":1,"name":"CLONAZEPAM","price":"6774.16","date":"04/09/2016","description":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio."},
         {"id":2,"name":"COUMADIN","price":"34403.01","date":"17/09/2016","description":"Curabitur gravida nisi at nibh. In hac habitasse platea dictumst."},
@@ -81,6 +81,10 @@ app.controller('SettingsController', ['$scope','$state', '$stateParams',"$filter
         $scope.editId = pid;
     };
 
+    $scope.saveDrug = function(){
+        healthNotify.set('Data successfully updated', 'success');
+    }
+
     $scope.drug = [{"id":1,"name":"Unspecified injury of left external jugular vein, sequela","price":"6480.68","date":"04/09/2016"},
         {"id":2,"name":"Unspecified injury of other muscle(s) and tendon(s) of posterior muscle group at lower leg level, right leg, subsequent encounter","price":"85765.25","date":"18/09/2016"},
         {"id":3,"name":"Infective myositis, unspecified site","price":"54512.71","date":"05/09/2016"},
@@ -131,4 +135,11 @@ app.controller('SettingsController', ['$scope','$state', '$stateParams',"$filter
         {"id":48,"name":"Unspecified injury of unspecified blood vessel at lower leg level, unspecified leg, subsequent encounter","price":"47359.87","date":"09/09/2016"},
         {"id":49,"name":"Postprocedural hemorrhage of a nervous system organ or structure following a nervous system procedure","price":"49120.03","date":"02/09/2016"},
         {"id":50,"name":"Subluxation of right acromioclavicular joint","price":"94282.82","date":"10/09/2016"}]
+
+
+    $scope.update = function(entity){
+        var msg = entity + ' successfully created'
+        healthNotify.set(msg, 'success');
+    }
+
 }]);
