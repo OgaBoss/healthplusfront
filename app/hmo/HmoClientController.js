@@ -63,4 +63,7 @@ app.controller('HmoClientController', ['$scope', function($scope){
     vm.buttonFilter.status = 'Gold'
     console.log(vm.buttonFilter.status);
 
+
+
+
 }]);

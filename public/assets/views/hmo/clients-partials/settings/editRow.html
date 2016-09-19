@@ -1,0 +1,33 @@
+<table class="table no-bg">
+    <tr>
+        <td rowspan="2">
+            ID: {{p.id}}
+            <input type="hidden" name="id" value="{{p.id}}">
+        </td>
+        <td>Name:</td>
+        <td>
+            <input class="form-control" type="text" name="fn" class="w100" ng-model="p.name">
+        </td>
+        <td>Description: </td>
+        <td>
+            <input class="form-control" type="text" name="dc" class="w180" ng-model="p.description">
+        </td>
+        <td>Price:</td>
+        <td>
+            <input class="form-control" type="text" name="em" class="w180" ng-model="p.price">
+        </td>
+    </tr>
+    <tr>
+        <td>Date Updated:</td>
+        <td>
+            <input class="form-control" type="text" name="ln" class="w100" ng-model="p.date">
+        </td>
+        <td colspan="2">
+            <div class="pull-right">
+                <input type="button" class="btn btn-primary btn-sm margin-right-15" value=" save " onclick="alert('Save :)')">
+                <input type="button" class="btn btn-primary btn-sm" value=" cancel" ng-click="setEditId(-1)">
+            </div>
+        </td>
+    </tr>
+</table>
+<!--  class="editRowTd" -->
