@@ -1,7 +1,7 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/17/16.
  */
-app.controller('ReportController', ['$scope','$state', '$stateParams', function($scope, $state, $stateParams){
+app.controller('ReportController', ['$scope','$state', '$stateParams','$uibModal','$aside', function($scope, $state, $stateParams,$uibModal, $aside){
     $scope.month_name = 'September';
     $scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'];
     $scope.months_cliam = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'];
@@ -106,6 +106,42 @@ app.controller('ReportController', ['$scope','$state', '$stateParams', function(
         //Number - Spacing between data sets within X values
         barDatasetSpacing: 1
 
+    };
+
+    $scope.pending = true;
+    $scope.approved = false;
+    $scope.not_approved = false
+    $scope.openAside = function (position, type) {
+        console.log(type)
+        $aside.open({
+            templateUrl: 'asideContent.html',
+            placement: position,
+            size: 'sm',
+            backdrop: true,
+            controller: function ($scope, $uibModalInstance) {
+                if(type == 'pending'){
+                    $scope.pending = true;
+                    $scope.approved = false;
+                    $scope.not_approved = false
+                }else if(type == 'approved'){
+                    $scope.pending = false;
+                    $scope.approved = true;
+                    $scope.not_approved = false
+                }else if(type == 'not_approved'){
+                    $scope.pending = false;
+                    $scope.approved = false;
+                    $scope.not_approved = true
+                }
+                $scope.ok = function (e) {
+                    $uibModalInstance.close();
+                    e.stopPropagation();
+                };
+                $scope.cancel = function (e) {
+                    $uibModalInstance.dismiss();
+                    e.stopPropagation();
+                };
+            }
+        });
     };
 
 }]);

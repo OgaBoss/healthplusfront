@@ -5,14 +5,12 @@ app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParam
 
     var vm = this;
 
-
-
-    if($stateParams.tabIndex){
-        var index = parseInt($stateParams.tabIndex)
-        vm.tabIndex = index
+    if($stateParams.tabIndex != undefined){
+        var index = parseInt($stateParams.tabIndex);
+        vm.tabIndex = index;
     }else{
         if($localStorage.currentUser.data.role.data.name == 'claims'){
-            vm.tabIndex = 2;
+            vm.tabIndex = 4;
         }else{
             vm.tabIndex = 0;
         }
@@ -98,13 +96,30 @@ app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParam
     };
 
     // Modals
-    $scope.openAside = function (position) {
+    $scope.pending = true;
+    $scope.approved = false;
+    $scope.not_approved = false
+    $scope.openAside = function (position, type) {
+        console.log(type)
         $aside.open({
             templateUrl: 'asideContent.html',
             placement: position,
             size: 'sm',
             backdrop: true,
             controller: function ($scope, $uibModalInstance) {
+                if(type == 'pending'){
+                    $scope.pending = true;
+                    $scope.approved = false;
+                    $scope.not_approved = false
+                }else if(type == 'approved'){
+                    $scope.pending = false;
+                    $scope.approved = true;
+                    $scope.not_approved = false
+                }else if(type == 'not_approved'){
+                    $scope.pending = false;
+                    $scope.approved = false;
+                    $scope.not_approved = true
+                }
                 $scope.ok = function (e) {
                     $uibModalInstance.close();
                     e.stopPropagation();

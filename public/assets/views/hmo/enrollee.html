@@ -32,16 +32,16 @@
                     </uib-tab>
                     <!-- end: TAB PROJECTS -->
 
-                    <uib-tab heading="Activity Log" ng-if="currentUser.data.role.data.name == 'admin'"">
+                    <uib-tab heading="Activity Log" ng-if="currentUser.data.role.data.name == 'admin'">
                         <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/activity-log.html' "></ng-include>
                     </uib-tab>
 
-                    <uib-tab heading="Premuims">
+                    <uib-tab heading="Premiums">
                         <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/premiums.html' "></ng-include>
                     </uib-tab>
 
-                    <uib-tab heading="Edit Medical Records" ng-if="currentUser.data.role.data.name == 'claims'"">
-                    <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/claims-medical-history.html' "></ng-include>
+                    <uib-tab heading="Edit Medical Records" ng-if="currentUser.data.role.data.name == 'claims'">
+                        <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/claims-medical-history.html' "></ng-include>
                     </uib-tab>
 
                 </uib-tabset>

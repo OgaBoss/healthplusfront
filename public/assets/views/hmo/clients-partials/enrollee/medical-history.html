@@ -22,19 +22,15 @@
                                             </div>
                                             <div class="inline-block">
                                                 <span class="block week-day text-extra-large">Wednesday</span>
-                                                <span class="block month text-large text-light">november 2014</span>
+                                                <span class="block month text-large text-light">November 2014</span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="timeline_title">
-                                        <i class="fa fa-ban fa-2x pull-left fa-border text-orange"></i>
-                                        <h4 class="light-text no-margin padding-5">Pending</h4>
                                     </div>
                                     <div class="timeline_content">
                                         <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                                     </div>
                                     <div class="readmore">
-                                        <a href="#" ng-morphing-modal content-selector="cbc" data-type="modal-trigger" class="btn btn-primary btn-o btn-wide"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
+                                        <a href="#"  ng-click="openAside('top', 'pending')" class="btn btn-primary btn-o btn-wide"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
                                     </div>
                                 </div>
                             </li>
@@ -47,26 +43,19 @@
                                             </div>
                                             <div class="inline-block">
                                                 <span class="block week-day text-extra-large">Wednesday</span>
-                                                <span class="block month text-large text-light">november 2014</span>
+                                                <span class="block month text-large text-light">November 2014</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="timeline_title">
-                                        <i class="fa fa-check fa-2x pull-left fa-border text-green"></i>
-                                        <h4 class="light-text no-margin padding-5">Appointment</h4>
-                                    </div>
+
                                     <div class="timeline_content">
                                         <div class="row">
-                                            <div class="col-md-3 col-xs-4">
-                                                <img src="assets/images/photodune-4043508-3d-modern-office-room-l.jpg" alt="offce" class="img-responsive" />
-                                            </div>
-                                            <div class="col-md-9 col-xs-8">
-                                                <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                            </div>
+                                            <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+
                                         </div>
                                     </div>
                                     <div class="readmore">
-                                        <a href="#" class="btn btn-primary" ng-click="openAside('top')"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
+                                        <a href="#" class="btn btn-primary" ng-click="openAside('top', 'not_approved')"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
                                     </div>
                                 </div>
                             </li>
@@ -83,23 +72,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="timeline_title">
-                                        <i class="fa fa-check fa-2x pull-left fa-border text-green"></i>
-                                        <h4 class="text-white no-margin padding-5">Test Solution</h4>
-                                    </div>
+
                                     <div class="timeline_content">
                                         <p>
                                             <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                                         </p>
-                                        <div map-lazy-load="https://maps.google.com/maps/api/js">
-                                            <ng-map zoom="4" center="-33, 151">
-                                                <marker position="-33.890542, 151.274856"
-                                                        icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"></marker>
-                                            </ng-map>
-                                        </div>
                                     </div>
                                     <div class="readmore">
-                                        <a href="#" class="btn btn-transparent-white"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
+                                        <a href="#" class="btn btn-transparent-white" ng-click="openAside('top', 'approved')"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
                                     </div>
                                 </div>
                             </li>
@@ -121,22 +101,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="timeline_title">
-                                        <i class="fa fa-check fa-2x pull-left fa-border text-green"></i>
-                                        <h4 class="light-text no-margin padding-5">Appointment</h4>
-                                    </div>
+
                                     <div class="timeline_content">
                                         <div class="row">
-                                            <div class="col-md-3 col-xs-4">
-                                                <img src="assets/images/photodune-4043508-3d-modern-office-room-l.jpg" alt="offce" class="img-responsive" />
-                                            </div>
-                                            <div class="col-md-9 col-xs-8">
-                                                <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                            </div>
+                                            <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                                         </div>
                                     </div>
                                     <div class="readmore">
-                                        <a href="#" class="btn btn-light-blue"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
+                                        <a href="#" class="btn btn-light-blue" ng-click="openAside('top', 'approved')"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
                                     </div>
                                 </div>
                             </li>
@@ -153,22 +125,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="timeline_title">
-                                        <i class="fa fa-check fa-2x pull-left fa-border text-green"></i>
-                                        <h4 class="text-white no-margin padding-5">Appointment</h4>
-                                    </div>
                                     <div class="timeline_content">
                                         <div class="row">
-                                            <div class="col-md-3 col-xs-4">
-                                                <img src="assets/images/photodune-4043508-3d-modern-office-room-l.jpg" alt="offce" class="img-responsive" />
-                                            </div>
-                                            <div class="col-md-9 col-xs-8">
-                                                <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                            </div>
+                                            <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                                         </div>
                                     </div>
                                     <div class="readmore">
-                                        <a href="#" class="btn btn-transparent-white"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
+                                        <a href="#" class="btn btn-transparent-white" ng-click="openAside('top', 'approved')"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
                                     </div>
                                 </div>
                             </li>
@@ -189,7 +152,7 @@
                                         <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                                     </div>
                                     <div class="readmore">
-                                        <a href="#" class="btn btn-dark-green"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
+                                        <a href="#" class="btn btn-dark-green" ng-click="openAside('top', 'approved')"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
                                     </div>
                                 </div>
                             </li>
@@ -210,7 +173,7 @@
                                         <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                                     </div>
                                     <div class="readmore">
-                                        <a href="#" class="btn btn-light-blue"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
+                                        <a href="#" class="btn btn-light-blue" ng-click="openAside('top', 'approved')"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
                                     </div>
                                 </div>
                             </li>
@@ -243,105 +206,187 @@
 <script type="text/ng-template" id="asideContent.html">
     <div class="modal-header">
         <h3 class="modal-title"><strong>Jane Doe</strong></h3>
-    </div>
+        </div>
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-12">
+
+            <div class="col-md-6 col-md-offset-3">
                 <div class="partition-light-grey padding-15 text-center margin-bottom-25">
-                    <h4 class="no-margin">Full Medical Records</h4>
+                    <h4 class="no-margin">
+                        Full Medical Records
+                        <strong ng-if="pending"><span class="label label-warning pull-right">Pending</span></strong>
+                        <span class="label label-danger pull-right" ng-show="not_approved">Mr Mark disapproved this record</span>
+                        <span class="label label-success pull-right" ng-show="approved">Approved by Ben Carson</span>
+                    </h4>
                 </div>
                 <v-accordion class="vAccordion--default">
                     <!-- add expanded attribute to open first section -->
                     <v-pane expanded>
                         <v-pane-header>
-                            Primary
+                            Enrollee Profile
                         </v-pane-header>
                         <v-pane-content>
-                            <table class="table margin-bottom-5">
-                                <tbody>
-                                <tr>
-                                    <td><strong>Diagnosis</strong></td>
-                                    <td class="center"><strong>Amount (N)</strong></td>
-                                    <td class="center"><strong>Count</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Typhoid</td>
-                                    <td class="center">521,000</td>
-                                    <td class="center">17</td>
-                                </tr>
-                                <tr>
-                                    <td>Malaria</td>
-                                    <td class="center">1,300,000</td>
-                                    <td class="center">120</td>
-                                </tr>
-                                <tr>
-                                    <td>Yello Fever</td>
-                                    <td class="center">230,000</td>
-                                    <td class="center">4</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="inputPassword3">
+                                        <strong>Status</strong>
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <span class="label label-success">ACTIVE</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="inputPassword3">
+                                        <strong>Plan</strong>
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <span class="label label-danger">GOLD</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="inputPassword3">
+                                        <strong>Cover Limit</strong>
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <span class="label label-success">N 350,000</span>
+                                    </div>
+                                </div>
+                            </form>
                         </v-pane-content>
                         <v-pane>
                             <v-pane-header>
-                                Secondary
+                                Diagnosis
                             </v-pane-header>
                             <v-pane-content>
-                                <table class="table margin-bottom-5">
-                                    <tbody>
-                                    <tr>
-                                        <td><strong>Diagnosis</strong></td>
-                                        <td class="center"><strong>Amount (N)</strong></td>
-                                        <td class="center"><strong>Count</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Typhoid</td>
-                                        <td class="center">521,000</td>
-                                        <td class="center">17</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Malaria</td>
-                                        <td class="center">1,300,000</td>
-                                        <td class="center">120</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Yello Fever</td>
-                                        <td class="center">230,000</td>
-                                        <td class="center">4</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="inputPassword3">
+                                            <strong>Diagnosis</strong>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <span class="">Typhoid</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="inputPassword3">
+                                            <strong>Summary</strong>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <div class="well">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                                Proin risus. Praesent lectus. Vestibulum quam sapien,
+                                                varius ut, blandit non, interdum in, ante. Vestibulum ante
+                                                ipsum primis in faucibus orci luctus et ultrices posuere
+                                                cubilia Curae; Duis faucibus accumsan odio.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="inputPassword3">
+                                            <strong>Consultant</strong>
+                                        </label>
+                                        <div class="col-sm-3">
+                                            <span class="label partition-green">Dr Mike Dickson</span>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </v-pane-content>
                         </v-pane>
                         <v-pane>
                             <v-pane-header>
-                                Tertiary
+                                Prescription
                             </v-pane-header>
                             <v-pane-content>
-                                <table class="table margin-bottom-5">
-                                    <tbody>
-                                    <tr>
-                                        <td><strong>Diagnosis</strong></td>
-                                        <td class="center"><strong>Amount (N)</strong></td>
-                                        <td class="center"><strong>Count</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Typhoid</td>
-                                        <td class="center">521,000</td>
-                                        <td class="center">17</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Malaria</td>
-                                        <td class="center">1,300,000</td>
-                                        <td class="center">120</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Yello Fever</td>
-                                        <td class="center">230,000</td>
-                                        <td class="center">4</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="inputPassword3">
+                                            <strong>Prescription</strong>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <div class="well">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                                Proin risus. Praesent lectus. Vestibulum quam sapien,
+                                                varius ut, blandit non, interdum in, ante. Vestibulum ante
+                                                ipsum primis in faucibus orci luctus et ultrices posuere
+                                                cubilia Curae; Duis faucibus accumsan odio.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="inputPassword3">
+                                            <strong>Drug Refill ?</strong>
+                                        </label>
+                                        <div class="col-md-2">
+                                                <div class="checkbox clip-check check-primary">
+                                                    <input type="checkbox" id="checkbox3" value="1" checked>
+                                                    <label for="checkbox3">
+                                                        YES
+                                                    </label>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                                <div class="checkbox clip-check check-primary">
+                                                    <input type="checkbox" id="checkbox3" value="1">
+                                                    <label for="checkbox3">
+                                                        NO
+                                                    </label>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </v-pane-content>
+                        </v-pane>
+                        <v-pane>
+                            <v-pane-header>
+                                Current Health Status
+                            </v-pane-header>
+                            <v-pane-content>
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <div class="checkbox clip-check check-primary">
+                                                <input type="checkbox" id="checkbox3" value="1">
+                                                <label for="checkbox3">
+                                                    Admitted
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="checkbox clip-check check-primary">
+                                                <input type="checkbox" id="checkbox3" value="1" checked>
+                                                <label for="checkbox3">
+                                                    Recovered
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="checkbox clip-check check-primary">
+                                                <input type="checkbox" id="checkbox3" value="1">
+                                                <label for="checkbox3">
+                                                    Died
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="checkbox clip-check check-primary">
+                                                <input type="checkbox" id="checkbox3" value="1">
+                                                <label for="checkbox3">
+                                                    More Check up
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </v-pane-content>
+                        </v-pane>
+                        <v-pane>
+                            <v-pane-header>
+                                Test/Lab Results
+                            </v-pane-header>
+                            <v-pane-content>
+                                <span class="label label-success">None</span>
                             </v-pane-content>
                         </v-pane>
                 </v-accordion>
