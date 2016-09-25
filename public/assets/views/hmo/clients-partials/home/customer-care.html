@@ -11,7 +11,7 @@
                     <!-- start: MESSAGES -->
                     <div ct-fullheight data-ct-fullheight-exclusion="header, footer">
                         <!-- /// controller:  'InboxCtrl' -  localtion: assets/js/controllers/inboxCtrl.js /// -->
-                        <div class="inbox" id="inbox" ng-controller="InboxController" toggleable active-class="message-open">
+                        <div class="inbox" id="inbox" toggleable active-class="message-open">
                             <!-- start: EMAIL OPTIONS -->
                             <div class="col email-options">
                                 <div class="padding-15">
@@ -107,7 +107,7 @@
                                             </div>
                                         </li>
                                         <li class="messages-item" ng-class="{starred: message.starred}" ng-repeat="message in messages | orderBy: 'date':true | filter:filters | filter:inbox.search">
-                                            <a message-item="{{message.id}}" ui-sref="app.admin.inbox({ id:message.id })" href>
+                                            <a message-item="{{message.id}}" ui-sref="partners.home.inbox({ id:message.id })" href>
                                                 <span title="{{ message.starred && 'Remove star' || 'Mark as starred' }}" class="messages-item-star" ng-click="message.starred = !message.starred"><i class="fa fa-star"></i></span>
                                                 <img alt="{{ message.from }}" ng-src="{{ message.avatar && message.avatar || noAvatarImg }}" class="messages-item-avatar bordered border-primary">
                                                 <span class="messages-item-from">{{ message.from }}</span>
@@ -123,17 +123,90 @@
                             </div>
                             <!-- end: EMAIL LIST -->
                             <!-- start: EMAIL READER -->
-                            <div class="email-reader" perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" ng-show="$state.current.name.indexOf('inbox')>= 0 || isLargeDevice || isSmallDevice">
-                                <div ui-view>
-                                    <div class="no-messages">
-                                        <h2>No email has been selected</h2>
+                            <div class="email-reader" perfect-scrollbar wheel-propagation="true" suppress-scroll-x="true" ng-show="$state.current.name.indexOf('inbox') >= 0 || isLargeDevice || isSmallDevice">
+                                <div class="no-messages" ng-show="$state.current.name.indexOf('inbox') <= 0">
+                                    <h2>No email has been selected</h2>
+                                </div>
+                                <div ng-show="$state.current.name.indexOf('inbox') >= 0">
+                                    <div class="message-actions" >
+                                        <ul class="actions no-margin no-padding block">
+                                            <li class="email-list-toggle">
+                                                <a ui-sref="app.admin.home"><i class="fa fa-angle-left"></i> All Inboxes </a>
+                                            </li>
+                                            <li class="actions-dropdown">
+                                        <span class="dropdown" uib-dropdown on-toggle="toggled(open)">
+                                            <a href class="dropdown-toggle" uib-dropdown-toggle class="btn btn-transparent">
+                                                <i class="caret"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-light">
+                                                <li>
+                                                    <a href="#">
+                                                        Reply
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        Reply all
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        Forward
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                            </li>
+                                            <li class="no-padding">
+                                                <a class="text-info" href="#">
+                                                    Reply
+                                                </a>
+                                            </li>
+                                            <li class="no-padding">
+                                                <a href="#">
+                                                    Reply all
+                                                </a>
+                                            </li>
+                                            <li class="no-padding">
+                                                <a href="#">
+                                                    Forward
+                                                </a>
+                                            </li>
+                                            <li class="no-padding">
+                                                <a href="#">
+                                                    Delete
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
+                                    <div class="message-header">
+                                        <img alt="{{ message.from }}" ng-src="{{ message.avatar && message.avatar || noAvatarImg }}" class="message-item-avatar">
+                                        <div class="message-time">
+                                            {{message.date | date: "MM/dd/yyyy 'at' h:mma" }}
+                                        </div>
+                                        <div class="message-from" ng-if="message.email">
+                                            {{message.from}} &lt;{{message.email}}&gt;
+                                        </div>
+                                        <div class="message-to">
+                                            To: Peter Clark
+                                        </div>
+                                    </div>
+                                    <div class="message-subject">
+                                        <span class="spam" ng-if="message.spam">[SPAM] </span> {{message.subject}}
+                                    </div>
+                                    <div class="message-content" ng-bind-html="message.content"></div>
                                 </div>
                             </div>
                             <!-- end: EMAIL READER -->
                         </div>
                     </div>
-                    <!-- end: MESSAGES -->                </div>
+                    <!-- end: MESSAGES -->
+                </div>
             </div>
         </div>
     </div>

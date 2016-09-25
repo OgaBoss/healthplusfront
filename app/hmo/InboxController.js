@@ -5,8 +5,8 @@
 /**
  * controller for Messages
  */
-app.controller('InboxController', ["$scope", "$state", "$interval","$stateParams",
-    function ($scope, $state, $interval, $stateParams) {
+app.controller('InboxController', ["$scope", "$state", "$interval","$stateParams","$rootScope",
+    function ($scope, $state, $interval, $stateParams, $rootScope) {
         $scope.noAvatarImg = "assets/images/default-user.png";
         var date = new Date();
         var d = date.getDate();
@@ -191,4 +191,23 @@ app.controller('InboxController', ["$scope", "$state", "$interval","$stateParams
                 add = undefined;
             }
         };
+
+        function getById(arr, id) {
+            for (var d = 0, len = arr.length; d < len; d += 1) {
+                if (arr[d].id == id) {
+                    console.log(arr[d]);
+                    return arr[d];
+                }
+            }
+        }
+
+        $scope.message = getById($scope.messages, $stateParams.id);
+
+        $rootScope.$on('$stateChangeStart',
+            function(event, toState, toParams, fromState, fromParams){
+                if(toState.name == 'partners.home.inbox'){
+                    $scope.message = getById($scope.messages, parseInt($stateParams.id));
+                    //console.log($scope.message)
+                }
+            })
     }]);
