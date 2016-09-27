@@ -113,13 +113,13 @@
 
                             </div>
                         </div>
-                        <a href="#" class="btn btn-success btn-lg" ng-click="update()"> Update </a>
+                        <a href="#" class="btn btn-success btn-lg" ng-click="update()" ng-if="currentUser.data.role.data.name == 'admin'"> Update </a>
                     </form>
 
                 </div>
             </div>
         </div>
-        <div class="panel panel-white space20">
+        <div class="panel panel-white space20 " ng-if="currentUser.data.role.data.name == 'admin'">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">

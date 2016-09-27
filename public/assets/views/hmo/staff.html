@@ -9,9 +9,12 @@
         <div class="col-md-12">
             <div class="panel panel-white" id="activities">
                 <div class="panel-heading border-light">
-                    <h4 class="panel-title text-primary">Staff <button type="button" class="btn btn-success btn-wide btn-scroll btn-scroll-top ti-plus pull-right margin-top-minus-5" ng-click="staffCtrl.createStaff()">
-                        <span>Create Staff</span>
-                    </button></h4>
+                    <div ng-if="currentUser.data.role.data.name == 'admin'">
+                        <h4 class="panel-title text-primary">Staff <button type="button" class="btn btn-success btn-wide btn-scroll btn-scroll-top ti-plus pull-right margin-top-minus-5" ng-click="staffCtrl.createStaff()">
+                            <span>Create Staff</span>
+                        </button></h4>
+                    </div>
+
                     <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
                 </div>
                 <div uib-collapse="activities" class="panel-wrapper" active="staffCtrl.tabIndex">

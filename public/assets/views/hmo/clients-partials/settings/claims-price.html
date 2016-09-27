@@ -33,3 +33,42 @@
         </div>
     </div>
 </div>
+<div class="panel panel-white" id="activities" ng-click="update()" ng-if="currentUser.data.role.data.name == 'admin'">
+    <div class="panel-heading border-light">
+        <h4 class="panel-title text-primary">Add Claims</h4>
+        <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
+    </div>
+    <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+        <div class="panel-body">
+            <form action="#" role="form" id="form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">
+                                Name
+                            </label>
+                            <input type="text" placeholder="Name" class="form-control" name="name" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">
+                                Price
+                            </label>
+                            <input type="text" placeholder="Price" class="form-control" name="name" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">
+                                Date
+                            </label>
+                            <input type="text" placeholder="Date" class="form-control" name="name" value="">
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-success btn-lg"> Add </a>
+            </form>
+
+        </div>
+    </div>
+</div>
+

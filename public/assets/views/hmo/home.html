@@ -10,6 +10,14 @@
     <ng-include src=" 'assets/views/hmo/clients-partials/home/admin.html' "></ng-include>
 </div>
 
+<div ng-if="currentUser.data.role.data.name == 'analyst'">
+    <ng-include src=" 'assets/views/hmo/clients-partials/home/admin.html' "></ng-include>
+</div>
+
+<div ng-if="currentUser.data.role.data.name == 'director'">
+    <ng-include src=" 'assets/views/hmo/clients-partials/home/admin.html' "></ng-include>
+</div>
+
 <div ng-if="currentUser.data.role.data.name == 'claims'">
     <ng-include src=" 'assets/views/hmo/clients-partials/home/claims.html' "></ng-include>
     <ng-include src=" 'assets/views/hmo/clients-partials/home/claims-medical-rcd.html' "></ng-include>

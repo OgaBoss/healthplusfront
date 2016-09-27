@@ -18,9 +18,12 @@
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
                     <!-- start: TAB EDIT ACCOUNT -->
-                    <uib-tab heading="Edit" >
-                        <ng-include src=" 'assets/views/hmo/clients-partials/org/organization-edit-tab.html' "></ng-include>
-                    </uib-tab>
+                    <div ng-if="currentUser.data.role.data.name == 'admin'">
+                        <uib-tab heading="Edit" >
+                            <ng-include src=" 'assets/views/hmo/clients-partials/org/organization-edit-tab.html' "></ng-include>
+                        </uib-tab>
+                    </div>
+
                     <!-- end: TAB EDIT ACCOUNT -->
                     <!-- start: TAB PROJECTS -->
                     <uib-tab heading="Claims">
