@@ -16,9 +16,9 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
 
     if(location.host == 'localhost:5000' ){
         app.value('apiConfig',{
-            apiBaseUrl: 'http://healthplusapi.app/api/v1/'
+            apiBaseUrl: 'http://projectx-api.dev/api/'
         });
-        $authProvider.loginUrl = 'http://healthplusapi.app/api/v1/authenticate';
+        $authProvider.loginUrl = 'http://projectx-api.dev/api/authenticate';
     }else{
         app.value('apiConfig',{
             apiBaseUrl: 'https://healthplusapi.herokuapp.com/api/v1/'

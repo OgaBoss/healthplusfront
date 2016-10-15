@@ -28,7 +28,7 @@ app.controller('LoginController',
 
                 // If login is successful, redirect to the users state
             }).catch(function(response){
-                var msg = response.data.error
+                var msg = response.data.error;
                 healthNotify.set(msg, 'error');
                 $scope.loading = true;
             })
