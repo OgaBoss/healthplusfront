@@ -64,6 +64,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
+    <link rel="stylesheet" href="lib/angular-treasure-overlay-spinner/dist/treasure-overlay-spinner.min.css">
     <!--<link rel="stylesheet" href="assets/css/morphModal.css">-->
     <!-- Packet Theme -->
     <link rel="stylesheet" data-ng-href="assets/css/themes/{{ app.layout.theme }}.css" />
@@ -159,6 +160,19 @@
 <script src="lib/angular-awesome-slider/dist/angular-awesome-slider.min.js"></script>
 <!-- Angular Slick Carousel -->
 <script src="lib/angular-slick-carousel/dist/angular-slick.min.js"></script>
+
+<!--Permission-->
+<script src="lib/angular-permission/dist/angular-permission.js"></script>
+<script src="lib/angular-permission/dist/angular-permission-ui.min.js"></script>
+
+<!--Spinner-->
+<script src="lib/angular-treasure-overlay-spinner/dist/treasure-overlay-spinner.min.js"></script>
+
+<!--ModalService-->
+
+<!--ngMessages-->
+<script src="lib/angular-messages/angular-messages.min.js"></script>
+
 <!-- Packet Scripts -->
 <script src="assets/js/app.js"></script>
 <script src="assets/js/main.js"></script>
@@ -183,7 +197,8 @@
 <script src="assets/js/directives/letter-icon.js"></script>
 <script src="assets/js/directives/landing-header.js"></script>
 <script src="assets/js/directives/ct-crop.js"></script>
-<!--<script src="assets/js/directives/ngMorphingModal.js"></script>-->
+<script src="assets/js/directives/backbone/OnLastRepeat.js"></script>
+<script src="assets/js/directives/backbone/FileUpload.js"></script>
 
 <!--Services-->
 <script src="assets/js/services/notify.js"></script>
@@ -193,6 +208,12 @@
 <script src="assets/js/services/entity.js"></script>
 <script src="assets/js/services/login.js"></script>
 <script src="assets/js/services/FileUploadService.js"></script>
+<script src="assets/js/services/PermissionService.js"></script>
+<script src="assets/js/services/RoleService.js"></script>
+<script src="assets/js/services/EnrolleeService.js"></script>
+<script src="assets/js/services/OrganizationService.js"></script>
+<script src="assets/js/services/PlanService.js"></script>
+
 
 <!-- Packet Controllers -->
 <script src="assets/js/controllers/mainCtrl.js"></script>
@@ -213,8 +234,12 @@
 <script src="hmo/ReportController.js"></script>
 <script src="hmo/InboxController.js"></script>
 <script src="hmo/ViewsMessageController.js"></script>
+<script src="hmo/ModalController.js"></script>
+<script src="hmo/ImageUploadModal.js"></script>
+<script src="assets/js/custom/ModalInstanceController.js"></script>
 
 <!--Custom JS-->
+
 
 </body>
 </html>

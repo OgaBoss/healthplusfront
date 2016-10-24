@@ -1,7 +1,7 @@
 /**
  * Created by OluwadamilolaAdebayo on 8/23/16.
  */
-app.factory('country',['$http','apiConfig', function($http, apiConfig){
+app.factory('PlaceService',['$http','apiConfig','$rootScope', function($http, apiConfig, $rootScope){
     return {
         getCountry: getCountry,
         getAllStates : getCountryStates,
@@ -27,7 +27,7 @@ app.factory('country',['$http','apiConfig', function($http, apiConfig){
     function getStateLg(state){
         var request = $http({
             method: "GET",
-            url: apiConfig.apiBaseUrl + 'lgs',
+            url: apiConfig.apiBaseUrl + 'lg',
             params: {
                 state: state
             }

@@ -1,129 +1,144 @@
-<div class="col-md-4">
-    <div class="user-left">
-        <div class="center">
-            <h4>Jane Doe</h4>
-            <div flow-init="{singleFile:true}" flow-name="obj.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
-                <div class="user-image">
-                    <div class="thumbnail">
-                        <img src="assets/images/avatar-2.jpg" class="img-responsive img-rounded" alt="">
+<div class="col-sm-12">
+    <div class="panel panel-white">
+        <div class="panel-heading border-light">
+            <h4 class="panel-title"><span class="text-bold">Basic Information</span></h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="user-left" style="border-right: 0px solid #dddddd;">
+                        <div class="">
+                            <h4 class="center"><b>{{enrolleeCtrl.enrollee.first_name}}, {{enrolleeCtrl.enrollee.last_name}}</b></h4>
+                            <div class="user-image">
+                                <div class="thumbnail">
+                                    <img src="{{enrolleeCtrl.enrollee.image_url}}" class="img-responsive img-rounded" alt="">
+                                </div>
+                            </div>
+                            <a class="btn btn-wide btn-primary create-enrollee center" href="#"  ng-click="imageChange()" style="margin-left: 18px"><i class="fa fa-plus"></i> Edit Image </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr>
+                            <th colspan="3">Contact Information</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>
+                                <a href="#" class="text-bold">
+                                    {{enrolleeCtrl.enrollee.first_name}}, {{enrolleeCtrl.enrollee.last_name}}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>
+                                <a href class="text-bold">
+                                    {{enrolleeCtrl.enrollee.email}}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td class="text-bold">{{enrolleeCtrl.enrollee.phone}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>ID:</td>
+                            <td class="text-bold">{{enrolleeCtrl.enrollee.generated_id}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Address:</td>
+                            <td class="text-bold">{{enrolleeCtrl.enrollee.street}}, {{enrolleeCtrl.enrollee.lg}}, {{enrolleeCtrl.enrollee.state}}, {{enrolleeCtrl.enrollee.country}}</td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td class="text-bold"><span class="label label-danger" ng-hide="{{enrolleeCtrl.enrollee.status}}" style="font-size: 16px;">inactive</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="panel panel-white">
+        <div class="panel-heading border-light">
+            <h4 class="panel-title"><span class="text-bold">Enrollee Dependents</span></h4>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div class="panel panel-white" ng-repeat="dependent in enrolleeCtrl.dependents">
+                    <div class="panel-body">
+                        <div class="row" >
+                            <div class="col-md-2">
+                                <div class="user-left" style="border-right: 0px solid #dddddd;">
+                                    <div class="">
+                                        <h4 class="center"><b>{{dependent.first_name}}, {{dependent.last_name}}</b></h4>
+                                        <div class="user-image">
+                                            <div class="thumbnail">
+                                                <img src="{{dependent.image_url}}" class="img-responsive img-rounded" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="3">Contact Information</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>
+                                            <a href="#" class="text-bold">
+                                                {{dependent.first_name}}, {{dependent.last_name}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>
+                                            <a href class="text-bold">
+                                                {{dependent.email}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone:</td>
+                                        <td class="text-bold">{{dependent.phone}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>ID:</td>
+                                        <td class="text-bold">{{dependent.generated_id}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td class="text-bold">{{dependent.street}}, {{dependent.lg}}, {{dependent.state}}, {{dependent.country}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status:</td>
+                                        <td class="text-bold"><span class="label label-danger" ng-hide="{{dependent.status}}" style="font-size: 16px;">inactive</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="social-icons block margin-bottom-20">
-                <uib-progressbar class="progress-sm no-radius no-margin background-dark" value="25" type="warning"></uib-progressbar>
-                <p class="no-margin">
-                    <span class="text-extra-small text-light pull-left">N 95,000 used</span>
-                    <span class="text-extra-small text-light pull-right">from N 350,000 Cover Limit</span>
-                </p>
-            </div>
         </div>
-        <table class="table table-condensed">
-            <thead>
-                <tr>
-                    <th colspan="3">Contact Information</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Name</td>
-                <td>
-                    <a href="#">
-                        Jane Doe
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td>
-                    <a href>
-                        janedoe@mtn.com
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Phone:</td>
-                <td>+234 80-98567-234</td>
-            </tr>
-
-            <tr>
-                <td>Unique ID:</td>
-                <td>MP/ENR/12001/IB</td>
-            </tr>
-
-            <tr>
-                <td>Address:</td>
-                <td>No 13 Church Street, Ketu, Kosofe Lagos, Nigeria</td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed">
-            <thead>
-            <tr>
-                <th colspan="3">General information</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Status</td>
-                <td><span class="label label-danger">inactive</span>
-                </td>
-            </tr>
-            <tr>
-                <td>Company</td>
-                <td>Etisalat Nigeria</td>
-            </tr>
-            <tr>
-                <td>Plan</td>
-                <td>Gold </td>
-            </tr>
-            <tr>
-                <td>Premium</td>
-                <td>N 3500<small>/month</small></td>
-            </tr>
-            <tr>
-                <td>Cover Limit</td>
-                <td>N 250,000</td>
-            </tr>
-            <tr>
-                <td>Primary Health Provider</td>
-                <td>Inlad Medical Center</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table table-condensed">
-            <thead>
-            <tr>
-                <th colspan="3">Dependencies</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Count</td>
-                <td>
-                    <a href="#">
-                        2
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp</td>
-                <td>
-                    <a href>
-                        Hudson Joe
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp</td>
-                <td>
-                    <a href>
-                        Brooklyn Joe
-                    </a>
-                </td>
-            </tr>
-
-            </tbody>
-        </table>
     </div>
 </div>

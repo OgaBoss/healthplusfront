@@ -38,7 +38,7 @@
 
                                         <div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
                                             <label for="">State <span class="symbol required"></span></label>
-                                            <select class="cs-select cs-skin-slide" ng-change="hmo.getLgs()" ng-model="hmo.hmoForm.state" name="state" ng-options=" state.state for state in states"required>
+                                            <select class="cs-select cs-skin-slide" ng-change="hmo.getLgs()" ng-model="hmo.hmoForm.state" name="state" ng-options="state.state for state in states"required>
                                             </select>
                                             <span class="error text-small block" ng-if="Form.state.$dirty && Form.state.$error.required">State is required.</span>
                                             <span class="success text-small block" ng-if="Form.state.$valid">Lovely place!</span>

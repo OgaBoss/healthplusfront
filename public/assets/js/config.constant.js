@@ -34,6 +34,7 @@ app.constant('JS_REQUIRES', {
 
         //*** Controllers
         'InboxController': 'hmo/InboxController.js',
+        'ModalInstanceController' : 'assets/js/custom/ModalInstanceController.js'
     },
     //*** angularJS Modules
     modules: [{
@@ -96,5 +97,11 @@ app.constant('JS_REQUIRES', {
     }, {
         name: 'angularSpectrumColorpicker',
         files: ['lib/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.min.js']
+    },{
+        name: 'permission',
+        files: ['lib/angular-permission/dist/angular-permission.min.js']
+    },{
+        name: 'permission.ui',
+        files: ['lib/angular-permission/dist/angular-permission-ui.min.js']
     }]
 });

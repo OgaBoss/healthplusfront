@@ -1,9 +1,74 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParams,$uibModal, $aside, $localStorage){
+app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParams,$uibModal, $aside, $localStorage, EnrolleeService,$rootScope){
 
     var vm = this;
+    vm.enrollee = {};
+    vm.dependents = {}
+    var user_id = $stateParams.id;
+    $rootScope.spinner = {active: true};
+
+    //Get This enrollee data
+    EnrolleeService.getEnrollee(user_id).then(function(res){
+        vm.enrollee = res.enrollee.data;
+    });
+
+    //Get this enrollee's dependents (if any)
+    EnrolleeService.getEnrolleeDependents(user_id).then(function(res){
+        vm.dependents = res.dependents.data;
+    });
+
+    //Image Upload
+    $scope.imageChange = function (position, type) {
+        $aside.open({
+            templateUrl: 'assets/views/hmo/clients-partials/modals/image_upload.html',
+            placement: 'right',
+            size: '',
+            backdrop: true,
+            controller: 'ImageUploadMoadal',
+            controllerAs: 'uploadCtrl'
+        });
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     if($stateParams.tabIndex != undefined){
         var index = parseInt($stateParams.tabIndex);

@@ -1,6 +1,6 @@
 var app = angular.module('app', ['packet']);
-app.run(['$rootScope', '$state', '$stateParams','$location','$localStorage', '$auth',
-function ($rootScope, $state, $stateParams, $location, $localStorage, $auth) {
+app.run(['$rootScope', '$state', '$stateParams','$location','$localStorage', '$auth','PermRoleStore','PermPermissionStore','RoleService',
+function ($rootScope, $state, $stateParams, $location, $localStorage, $auth, PermRoleStore, PermPermissionStore, RoleService) {
     // Check if user is logged in
     // Redirect if not
     // TODO create array of auth needed route
@@ -39,7 +39,7 @@ function ($rootScope, $state, $stateParams, $location, $localStorage, $auth) {
             isFooterFixed: false, // true if you want to initialize the template with fixed footer
             isBoxedPage: false, // true if you want to initialize the template with boxed layout
             theme: 'lyt1-theme-1', // indicate the theme chosen for your project
-            logo: 'assets/images/logo.png', // relative path of the project logo
+            logo: 'assets/images/logo2.png', // relative path of the project logo
             logoCollapsed: 'assets/images/logo-collapsed.png',  // relative path of the collapsed logo
             className: ''
         },
@@ -49,25 +49,32 @@ function ($rootScope, $state, $stateParams, $location, $localStorage, $auth) {
 
     $rootScope.app.layout = angular.copy($rootScope.app.defaultLayout);
 
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-        if($localStorage.currentUser){
-            if($localStorage.currentUser.data.entity.data.name !== 'admin'){
-                $rootScope.app.layout.theme = 'lyt3-theme-1';
-                $rootScope.app.layout.className = 'lyt-3';
-            }else{
-                $rootScope.app.layout.theme = 'lyt1-theme-1';
-                $rootScope.app.layout.className = '';
-            }
-        }
-    });
+    // $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+    //     if($localStorage.currentUser){
+    //         if($localStorage.currentUser.data.entity.data.name !== 'admin'){
+    //             $rootScope.app.layout.theme = 'lyt3-theme-1';
+    //             $rootScope.app.layout.className = 'lyt-3';
+    //         }else{
+    //             $rootScope.app.layout.theme = 'lyt1-theme-1';
+    //             $rootScope.app.layout.className = '';
+    //         }
+    //     }
+    // });
 
     //Logout function
     $rootScope.logout = function(){
         $auth.logout();
         $localStorage.$reset();
         $state.go('login');
-    }
+    };
+
+    // Permissions
+    PermRoleStore
+        .defineRole('ITADMIN', function (ITADMIN, obj) {
+            return RoleService.checkAdminRole();
+        });
 }]);
+
 app.service('authInterceptor', function($q, $state) {
     var service = this;
 
@@ -77,7 +84,8 @@ app.service('authInterceptor', function($q, $state) {
         }
         return $q.reject(response);
     };
-})
+});
+
 // translate config
 app.config(['$translateProvider',
 function ($translateProvider) {

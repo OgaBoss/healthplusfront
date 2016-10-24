@@ -1,6 +1,6 @@
 <!-- start: BREADCRUMB -->
 <div class="breadcrumb-wrapper">
-    <h4 class="mainTitle no-margin"><strong><span class="text-super-large text-muted">Jane Doe Profile</span></strong></h4>
+    <h4 class="mainTitle no-margin"><strong><span class="text-super-large text-muted">{{enrolleeCtrl.enrollee.first_name}}, {{enrolleeCtrl.enrollee.last_name}}'s Profile</span></strong></h4>
     <span class="mainDescription text-azure">Enrollee</span>
     <div ncy-breadcrumb class="pull-right"></div>
 </div>
@@ -17,16 +17,13 @@
                     <uib-tab heading="Overview" >
                         <div class="row">
                             <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-info.html' "></ng-include>
-                            <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/medical-history.html' "></ng-include>
                         </div>
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
                     <!-- start: TAB EDIT ACCOUNT -->
-                    <div ng-if="currentUser.data.role.data.name == 'admin'">
                         <uib-tab heading="Edit" >
                             <ng-include src=" 'assets/views/hmo/clients-partials/enrollee/enrollee-edit.html' "></ng-include>
                         </uib-tab>
-                    </div>
 
                     <!-- end: TAB EDIT ACCOUNT -->
                     <!-- start: TAB PROJECTS -->

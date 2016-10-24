@@ -4,639 +4,151 @@
     <div ncy-breadcrumb class="pull-right"></div>
 </div>
 <!-- end: BREADCRUMB -->
+<!--Modal-->
+<ng-include src=" 'assets/views/hmo/clients-partials/modals/enrollee_delete.html' "></ng-include>
+
 <!-- start: YOUR CONTENT HERE -->
-<div class="container-fluid container-fullw padding-bottom-10">
-    <div class="panel panel-dami" id="activities">
-        <div class="panel-heading border-light">
-            <div class="row">
-                <div class="col-lg-4 col-xs-5">
-                    <button id="split-button" type="button" class="btn btn-azure btn-sm" ng-disabled="hmoClient.buttonFilter.allIsDisabled" ng-model="allIsDisabled" ng-click="hmoClient.majorFilter('all')">
-                        <span class="text-bold">All</span>
-                    </button>
-                    <button id="split-button" type="button" class="btn btn-azure btn-sm" ng-disabled="hmoClient.buttonFilter.enrIsDisabled" ng-model="enrIsDisabled" ng-click="hmoClient.majorFilter('enr')">
-                        <span class="text-bold">Enrollees</span>
-                    </button>
-                    <button id="split-button" type="button" class="btn btn-azure btn-sm" ng-disabled="hmoClient.buttonFilter.orgIsDisabled"  ng-model="orgIsDisabled" ng-click="hmoClient.majorFilter('org')">
-                        <span class="text-bold">Organizations</span>
-                    </button>
-                </div>
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <uib-tabset class="tabbable">
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <i class="fa fa-user"></i> Enrollees
+                            </uib-tab-heading>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-white no-radius">
+                                        <div class="panel-heading border-light" style="padding-bottom: 50px !important;">
 
-                <div class="col-lg-8 col-xs-7 text-right" ng-show="showSubFilters">
-                    <div class="btn-group margin-top-5" uib-dropdown ng-controller="DateController" ng-show="hmoClient.buttonFilter.enrEnabled">
-                        <button id="split-button" type="button" class="btn btn-azure btn-sm" ng-click="open()" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="datepickerOptions" ng-required="true">
-                            Cover Expiry: <span class="text-bold">{{dt | date:'MM/dd/yyyy'}}</span>
-                            <span class="caret"></span>
-                            <span class="sr-only">Split button!</span>
-                        </button>
-                    </div>
-                    <div class="btn-group margin-top-5" uib-dropdown ng-init="branch='Lagos'" ng-show="hmoClient.buttonFilter.enrEnabled">
-                        <button id="split-button" type="button" class="btn btn-azure btn-sm" >
-                            Branch: <span class="text-bold">{{branch}}</span>
-                        </button>
-                        <button type="button" class="btn btn-azure btn-sm" uib-dropdown-toggle>
-                            <span class="caret"></span>
-                            <span class="sr-only">Split button!</span>
-                        </button>
-                        <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                            <li role="menuitem">
-                                <a href="#" ng-click="branch='Lagos'">
-                                    Lagos
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="branch='Ibadan'">
-                                    Ibadan
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="branch='Abuja'">
-                                    Abuja
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="btn-group margin-top-5" uib-dropdown ng-init="branch='Lagos'" ng-show="hmoClient.buttonFilter.orgEnabled">
-                        <button id="split-button" type="button" class="btn btn-azure btn-sm" >
-                            Branch: <span class="text-bold">{{branch}}</span>
-                        </button>
-                        <button type="button" class="btn btn-azure btn-sm" uib-dropdown-toggle>
-                            <span class="caret"></span>
-                            <span class="sr-only">Split button!</span>
-                        </button>
-                        <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                            <li role="menuitem">
-                                <a href="#" ng-click="branch='Lagos'">
-                                    Lagos
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="branch='Ibadan'">
-                                    Ibadan
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="branch='Abuja'">
-                                    Abuja
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="btn-group margin-top-5" uib-dropdown ng-show="hmoClient.buttonFilter.enrEnabled">
-                        <button id="split-button" type="button" class="btn btn-azure btn-sm">
-                            Status: <span class="text-bold">{{hmoClient.buttonFilter.status}}</span>
-                        </button>
-                        <button type="button" class="btn btn-azure btn-sm" uib-dropdown-toggle>
-                            <span class="caret"></span>
-                            <span class="sr-only">Split button!</span>
-                        </button>
-                        <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                            <li role="menuitem">
-                                <a href="#" ng-click="hmoClient.buttonFilter.status='Active'">
-                                    Active
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="hmoClient.buttonFilter.status='Inactive'">
-                                    Inactive
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="btn-group margin-top-5" uib-dropdown ng-init="plans='Gold'" ng-show="hmoClient.buttonFilter.enrEnabled">
-                        <button id="split-button" type="button" class="btn btn-azure btn-sm">
-                            Health Plans: <span class="text-bold">{{plans}}</span>
-                        </button>
-                        <button type="button" class="btn btn-azure btn-sm" uib-dropdown-toggle>
-                            <span class="caret"></span>
-                            <span class="sr-only">Split button!</span>
-                        </button>
-                        <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                            <li role="menuitem">
-                                <a href="#" ng-click="plans='Bronze'">
-                                    Bronze
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="plans='Gold'">
-                                    Gold
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="plans='Silver'">
-                                    Silver
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="plans='Diamond'">
-                                    Diamond
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="btn-group margin-top-5" uib-dropdown ng-init="range='1 - 20'" ng-show="hmoClient.buttonFilter.orgEnabled">
-                        <button id="split-button" type="button" class="btn btn-azure btn-sm">
-                           Enrollee Range: <span class="text-bold">{{range}}</span>
-                        </button>
-                        <button type="button" class="btn btn-azure btn-sm" uib-dropdown-toggle>
-                            <span class="caret"></span>
-                            <span class="sr-only">Split button!</span>
-                        </button>
-                        <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                            <li role="menuitem">
-                                <a href="#" ng-click="range='1 - 20'">
-                                    1 - 20
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="range='21 - 50'">
-                                    21  - 50
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="range=' 51 - 100'">
-                                    51 - 100
-                                </a>
-                            </li>
-                            <li role="menuitem">
-                                <a href="#" ng-click="range='above 100 '">
-                                    above 100
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
-        </div>
-        <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.organization">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.organization({id:1})">MTN Africa</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Organization</span>
-
-                                </h4>
-                            </div>
-                            <div class="panel-body"  onclick="location.href='#/partners/dashboard/clients/organization/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Ikoyi, Lagos </span><span class="text-azure"><strong>Nigeria</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-                                <span class="label label-success">active</span>
-
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <a href=#"">
-                                                <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <a href="#" class="block">
-                                        <i class="fa fa-medkit text-azure"></i> 7 total plans
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-check-circle text-green"></i> 1200 active enrollees
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-ban text-red"></i> 20 inactive enrollees
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.enrollee">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.enrollee({id:1})">Jane Doe</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Enrollee</span>
-                                </h4>
-                            </div>
-                                <div class="panel-body" onclick="location.href='#/partners/dashboard/clients/enrollee/1';" style="cursor: pointer;">
-                                        <p class="text-light text-small">
-                                            <span class="text-small text-muted">Cover expires by </span><span class="text-azure"><strong>September 16, 2100</strong></span>
-                                            <a href="#">
-                                                <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                            </a>
-                                        </p>
-
-                                        <span class="label label-danger ">inactive</span>
-                                        <div class="block margin-top-10">
-                                        </div>
-                                        <div class="row">
-                                            <div class=""></div>
-                                            <div class="col-md-6 col-md-offset-3 no-padding">
-                                                <div class="padding-10 text-center">
-                                                    <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                                </div>
+                                            <div class=" pull-right">
+                                                <a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="open()"><i class="fa fa-plus"></i> Create Enrollee</a>
                                             </div>
                                         </div>
-
-                                        <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                            <div class="block">
-                                                <a href="#" class="block">
-                                                    <i class="fa fa-medkit text-azure"></i> Gold Outreach Plan
-                                                </a>
-                                                <a href="#" class="block">
-                                                    <i class="fa fa-check-circle text-green"></i> Active Months : 16.5
-                                                </a>
-                                                <a href="#" class="block">
-                                                    <i class="fa fa-credit-card text-pink"></i> Premuim : N 2,500
-                                                </a>
+                                        <treasure-overlay-spinner active='spinner.active'>
+                                            <div class="panel-body">
+                                                <table class="table table-striped table-hover" id="sample-table-3">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="hidden-xs">Image</th>
+                                                        <th class="">Enrollee ID</th>
+                                                        <th>Full Name</th>
+                                                        <th>Email</th>
+                                                        <th class="hidden-xs">Plan</th>
+                                                        <th class="hidden-xs center" >Status</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="enrollee in hmoClient.enrollees" on-last-repeat>
+                                                        <td class="center" ng-click="hmoClient.showEnrollee(enrollee.enrollee_id)" style="cursor: pointer;" ><img src="{{ enrollee.image_url}}" class="img-rounded" alt="image" height="50px"/></td>
+                                                        <td class="hidden-xs">{{enrollee.generated_id}}</td>
+                                                        <td class="hidden-xs">{{ enrollee.first_name }}, {{ enrollee.last_name }}</td>
+                                                        <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ enrollee.email }} </a></td>
+                                                        <td class="hidden-xs">{{enrollee.plan_name}}</td>
+                                                        <td class="hidden-xs center">
+                                                            <span class="label label-success" ng-show="{{enrollee.status}}">active</span>
+                                                            <span class="label  danger-gradient" ng-hide="{{enrollee.status}}">inactive</span>
+                                                        </td>
+                                                        <td class="center">
+                                                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                                <a href="#" class="btn btn-transparent btn-xs" tooltip-placement="top" uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                                                </a>
+                                                                <a href="#" class="btn btn-transparent btn-xs tooltips" ng-click="delete()" tooltip-placement="top" uib-tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                                            </div>
+                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                                <div class="btn-group" uib-dropdown>
+                                                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" uib-dropdown-toggle>
+                                                                        <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                                                        <li>
+                                                                            <a href="#"> Byes </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#"> Remove </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </treasure-overlay-spinner>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <i class="fa fa-building"></i> Organizations
+                            </uib-tab-heading>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-white no-radius">
+                                        <div class="panel-heading border-light" style="padding-bottom: 50px !important;">
+                                            <div class=" pull-right">
+                                                <a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="open()"><i class="fa fa-plus"></i> Create Organization</a>
                                             </div>
                                         </div>
-
-                                </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.organization">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.organization({id:1})">MTN Africa</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Organization</span>
-
-                                </h4>
-                            </div>
-                            <div class="panel-body"  onclick="location.href='#/partners/dashboard/clients/organization/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Ikoyi, Lagos </span><span class="text-azure"><strong>Nigeria</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-                                <span class="label label-success">active</span>
-
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <a href=#"">
-                                                <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                            </a>
+                                        <div class="panel-body">
+                                            <table class="table table-striped table-hover" id="sample-table-3">
+                                                <thead>
+                                                <tr>
+                                                    <th class="">Enrollee ID</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th class="hidden-xs">Phone Number</th>
+                                                    <th class="hidden-xs center" >Enrollee Count</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="org in hmoClient.organizations">
+                                                    <td class="center" ng-click="hmoClient.showOrganization(org.organization_id)" style="cursor: pointer;" ><a href="#" rel="nofollow" target="_blank"> {{ org.generated_id }} </a></td>
+                                                    <td class="hidden-xs">{{ org.name }}</td>
+                                                    <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ org.email }} </a></td>
+                                                    <td class="hidden-xs">{{org.phone}}</td>
+                                                    <td class="hidden-xs center"> {{ org.enrollee_count }}</td>
+                                                    <td class="center">
+                                                        <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                            <a href="#" class="btn btn-transparent btn-xs" tooltip-placement="top" uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                                            </a>
+                                                            <a href="#" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" uib-tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                                        </div>
+                                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                            <div class="btn-group" uib-dropdown>
+                                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" uib-dropdown-toggle>
+                                                                    <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                                                                </button>
+                                                                <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                                                    <li>
+                                                                        <a href="#"> Byes </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"> Remove </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <a href="#" class="block">
-                                        <i class="fa fa-medkit text-azure"></i> 7 total plans
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-check-circle text-green"></i> 1200 active enrollees
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-ban text-red"></i> 20 inactive enrollees
-                                    </a>
-                                </div>
                             </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.enrollee">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.enrollee({id:1})">Jane Doe</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Enrollee</span>
-                                </h4>
-                            </div>
-                            <div class="panel-body" onclick="location.href='#/partners/dashboard/clients/enrollee/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Cover expires by </span><span class="text-azure"><strong>September 16, 2100</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-
-                                <span class="label label-danger ">inactive</span>
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <div class="block">
-                                        <a href="#" class="block">
-                                            <i class="fa fa-medkit text-azure"></i> Gold Outreach Plan
-                                        </a>
-                                        <a href="#" class="block">
-                                            <i class="fa fa-check-circle text-green"></i> Active Months : 16.5
-                                        </a>
-                                        <a href="#" class="block">
-                                            <i class="fa fa-credit-card text-pink"></i> Premuim : N 2,500
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                        </uib-tab>
+                    </uib-tabset>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.organization">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.organization({id:1})">MTN Africa</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Organization</span>
-
-                                </h4>
-                            </div>
-                            <div class="panel-body"  onclick="location.href='#/partners/dashboard/clients/organization/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Ikoyi, Lagos </span><span class="text-azure"><strong>Nigeria</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-                                <span class="label label-success">active</span>
-
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <a href=#"">
-                                                <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <a href="#" class="block">
-                                        <i class="fa fa-medkit text-azure"></i> 7 total plans
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-check-circle text-green"></i> 1200 active enrollees
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-ban text-red"></i> 20 inactive enrollees
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.enrollee">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.enrollee({id:1})">Jane Doe</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Enrollee</span>
-                                </h4>
-                            </div>
-                            <div class="panel-body" onclick="location.href='#/partners/dashboard/clients/enrollee/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Cover expires by </span><span class="text-azure"><strong>September 16, 2100</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-
-                                <span class="label label-danger ">inactive</span>
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <div class="block">
-                                        <a href="#" class="block">
-                                            <i class="fa fa-medkit text-azure"></i> Gold Outreach Plan
-                                        </a>
-                                        <a href="#" class="block">
-                                            <i class="fa fa-check-circle text-green"></i> Active Months : 16.5
-                                        </a>
-                                        <a href="#" class="block">
-                                            <i class="fa fa-credit-card text-pink"></i> Premuim : N 2,500
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.organization">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.organization({id:1})">MTN Africa</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Organization</span>
-
-                                </h4>
-                            </div>
-                            <div class="panel-body"  onclick="location.href='#/partners/dashboard/clients/organization/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Ikoyi, Lagos </span><span class="text-azure"><strong>Nigeria</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-                                <span class="label label-success">active</span>
-
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <a href=#"">
-                                                <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <a href="#" class="block">
-                                        <i class="fa fa-medkit text-azure"></i> 7 total plans
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-check-circle text-green"></i> 1200 active enrollees
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-ban text-red"></i> 20 inactive enrollees
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.enrollee">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.enrollee({id:1})">Jane Doe</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Enrollee</span>
-                                </h4>
-                            </div>
-                            <div class="panel-body" onclick="location.href='#/partners/dashboard/clients/enrollee/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Cover expires by </span><span class="text-azure"><strong>September 16, 2100</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-
-                                <span class="label label-danger ">inactive</span>
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <div class="block">
-                                        <a href="#" class="block">
-                                            <i class="fa fa-medkit text-azure"></i> Gold Outreach Plan
-                                        </a>
-                                        <a href="#" class="block">
-                                            <i class="fa fa-check-circle text-green"></i> Active Months : 16.5
-                                        </a>
-                                        <a href="#" class="block">
-                                            <i class="fa fa-credit-card text-pink"></i> Premuim : N 2,500
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.organization">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.organization({id:1})">MTN Africa</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Organization</span>
-
-                                </h4>
-                            </div>
-                            <div class="panel-body"  onclick="location.href='#/partners/dashboard/clients/organization/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Ikoyi, Lagos </span><span class="text-azure"><strong>Nigeria</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-                                <span class="label label-success">active</span>
-
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <a href=#"">
-                                                <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <a href="#" class="block">
-                                        <i class="fa fa-medkit text-azure"></i> 7 total plans
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-check-circle text-green"></i> 1200 active enrollees
-                                    </a>
-
-                                    <a href="#" class="block">
-                                        <i class="fa fa-ban text-red"></i> 20 inactive enrollees
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-3 col-lg-3" ng-show="hmoClient.clientsDisplay.enrollee">
-                        <div class="panel panel-white no-radius hvr-grow-shadow">
-                            <div class="panel-heading border-bottom">
-                                <h4 class="panel-title"><strong><a ui-sref="partners.clients.enrollee({id:1})">Jane Doe</a></strong>
-                                    <span class="label label-primary font-10 pull-right">Enrollee</span>
-                                </h4>
-                            </div>
-                            <div class="panel-body" onclick="location.href='#/partners/dashboard/clients/enrollee/1';" style="cursor: pointer;">
-                                <p class="text-light text-small">
-                                    <span class="text-small text-muted">Cover expires by </span><span class="text-azure"><strong>September 16, 2100</strong></span>
-                                    <a href="#">
-                                        <span class="text-bold block text-extra-large pull-right"><i class="fa fa-pencil-square text-azure"></i></span>
-                                    </a>
-                                </p>
-
-                                <span class="label label-danger ">inactive</span>
-                                <div class="block margin-top-10">
-                                </div>
-                                <div class="row">
-                                    <div class=""></div>
-                                    <div class="col-md-6 col-md-offset-3 no-padding">
-                                        <div class="padding-10 text-center">
-                                            <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
-                                    <div class="block">
-                                        <a href="#" class="block">
-                                            <i class="fa fa-medkit text-azure"></i> Gold Outreach Plan
-                                        </a>
-                                        <a href="#" class="block">
-                                            <i class="fa fa-check-circle text-green"></i> Active Months : 16.5
-                                        </a>
-                                        <a href="#" class="block">
-                                            <i class="fa fa-credit-card text-pink"></i> Premuim : N 2,500
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </div>
 </div>
- <!-- end: YOUR CONTENT HERE -->
+<!-- end: TABS -->
+

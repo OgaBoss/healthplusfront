@@ -31,4 +31,8 @@ angular.module("packet", [
 	'pascalprecht.translate',
 	'FBAngular',
     'satellizer',
+	'permission',
+	'permission.ui',
+	'treasure-overlay-spinner',
+	'ngMessages'
 ]);
