@@ -47,13 +47,24 @@ app.controller('HmoClientController', ['$scope','EnrolleeService','$uibModal','$
     };
 
     //Modal
-    $scope.delete = function(size) {
+    $scope.delete = function(email, id) {
 		var modalInstance = $uibModal.open({
 			templateUrl : 'myModalContent.html',
 			controller : 'ModalInstanceController',
 			size : '',
+            resolve: {
+                data: function(){
+                    return {'email':email, 'id': id};
+                }
+            }
 		});
 	};
 
-
+    vm.checkForNull = function (data) {
+        if(data === null){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }]);

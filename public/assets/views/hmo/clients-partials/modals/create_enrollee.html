@@ -14,7 +14,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="inputEmail3">First Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="First Name" id="inputEmail3" class="form-control" name="first_name" ng-model="modalCtrl.enrolleCreation.first_name" required>
+                                    <input type="text" placeholder="First Name" id="inputEmail3" class="form-control" name="first_name" ng-model="modalCtrl.enrolleeCreation.first_name" required>
                                 </div>
                                 <div ng-messages="Form.first_name.$error" ng-if="Form.first_name.$dirty">
                                     <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
@@ -26,12 +26,55 @@
                                     Last Name
                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="Last Name" id="inputPassword3" class="form-control" name="last_name" ng-model="modalCtrl.enrolleCreation.last_name" required>
+                                    <input type="text" placeholder="Last Name" id="inputPassword3" class="form-control" name="last_name" ng-model="modalCtrl.enrolleeCreation.last_name" required>
                                 </div>
                                 <div ng-messages="Form.last_name.$error" ng-if="Form.last_name.$dirty">
                                     <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
                                     <span  ng-if="Form.last_name.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="form-field-select-2">
+                                    DOB
+                                </label>
+                                <div class="col-sm-3">
+                                    <select  class="form-control" ng-model="modalCtrl.enrolleeCreation.day" name="day" ng-options="day for day in days" ng-required="true">
+                                        <option value="">Day</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select  class="form-control" ng-model="modalCtrl.enrolleeCreation.month" name="month" ng-options="month for month in months" ng-required="true">
+                                        <option value="">Month</option>
+                                    </select>
+                                </div>
+
+                                 <div class="col-sm-3">
+                                    <select  class="form-control" ng-model="modalCtrl.enrolleeCreation.year" name="year" ng-options="year for year in years" ng-required="true">
+                                        <option value="">Year</option>
+                                    </select>
+                                </div>
+                                <div ng-messages="Form.month.$error && Form.year.$error && Form.day.$error" ng-show="Form.month.$dirty && Form.month.$invalid || Form.year.$dirty && Form.year.$invalid || Form.day.$dirty && Form.day.$invalid">
+                                    <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                </div>
+                                <div ng-if="Form.month.$valid && Form.year.$valid && Form.day.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
+                            </div>
+
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label" for="form-field-select-2">
+                                    Sex
+                                </label>
+                                <div class="col-sm-8">
+                                    <select class="cs-select cs-skin-slide"  ng-model="modalCtrl.enrolleeCreation.selectedSex" name="sex" ng-required="true">
+                                        <option value="">Select a Sex</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div ng-messages="Form.sex.$error" ng-show="Form.sex.$dirty && Form.sex.$invalid">
+                                    <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                </div>
+                                <div ng-if="Form.sex.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
                             </div>
 
                             <legend class="text-bold">
@@ -42,7 +85,7 @@
                                     Email
                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="email" placeholder="Email" id="inputEmail3" class="form-control" name="email" ng-model="modalCtrl.enrolleCreation.email" required>
+                                    <input type="email" placeholder="Email" id="inputEmail3" class="form-control" name="email" ng-model="modalCtrl.enrolleeCreation.email" required>
                                 </div>
                                 <div ng-messages="Form.email.$error" ng-if="Form.email.$dirty">
                                     <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
@@ -54,19 +97,33 @@
                                     Phone Number
                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="Phone Number" id="inputPassword3" class="form-control" name="phone" ng-model="modalCtrl.enrolleCreation.phone" required>
+                                    <input type="text" placeholder="Phone Number" id="inputPassword3" class="form-control" name="phone" ng-model="modalCtrl.enrolleeCreation.phone" required>
                                 </div>
                                 <div ng-messages="Form.phone.$error" ng-if="Form.phone.$dirty">
                                     <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
                                     <span  ng-if="Form.phone.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="inputPassword3">
+                                    City
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="e.g Ketu, Yaba, Oyingbo" id="inputPassword3" class="form-control" name="city" ng-model="modalCtrl.enrolleeCreation.city" required>
+                                </div>
+                                <div ng-messages="Form.city.$error" ng-if="Form.city.$dirty">
+                                    <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                    <span  ng-if="Form.city.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="inputPassword3">
                                     Street Address
                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="e.g No 12 Herbet way" id="inputPassword3" class="form-control" name="address" ng-model="modalCtrl.enrolleCreation.address" required>
+                                    <input type="text" placeholder="e.g No 12 Herbet way" id="inputPassword3" class="form-control" name="address" ng-model="modalCtrl.enrolleeCreation.address" required>
                                 </div>
                                 <div ng-messages="Form.address.$error" ng-if="Form.address.$dirty">
                                     <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
@@ -86,14 +143,13 @@
                                     <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
                                 </div>
                                 <div ng-if="Form.state.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
-
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="form-field-select-2">
                                     LG
                                 </label>
                                 <div class="col-sm-8">
-                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleCreation.selectedLg" name="lg" ng-options="lg.lga for lg in lgs" ng-required="true">
+                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.selectedLg" name="lg" ng-options="lg.lga for lg in lgs" ng-required="true">
                                         <option value="">Select a LG</option>
                                     </select>
                                 </div>
@@ -110,7 +166,7 @@
                                     Organization
                                 </label>
                                 <div class="col-sm-8">
-                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleCreation.selectedOrg"  name="organization" ng-options="org.name for org in organizations" ng-required="true">
+                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.selectedOrg"  name="organization" ng-options="org.name for org in organizations" ng-required="true">
                                         <option value="">Select a an Organization</option>
                                     </select>
                                 </div>
@@ -127,7 +183,7 @@
                                     Plan
                                 </label>
                                 <div class="col-sm-8">
-                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleCreation.plan"  name="plan" ng-options="plan.name for plan in plans" ng-required="true">
+                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.plan"  name="plan" ng-options="plan.name for plan in plans" ng-required="true">
                                         <option value="">Select a Plan</option>
                                     </select>
                                 </div>

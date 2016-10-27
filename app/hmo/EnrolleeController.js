@@ -1,21 +1,38 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParams,$uibModal, $aside, $localStorage, EnrolleeService,$rootScope){
-
+app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateParams, $uibModal, $aside, $localStorage, EnrolleeService, $rootScope, healthNotify) {
     var vm = this;
+
+    //Check for tabIndex in our URL
+    if ($stateParams.tabIndex != undefined) {
+        var index = parseInt($stateParams.tabIndex);
+        vm.tabIndex = index;
+    } else {
+        if ($localStorage.currentUser.data.role.data.name == 'claims') {
+            vm.tabIndex = 4;
+        } else {
+            vm.tabIndex = 0;
+        }
+    }
+
     vm.enrollee = {};
     vm.dependents = {}
     var user_id = $stateParams.id;
-    $rootScope.spinner = {active: true};
+    $rootScope.spinner = { active: true };
+    $scope.status = false;
 
     //Get This enrollee data
-    EnrolleeService.getEnrollee(user_id).then(function(res){
+    EnrolleeService.getEnrollee(user_id).then(function (res) {
         vm.enrollee = res.enrollee.data;
+        console.log(vm.enrollee.status, $scope.status.toString());
+        if (vm.enrollee.status !== $scope.status.toString()) {
+            $scope.status = vm.enrollee.status
+        }
     });
 
     //Get this enrollee's dependents (if any)
-    EnrolleeService.getEnrolleeDependents(user_id).then(function(res){
+    EnrolleeService.getEnrolleeDependents(user_id).then(function (res) {
         vm.dependents = res.dependents.data;
     });
 
@@ -31,59 +48,82 @@ app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParam
         });
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    if($stateParams.tabIndex != undefined){
-        var index = parseInt($stateParams.tabIndex);
-        vm.tabIndex = index;
-    }else{
-        if($localStorage.currentUser.data.role.data.name == 'claims'){
-            vm.tabIndex = 4;
-        }else{
-            vm.tabIndex = 0;
+    vm.activateEnrollee = function () {
+        if ($scope.status == false) {
+            $scope.status = true
+            var obj = { status: 1 }
+            EnrolleeService.updateEnrollee(obj, user_id).then(function (res) {
+                if (res.success) {
+                    healthNotify.set('This enrollee has being activated', 'success')
+                } else {
+                    healthNotify.set('Please try again, something wetn wrong', 'error')
+                }
+            })
+        } else {
+            $scope.status = false
+            var obj = { status: 0 }
+            EnrolleeService.updateEnrollee(obj, user_id).then(function (res) {
+                if (res.success) {
+                    healthNotify.set('This enrollee has being deactivated', 'success')
+                } else {
+                    healthNotify.set('Please try again, something wetn wrong', 'error')
+                }
+            })
         }
     }
 
+    vm.checkForNull = function (data) {
+        if (data === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $scope.month_name = 'September';
 
-    $scope.setMonth = function(month){
+    $scope.setMonth = function (month) {
         $scope.month_name = month;
     }
 
@@ -91,7 +131,7 @@ app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParam
 
     $scope.max = 200;
 
-    $scope.random = function() {
+    $scope.random = function () {
         var value = Math.floor((Math.random() * 100) + 1);
         var type, text;
 
@@ -117,8 +157,8 @@ app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParam
     };
     $scope.random();
 
-    $timeout(function() {
-        $scope.renderChart= true;
+    $timeout(function () {
+        $scope.renderChart = true;
         console.log('Rendering chart')
     }, 1000);
 
@@ -172,15 +212,15 @@ app.controller('EnrolleeController', function($scope,$timeout,$state,$stateParam
             size: 'sm',
             backdrop: true,
             controller: function ($scope, $uibModalInstance) {
-                if(type == 'pending'){
+                if (type == 'pending') {
                     $scope.pending = true;
                     $scope.approved = false;
                     $scope.not_approved = false
-                }else if(type == 'approved'){
+                } else if (type == 'approved') {
                     $scope.pending = false;
                     $scope.approved = true;
                     $scope.not_approved = false
-                }else if(type == 'not_approved'){
+                } else if (type == 'not_approved') {
                     $scope.pending = false;
                     $scope.approved = false;
                     $scope.not_approved = true

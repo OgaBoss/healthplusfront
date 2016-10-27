@@ -11,7 +11,7 @@ app.factory('healthNotify', ['ngNotify', function(ngNotify){
                 type: type,
                 sticky: 'false',
                 button: 'true',
-                html: 'false'
+                html: 'true'
             });
         }
     }

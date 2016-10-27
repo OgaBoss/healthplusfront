@@ -1,14 +1,34 @@
-app.controller('ModalController', ['$scope','EnrolleeService','$uibModal','$aside','$state','$stateParams', 'OrganizationService','$rootScope','PlaceService', '$timeout','PlanService',
-    function($scope, EnrolleeService, $uibModal, $aside, $state, $stateParams, OrganizationService, $rootScope, PlaceService, $timeout,PlanService){
+app.controller('ModalController', ['$scope','EnrolleeService','$uibModalInstance','$aside','$state','$stateParams', 'OrganizationService','$rootScope','PlaceService', '$timeout','PlanService','healthNotify',
+    function($scope, EnrolleeService, $uibModalInstance, $aside, $state, $stateParams, OrganizationService, $rootScope, PlaceService, $timeout,PlanService,healthNotify){
     var vm = this;
 
-    vm.enrolleCreation = {};
+    vm.enrolleeCreation = {};
     $scope.states = [];
     $scope.lgs = [];
     $scope.organizations = [];
     $scope.plans = [];
-     $scope.fileToUpload = []
+    $scope.fileToUpload = []
     $rootScope.spinner = {active_modal: false};
+    var day_range = [];
+    for(var i=1;i<32;i++) {
+        day_range.push(i);
+    }
+    $scope.days = day_range;
+
+    var month_range = []
+    for(var i=1;i<12;i++) {
+        month_range.push(i);
+    }
+    $scope.months = month_range;
+
+    var year = new Date().getFullYear();
+    var year_range = [];
+    year_range.push(year);
+    for(var i=0;i<101;i++) {
+        year_range.push(year - i);
+    }
+    $scope.years = year_range;
+
 
     //Get States
     PlaceService.getAllStates().then(function(res){
@@ -56,8 +76,15 @@ app.controller('ModalController', ['$scope','EnrolleeService','$uibModal','$asid
             }
             angular.element('.ng-invalid[name=' + firstError + ']').focus();
         }else{
-            EnrolleeService.createEnrollee(vm.enrolleCreation, $scope.files).then(function(res){
-                return res;
+            EnrolleeService.createEnrollee(vm.enrolleeCreation, $scope.files).then(function(res){
+                if(res.enrollee){
+                    var url = '/#/partners/dashboard/clients/enrollee/' + res.enrollee.id
+                   $uibModalInstance.dismiss();
+                   healthNotify.set('New enrollee created, view <a href="' + url + '"> here</a>', 'success')
+                }else{
+                   $uibModalInstance.dismiss();
+                   healthNotify.set('Please try again something went wrong', 'error')
+                }
             });
         } 
     }
