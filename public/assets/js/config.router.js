@@ -21,9 +21,9 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         $authProvider.loginUrl = 'http://projectx-api.dev/api/authenticate';
     }else{
         app.value('apiConfig',{
-            apiBaseUrl: 'https://healthplusapi.herokuapp.com/api/v1/'
+            apiBaseUrl: 'https://backboneapi.herokuapp.com/api/'
         });
-        $authProvider.loginUrl = 'https://healthplusapi.herokuapp.com/api/v1/authenticate';
+        $authProvider.loginUrl = 'https://backboneapi.herokuapp.com/api/authenticate';
 
     }
 
