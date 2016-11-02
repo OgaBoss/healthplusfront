@@ -182,12 +182,14 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     }).state('partners.care-providers.home', {
         url: '/home',
         templateUrl: 'assets/views/hmo/care-providers.html',
+        controller:'CareProviderController',
+        controllerAs: 'careCtrl',
         title: 'Care Providers',
         ncyBreadcrumb: {
             label: 'Care Providers'
         }
     }).state('partners.care-providers.hospital', {
-        url: '/hospital/:id',
+        url: '/hospital/:id?tabIndex',
         templateUrl: 'assets/views/hmo/hospital.html',
         title: 'Hospital',
         controller:'HospitalController',

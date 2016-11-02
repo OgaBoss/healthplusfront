@@ -1,49 +1,46 @@
 <!-- start: BREADCRUMB -->
 <div class="breadcrumb-wrapper">
-    <h4 class="mainTitle no-margin"><strong><span class="text-super-large text-muted">MTN Africa Profile</span></strong></h4><small><span class="label label-danger"><small>organization</small></span></small>
+	<h4 class="mainTitle no-margin"><strong><span class="text-super-large text-muted">{{ orgCtrl.org.name }} Profile</span></strong></h4><small><span class="label label-danger"><small>organization</small></span>
+	</small>
 
-    <div ncy-breadcrumb class="pull-right"></div>
+	<div ncy-breadcrumb class="pull-right"></div>
 </div>
 <!-- end: BREADCRUMB -->
 <!-- start: USER PROFILE -->
 <div class="container-fluid container-fullw">
-    <div class="row">
-        <div class="col-md-12">
-            <div >
-                <!-- start: USER TABSET -->
-                <uib-tabset class="tabbable" active="orgCtrl.overview">
-                    <!-- start: TAB OVERVIEW -->
-                    <uib-tab heading="Overview">
-                        <ng-include src=" 'assets/views/hmo/clients-partials/org/overview.html' "></ng-include>
-                    </uib-tab>
-                    <!-- end: TAB OVERVIEW -->
-                    <!-- start: TAB EDIT ACCOUNT -->
-                    <div ng-if="currentUser.data.role.data.name == 'admin'">
-                        <uib-tab heading="Edit" >
-                            <ng-include src=" 'assets/views/hmo/clients-partials/org/organization-edit-tab.html' "></ng-include>
-                        </uib-tab>
-                    </div>
+	<div class="row">
+		<div class="col-md-12">
+			<!-- start: USER TABSET -->
+			<uib-tabset class="tabbable" active="orgCtrl.overview">
+				<!-- start: TAB OVERVIEW -->
+				<uib-tab heading="Overview">
+					<ng-include src=" 'assets/views/hmo/clients-partials/org/overview.html' "></ng-include>
+				</uib-tab>
+				<!-- end: TAB OVERVIEW -->
+				<!-- start: TAB EDIT ACCOUNT -->
+				<uib-tab heading="Edit">
+					<ng-include src=" 'assets/views/hmo/clients-partials/org/organization-edit-tab.html' "></ng-include>
+				</uib-tab>
 
-                    <!-- end: TAB EDIT ACCOUNT -->
-                    <!-- start: TAB PROJECTS -->
-                    <uib-tab heading="Claims">
-                        <ng-include src=" 'assets/views/hmo/clients-partials/org/claims.html' "></ng-include>
-                    </uib-tab>
+				<!-- end: TAB EDIT ACCOUNT -->
+				<!-- start: TAB PROJECTS -->
+				<uib-tab heading="Claims">
+					<ng-include src=" 'assets/views/hmo/clients-partials/org/claims.html' "></ng-include>
+				</uib-tab>
 
-                    <uib-tab heading="Enrollee">
-                        <ng-include src=" 'assets/views/hmo/clients-partials/org/enrolle-data.html' "></ng-include>
-                    </uib-tab>
+				<uib-tab heading="Plans">
+					<ng-include src=" 'assets/views/hmo/clients-partials/org/plan.html' "></ng-include>
+				</uib-tab>
 
-                    <!-- end: TAB PROJECTS -->
+				<!-- end: TAB PROJECTS -->
 
-                    <uib-tab heading="Premiums">
-                        <ng-include src=" 'assets/views/hmo/clients-partials/org/premiums.html' "></ng-include>
-                    </uib-tab>
+				<uib-tab heading="Premiums">
+					<ng-include src=" 'assets/views/hmo/clients-partials/org/premiums.html' "></ng-include>
+				</uib-tab>
 
-                </uib-tabset>
-                <!-- end: USER TABSET -->
-            </div>
-        </div>
-    </div>
+			</uib-tabset>
+			<!-- end: USER TABSET -->
+		</div>
+	</div>
 </div>
 <!-- end: USER PROFILE -->

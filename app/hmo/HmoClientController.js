@@ -35,9 +35,20 @@ app.controller('HmoClientController', ['$scope','EnrolleeService','$uibModal','$
     };
 
     //Modal
-    $scope.open = function (position, type) {
+    $scope.createEnrollee = function (position, type) {
         $aside.open({
             templateUrl: 'assets/views/hmo/clients-partials/modals/create_enrollee.html',
+            placement: 'right',
+            size: '',
+            backdrop: true,
+            controller: 'ModalController',
+            controllerAs: 'modalCtrl'
+        });
+    };
+
+    $scope.createOrganization = function (position, type) {
+        $aside.open({
+            templateUrl: 'assets/views/hmo/clients-partials/modals/create_organization.html',
             placement: 'right',
             size: '',
             backdrop: true,

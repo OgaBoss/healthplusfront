@@ -1,7 +1,61 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/9/16.
  */
-app.controller('HospitalController', ['$scope', function($scope){
+app.controller('HospitalController', ['$scope','HospitalService', function($scope,HospitalService){
+    var vm = this
+
+    vm.hospitals = {};
+
+    HospitalService.getAllHospital().then(function(res){
+        console.log(res);
+        vm.hospitals = res.data.hospitals;
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $scope.labels = ['Primary', 'Secondary', 'Tertiary'];
     $scope.data = [300, 50, 100];
     $scope.colors = ['#F7464A', '#46BFBD', '#FDB45C'];

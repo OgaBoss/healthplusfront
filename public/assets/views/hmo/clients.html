@@ -23,7 +23,7 @@
                                     <div class="panel panel-white no-radius">
                                         <div class="panel-heading border-light" style="padding-bottom: 50px !important;">
                                             <div class=" pull-right">
-                                                <a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="open()"><i class="fa fa-plus"></i> Create Enrollee</a>
+                                                <a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="createEnrollee()"><i class="fa fa-plus"></i> Create Enrollee</a>
                                             </div>
                                         </div>
                                         <treasure-overlay-spinner active='spinner.active'>
@@ -41,10 +41,10 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr ng-repeat="enrollee in hmoClient.enrollees" on-last-repeat>
-                                                        <td class="center" ng-click="hmoClient.showEnrollee(enrollee.enrollee_id)" style="cursor: pointer;" >
+                                                    <tr ng-repeat="enrollee in hmoClient.enrollees" on-last-repeat ng-click="hmoClient.showEnrollee(enrollee.enrollee_id)" style="cursor: pointer;">
+                                                        <td class="center" >
                                                             <img src="{{ enrollee.image_url}}" class="img-rounded" alt="image" height="50px" ng-if="hmoClient.checkForNull(enrollee.image_url)"/>
-                                                            <img src="assets/images/backbone/enrollee.png" class="img-rounded" alt="image" height="50px" ng-if="!hmoClient.checkForNull(enrollee.image_url)"/>
+                                                            <img src="{{ enrollee.sex == 'Male' ? 'assets/images/backbone/businessman.svg' : 'assets/images/backbone/businesswoman.svg'}}" class="img-rounded" alt="image" height="50px" ng-if="!hmoClient.checkForNull(enrollee.image_url)"/>
                                                         </td>
                                                         <td class="hidden-xs">{{enrollee.generated_id}}</td>
                                                         <td class="hidden-xs">{{ enrollee.first_name }}, {{ enrollee.last_name }}</td>
@@ -94,7 +94,7 @@
                                     <div class="panel panel-white no-radius">
                                         <div class="panel-heading border-light" style="padding-bottom: 50px !important;">
                                             <div class=" pull-right">
-                                                <a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="open()"><i class="fa fa-plus"></i> Create Organization</a>
+                                                <a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="createOrganization()"><i class="fa fa-plus"></i> Create Organization</a>
                                             </div>
                                         </div>
                                         <div class="panel-body">
@@ -110,8 +110,8 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr ng-repeat="org in hmoClient.organizations">
-                                                    <td class="center" ng-click="hmoClient.showOrganization(org.organization_id)" style="cursor: pointer;" ><a href="#" rel="nofollow" target="_blank"> {{ org.generated_id }} </a></td>
+                                                <tr ng-repeat="org in hmoClient.organizations" ng-click="hmoClient.showOrganization(org.organization_id)" style="cursor: pointer;">
+                                                    <td class="center" ><a href="#" rel="nofollow" target="_blank"> {{ org.generated_id }} </a></td>
                                                     <td class="hidden-xs">{{ org.name }}</td>
                                                     <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ org.email }} </a></td>
                                                     <td class="hidden-xs">{{org.phone}}</td>

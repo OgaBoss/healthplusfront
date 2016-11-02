@@ -14009,7 +14009,7 @@ figure.effect-goliath:hover p {
 /*  User profile
 /* ---------------------------------------------------------------------- */
 .user-left {
-  border-right: 1px solid #DDDDDD;
+  /*border-right: 1px solid #DDDDDD;*/
   padding-right: 15px;
 }
 @media (max-width: 991px) {

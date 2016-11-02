@@ -3,7 +3,7 @@
 		<div class="panel-heading border-light">
 			<h4 class="panel-title"><span class="text-bold">Basic Information</span></h4>
 			<div class="checkbox pull-right" style="margin-top: -24px;">
-				<switch id="enabled" name="enabled" ng-model="status" class="green" ng-click="enrolleeCtrl.activateEnrollee()"></switch>			
+				<switch id="enabled" name="enabled" ng-model="status" class="green" ng-click="enrolleeCtrl.activateEnrollee()" tooltip-placement="top" uib-tooltip="activate/deactivate"></switch>
 			</div>
 		</div>
 		<div class="panel-body">
@@ -13,9 +13,9 @@
 						<div class="">
 							<h4 class="center"><b>{{enrolleeCtrl.enrollee.first_name}}, {{enrolleeCtrl.enrollee.last_name}}</b></h4>
 							<div class="user-image">
-								<div class="thumbnail">
+								<div class="thumbnail hvr-grow-shadow">
 									<img src="{{enrolleeCtrl.enrollee.image_url}}" class="img-responsive img-rounded" alt="" height="150px" width="150px" ng-if="enrolleeCtrl.checkForNull(enrolleeCtrl.enrollee.image_url)">
-									<img src="assets/images/backbone/enrollee.png" class="img-responsive img-rounded" alt="" height="150px" width="150px" ng-if="!enrolleeCtrl.checkForNull(enrolleeCtrl.enrollee.image_url)">
+									<img ng-src="{{ enrolleeCtrl.enrollee.sex === 'Male' ? 'assets/images/backbone/businessman.svg' : 'assets/images/backbone/businesswoman.svg'}}" class="img-responsive img-rounded" alt="" height="150px" width="150px" ng-if="!enrolleeCtrl.checkForNull(enrolleeCtrl.enrollee.image_url)">
 								</div>
 							</div>
 							<a class="btn btn-wide btn-primary create-enrollee center" href="#" ng-click="imageChange()" style="margin-left: 18px"><i class="fa fa-plus"></i> Edit Image </a>
@@ -32,18 +32,20 @@
 						<tbody>
 							<tr>
 								<td>Name</td>
-								<td>
-									<a href="#" class="text-bold">
-                                    {{enrolleeCtrl.enrollee.first_name}}, {{enrolleeCtrl.enrollee.last_name}}
-                                </a>
+								<td class="text-bold">
+									{{enrolleeCtrl.enrollee.first_name}}, {{enrolleeCtrl.enrollee.last_name}}
+								</td>
+							</tr>
+							<tr>
+								<td>Plan:</td>
+								<td class="text-bold">
+									<a href="#">{{enrolleeCtrl.enrollee.plan}}</a>
 								</td>
 							</tr>
 							<tr>
 								<td>Email:</td>
-								<td>
-									<a href class="text-bold">
-                                    {{enrolleeCtrl.enrollee.email}}
-                                </a>
+								<td class="text-bold">
+									{{enrolleeCtrl.enrollee.email}}
 								</td>
 							</tr>
 							<tr>
@@ -62,7 +64,16 @@
 							</tr>
 							<tr>
 								<td>Status:</td>
-								<td class="text-bold"><span class="label label-danger" ng-hide="{{enrolleeCtrl.enrollee.status}}" style="font-size: 16px;">inactive</span></td>
+								<td class="text-bold">
+									<span class="label label-success" ng-show="status" style="font-size: 16px;">active</span>
+									<span class="label label-danger" ng-hide="status" style="font-size: 16px;">inactive</span>
+								</td>
+							</tr>
+							<tr>
+								<td>Organization:</td>
+								<td class="text-bold">
+									<a href="/#/partners/dashboard/clients/organization/{{enrolleeCtrl.enrollee.organization_id}}">{{ enrolleeCtrl.enrollee.organization }}</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -77,7 +88,7 @@
 		<div class="panel-heading border-light">
 			<h4 class="panel-title"><span class="text-bold">Enrollee Dependents</span>
 			</h4>
-				<a class="btn btn-wide btn-primary pull-right" ng-if="enrolleeCtrl.dependents.length == 0" href="#" style="margin-top:-25px"><i class="fa fa-plus"></i> Create Dependent</a>
+			<a class="btn btn-wide btn-primary pull-right" ng-if="enrolleeCtrl.dependents.length == 0" href="#" style="margin-top:-25px"><i class="fa fa-plus"></i> Create Dependent</a>
 		</div>
 		<div class="panel-body">
 			<div class="col-sm-12">
@@ -90,66 +101,37 @@
 						</div>
 					</div>
 				</div>
-				<div class="panel panel-white" ng-repeat="dependent in enrolleeCtrl.dependents" ng-if="enrolleeCtrl.dependents.length > 0">
+				<div class="panel panel-white" ng-if="enrolleeCtrl.dependents.length > 0">
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-md-2">
-								<div class="user-left" style="border-right: 0px solid #dddddd;">
-									<div class="">
-										<h4 class="center"><b>{{dependent.first_name}}, {{dependent.last_name}}</b></h4>
-										<div class="user-image">
-											<div class="thumbnail">
-												<img src="{{dependent.image_url}}" class="img-responsive img-rounded" alt="">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-10">
-								<table class="table table-condensed">
-									<thead>
-										<tr>
-											<th colspan="3">Contact Information</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Name</td>
-											<td>
-												<a href="#" class="text-bold">
-                                                {{dependent.first_name}}, {{dependent.last_name}}
-                                            </a>
-											</td>
-										</tr>
-										<tr>
-											<td>Email:</td>
-											<td>
-												<a href class="text-bold">
-                                                {{dependent.email}}
-                                            </a>
-											</td>
-										</tr>
-										<tr>
-											<td>Phone:</td>
-											<td class="text-bold">{{dependent.phone}}</td>
-										</tr>
-
-										<tr>
-											<td>ID:</td>
-											<td class="text-bold">{{dependent.generated_id}}</td>
-										</tr>
-
-										<tr>
-											<td>Address:</td>
-											<td class="text-bold">{{dependent.street}}, {{dependent.lg}}, {{dependent.state}}, {{dependent.country}}</td>
-										</tr>
-										<tr>
-											<td>Status:</td>
-											<td class="text-bold"><span class="label label-danger" ng-hide="{{dependent.status}}" style="font-size: 16px;">inactive</span></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+							<table class="table table-striped table-hover" id="sample-table-3">
+								<thead>
+									<tr>
+										<th class="hidden-xs">Image</th>
+										<th class="">Enrollee ID</th>
+										<th>Full Name</th>
+										<th>Email</th>
+										<th class="hidden-xs">Plan</th>
+										<th class="hidden-xs center">Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="dependent in enrolleeCtrl.dependents"  ng-click="enrolleeCtrl.showEnrollee(dependent.enrollee_id)" style="cursor: pointer;">
+										<td class="center" style="cursor: pointer;">
+											<img src="{{ dependent.image_url} }" class="img-rounded" alt="image" height="50px" ng-if="enrolleeCtrl.checkForNull(dependent.image_url)"/>
+											<img src="assets/images/backbone/enrollee.png" class="img-rounded" alt="image" height="50px" ng-if="!enrolleeCtrl.checkForNull(dependent.image_url)"/>
+										</td>
+										<td class="hidden-xs">{{dependent.generated_id}}</td>
+										<td class="hidden-xs">{{ dependent.first_name }}, {{ dependent.last_name }}</td>
+										<td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ dependent.email }} </a></td>
+										<td class="hidden-xs">{{dependent.plan_name}}</td>
+										<td class="hidden-xs center">
+											<span class="label label-success" ng-show="{{dependent.status}}">active</span>
+											<span class="label  danger-gradient" ng-hide="{{dependent.status}}">inactive</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>

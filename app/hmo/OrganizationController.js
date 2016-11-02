@@ -1,10 +1,121 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('OrganizationController', function($scope, healthNotify, $timeout, $localStorage){
+app.controller('OrganizationController', function($scope, healthNotify, $timeout, $localStorage, OrganizationService, $stateParams, $rootScope, $state, $aside){
 
     var vm = this;
 
+    vm.org = {};
+    vm.orgEnrollees = {};
+    vm.orgPlans = {};
+    var organization_id = $stateParams.id;
+    $rootScope.spinner = {active: true};
+
+    $scope.$on('onRepeatLast', function(scope, element, attrs){
+        //work your magic
+        $rootScope.spinner = {active: false};
+    });
+
+    OrganizationService.getOrganization(organization_id).then(function(res){
+        console.log(res)
+        vm.org = res.organization.data;
+    })
+
+    OrganizationService.getOrganizationEnrollees(organization_id).then(function(res){
+        vm.orgEnrollees = res.enrollees.data
+    })
+
+    vm.checkForNull = function (data) {
+        if (data === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Get This Organizatin Plan(s)
+    OrganizationService.getOrganizationPlans(organization_id).then(function(res){
+        vm.orgPlans = res.plans.data;
+    })
+
+    //Redirect to Enrollee Page
+    vm.showEnrollee = function (id) {
+        $state.go('partners.clients.enrollee', { id: id });
+    };
+
+    //Check Plan data
+    vm.planData = function (id) {
+        $aside.open({
+            templateUrl: 'assets/views/hmo/clients-partials/modals/plan_data.html',
+            placement: 'right',
+            size: 'lg',
+            backdrop: true,
+            controller: 'ImageUploadModal',
+            controllerAs: 'uploadCtrl',
+            resolve: {
+                data: function () {
+                    return { 'id': id};
+                }
+            }
+        });
+    };
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     if($localStorage.currentUser.data.role.data.name == 'claims'){
         vm.overview = 2;
     }else{

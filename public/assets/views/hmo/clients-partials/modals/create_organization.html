@@ -1,0 +1,136 @@
+<treasure-overlay-spinner active='spinner.active_modal' style="z-index: 100000 !important">
+    <div class="container-fluid container-fullw">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-white">
+                    <div class="panel-heading border-light">
+                        <h4 class="panel-title">Create <span class="text-bold">Organization</span></h4>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" class="form-horizontal" name="Form" ng-submit="modalCtrl.createOrganization(Form)" novalidate>
+                            <legend class="text-bold">
+                                Basic Inofrmation
+                            </legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="inputEmail3">Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="Name" id="inputEmail3" class="form-control" name="first_name" ng-model="modalCtrl.organizationCreation.name" required>
+                                </div>
+                                <div ng-messages="Form.first_name.$error" ng-if="Form.first_name.$dirty">
+                                    <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                    <span  ng-if="Form.first_name.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+
+                            <legend class="text-bold">
+                                Contact
+                            </legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="inputEmail3">
+                                    Email
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="email" placeholder="Email" id="inputEmail3" class="form-control" name="email" ng-model="modalCtrl.organizationCreation.email" required>
+                                </div>
+                                <div ng-messages="Form.email.$error" ng-if="Form.email.$dirty">
+                                    <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                    <span  ng-if="Form.email.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="inputPassword3">
+                                    Phone Number
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="Phone Number" id="inputPassword3" class="form-control" name="phone" ng-model="modalCtrl.organizationCreation.phone" required>
+                                </div>
+                                <div ng-messages="Form.phone.$error" ng-if="Form.phone.$dirty">
+                                    <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                    <span  ng-if="Form.phone.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="inputPassword3">
+                                    City
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="e.g Ketu, Yaba, Oyingbo" id="inputPassword3" class="form-control" name="city" ng-model="modalCtrl.organizationCreation.city" required>
+                                </div>
+                                <div ng-messages="Form.city.$error" ng-if="Form.city.$dirty">
+                                    <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                    <span  ng-if="Form.city.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="inputPassword3">
+                                    Street Address
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="e.g No 12 Herbet way" id="inputPassword3" class="form-control" name="address" ng-model="modalCtrl.organizationCreation.address" required>
+                                </div>
+                                <div ng-messages="Form.address.$error" ng-if="Form.address.$dirty">
+                                    <div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                    <span  ng-if="Form.address.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="form-field-select-2">
+                                    State
+                                </label>
+                                <div class="col-sm-8">
+                                    <select class="cs-select cs-skin-slide" ng-change="getLgs()" ng-model="modalCtrl.organizationCreation.selectedState" name="state" ng-options="state.state for state in states" ng-required="true">
+                                        <option value="">Select a State</option>
+                                    </select>
+                                </div>
+                                <div ng-messages="Form.state.$error" ng-show="Form.state.$dirty && Form.state.$invalid">
+                                    <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                </div>
+                                <div ng-if="Form.state.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="form-field-select-2">
+                                    LG
+                                </label>
+                                <div class="col-sm-8">
+                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.organizationCreation.selectedLg" name="lg" ng-options="lg.lga for lg in lgs" ng-required="true">
+                                        <option value="">Select a LG</option>
+                                    </select>
+                                </div>
+                                <div ng-messages="Form.lg.$error" ng-show="Form.lg.$dirty && Form.lg.$invalid">
+                                    <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                </div>
+                                <div ng-if="Form.lg.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
+                            </div>
+                            <legend class="text-bold">
+                                Plan
+                                <h5 ng-if='planError' class="text-red">Please select one or more plans</h5>
+                            </legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="form-field-select-2">
+                                    Plan
+                                </label>
+                                <div class="col-sm-8">
+                                    <div isteven-multi-select input-model="modalCtrl.allPlans" output-model="modalCtrl.organizationCreation.outPutPlan" button-label="name" item-label="icon name maker" tick-property="ticked"></div>
+                                </div>
+                                <div ng-messages="Form.plan.$error" ng-show="Form.plan.$dirty && Form.plan.$invalid">
+                                    <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                </div>
+                                <div ng-if="Form.plan.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
+                            </div>
+                            <div class="form-group margin-bottom-0">
+                                <div class="col-sm-offset-10 col-sm-2">
+                                    <button class="btn btn-o btn-primary" type="submit">
+                                        Create
+                                    </button>
+                                </div>
+                            </div>     
+                        </form>                           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</treasure-overlay-spinner>
+

@@ -113,7 +113,6 @@ app.controller('HmoController', ['$scope','$auth','$state','$localStorage','coun
                         healthNotify.set('New HMO Created and user attached!"', 'success');
                     }else{
                         healthNotify.set('User was not attached for that HMO', 'error');
-
                     }
                 });
             }

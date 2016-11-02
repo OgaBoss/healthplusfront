@@ -54,7 +54,7 @@ app.constant('JS_REQUIRES', {
         files: ['lib/ngImgCrop/compile/minified/ng-img-crop.js', 'lib/ngImgCrop/compile/minified/ng-img-crop.css']
     }, {
         name: 'angularFileUpload',
-        files: ['lib/angular-file-upload/angular-file-upload.min.js']
+        files: ['lib/angular-file-upload/dist/angular-file-upload.min.js']
     }, {
         name: 'monospaced.elastic',
         files: ['lib/angular-elastic/elastic.js']

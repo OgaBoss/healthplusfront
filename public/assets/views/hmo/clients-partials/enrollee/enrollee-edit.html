@@ -1,53 +1,208 @@
+<div class="panel panel-white">
+	<div class="panel-heading border-light">
+		<h4 class="panel-title">Edit <span class="text-bold">Enrollee</span></h4>
+	</div>
+	<div class="panel-body">
+		<form role="form" class="form-horizontal" name="Form" ng-submit="enrolleeCtrl.editAction(Form)" novalidate>
+			<legend class="text-bold">
+				Basic Inofrmation
+			</legend>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="inputEmail3">First Name</label>
+				<div class="col-sm-8">
+					<input type="text" placeholder="First Name" id="inputEmail3" class="form-control" name="first_name" ng-model="enrolleeCtrl.editEnrollee.first_name"
+						required>
+				</div>
+				<div ng-messages="Form.first_name.$error" ng-if="Form.first_name.$dirty">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+					<span ng-if="Form.first_name.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="inputPassword3">Last Name</label>
+				<div class="col-sm-8">
+					<input type="text" placeholder="Last Name" id="inputPassword3" class="form-control" name="last_name" ng-model="enrolleeCtrl.editEnrollee.last_name"
+						required>
+				</div>
+				<div ng-messages="Form.last_name.$error" ng-if="Form.last_name.$dirty">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+					<span ng-if="Form.last_name.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+				</div>
+			</div>
 
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-2">DOB</label>
+				<div class="col-sm-3">
+					<select class="form-control" ng-model="enrolleeCtrl.editEnrollee.day" name="day" ng-options="day for day in days" ng-required="true">
+                        <option value="">Day</option>
+                    </select>
+				</div>
+				<div class="col-sm-2">
+					<select class="form-control" ng-model="enrolleeCtrl.editEnrollee.month" name="month" ng-options="month for month in months"
+						ng-required="true">
+                        <option value="">Month</option>
+                    </select>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" ng-model="enrolleeCtrl.editEnrollee.year" name="year" ng-options="year for year in years" ng-required="true">
+                        <option value="">Year</option>
+                    </select>
+				</div>
+				<div ng-messages="Form.month.$error && Form.year.$error && Form.day.$error" ng-show="Form.month.$dirty && Form.month.$invalid || Form.year.$dirty && Form.year.$invalid || Form.day.$dirty && Form.day.$invalid">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+				</div>
+				<div ng-if="Form.month.$valid && Form.year.$valid && Form.day.$valid"><i class="fa fa-check-circle-o icon-success" aria-hidden="true"></i></div>
+			</div>
 
-<form action="#" role="form" id="form">
-    <fieldset>
-        <legend>
-            HMO Info
-        </legend>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="control-label">
-                        Name
-                    </label>
-                    <input type="text" placeholder="Enter the organization name" class="form-control" name="name" value="MTN Africa">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">
-                        Email Address
-                    </label>
-                    <input type="email" placeholder="email address" class="form-control" name="email" value="mtnafrica@gmail.com">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">
-                        Phone
-                    </label>
-                    <input type="text" placeholder="phone number" class="form-control" name="phone" value="+234-809-1234-567">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">
-                        State
-                    </label>
-                    <input type="text" placeholder="Enter Url" class="form-control" name="url" value="Lagos">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">
-                        LGA
-                    </label>
-                    <input type="text" placeholder="Enter Url" class="form-control" name="url" value="Kosofe">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">
-                        Address
-                    </label>
-                    <input type="text" placeholder="Enter Url" class="form-control" name="url" value="No 12 Awolowo way">
-                </div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-2">Sex</label>
+				<div class="col-sm-8">
+					<select class="form-control" ng-model="enrolleeCtrl.editEnrollee.selectedSex" name="sex" ng-required="true">
+                        <option value="">Select a Sex</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+				</div>
+				<div ng-messages="Form.sex.$error" ng-show="Form.sex.$dirty && Form.sex.$invalid">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+				</div>
+				<div ng-if="Form.sex.$valid"><i class="fa fa-check-circle-o icon-success" aria-hidden="true"></i></div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="inputEmail3">ID</label>
+				<div class="col-sm-8">
+					<input type="text" placeholder="ID" id="inputEmail3" class="form-control" name="uid" ng-model="enrolleeCtrl.editEnrollee.uid"
+						required disabled>
+				</div>
+				<div ng-messages="Form.uid.$error" ng-if="Form.uid.$dirty">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+					<span ng-if="Form.uid.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+				</div>
+			</div>
 
-                <a href="#" class="btn btn-success btn-lg" ng-click="update()"> Update </a>
+			<legend class="text-bold">
+				Contact
+			</legend>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="inputEmail3">Email</label>
+				<div class="col-sm-8">
+					<input type="email" placeholder="Email" id="inputEmail3" class="form-control" name="email" ng-model="enrolleeCtrl.editEnrollee.email"
+						required>
+				</div>
+				<div ng-messages="Form.email.$error" ng-if="Form.email.$dirty">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+					<span ng-if="Form.email.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="inputPassword3">Phone Number</label>
+				<div class="col-sm-8">
+					<input type="text" placeholder="Phone Number" id="inputPassword3" class="form-control" name="phone" ng-model="enrolleeCtrl.editEnrollee.phone"
+						required>
+				</div>
+				<div ng-messages="Form.phone.$error" ng-if="Form.phone.$dirty">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+					<span ng-if="Form.phone.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+				</div>
+			</div>
 
-            </div>
-        </div>
-    </fieldset>
-</form>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="inputPassword3">Country</label>
+				<div class="col-sm-8">
+					<input type="text" placeholder="" id="inputPassword3" class="form-control" name="city" ng-model="enrolleeCtrl.editEnrollee.country" required disabled>
+				</div>
+				<div ng-messages="Form.country.$error" ng-if="Form.country.$dirty">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+					<span ng-if="Form.country.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="inputPassword3">City</label>
+				<div class="col-sm-8">
+					<input type="text" placeholder="e.g Ketu, Yaba, Oyingbo" id="inputPassword3" class="form-control" name="city" ng-model="enrolleeCtrl.editEnrollee.city"
+						required>
+				</div>
+				<div ng-messages="Form.city.$error" ng-if="Form.city.$dirty">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+					<span ng-if="Form.city.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+				</div>
+			</div>
 
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="inputPassword3">Street Address</label>
+				<div class="col-sm-8">
+					<input type="text" placeholder="e.g No 12 Herbet way" id="inputPassword3" class="form-control" name="address" ng-model="enrolleeCtrl.editEnrollee.address"
+						required>
+				</div>
+				<div ng-messages="Form.address.$error" ng-if="Form.address.$dirty">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+					<span ng-if="Form.address.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-2">State</label>
+				<div class="col-sm-8">
+					<select class="form-control" ng-change="getLgs()" ng-model="enrolleeCtrl.editEnrollee.selectedState" name="state" ng-options="state.state for state in states"
+						ng-required="true">
+                    </select>
+				</div>
+				<div ng-messages="Form.state.$error" ng-show="Form.state.$dirty && Form.state.$invalid">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+				</div>
+				<div ng-if="Form.state.$valid"><i class="fa fa-check-circle-o icon-success" aria-hidden="true"></i></div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-2">LG</label>
+				<div class="col-sm-8">
+					<select class="form-control" ng-model="enrolleeCtrl.editEnrollee.selectedLg" name="lg" ng-options="lg.lga for lg in lgs" ng-required="true">
+                        <option value="">Select a LG</option>
+                    </select>
+				</div>
+				<div ng-messages="Form.lg.$error" ng-show="Form.lg.$dirty && Form.lg.$invalid">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+				</div>
+				<div ng-if="Form.lg.$valid"><i class="fa fa-check-circle-o icon-success" aria-hidden="true"></i></div>
+			</div>
+			<legend class="text-bold">
+				Organization
+			</legend>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-2">Organization</label>
+				<div class="col-sm-8">
+					<select class="form-control" ng-model="enrolleeCtrl.editEnrollee.selectedOrg" name="organization" ng-options="org.name for org in organizations"
+						ng-required="true">
+                        <option value="">Select a an Organization</option>
+                    </select>
+				</div>
+				<div ng-messages="Form.organization.$error" ng-show="Form.organization.$dirty && Form.organization.$invalid">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+				</div>
+				<div ng-if="Form.organization.$valid"><i class="fa fa-check-circle-o icon-success" aria-hidden="true"></i></div>
+			</div>
+			<legend class="text-bold">
+				Plan
+			</legend>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-2">
+                    Plan
+                </label>
+				<div class="col-sm-8">
+					<select class="form-control" ng-model="enrolleeCtrl.editEnrollee.plan" name="plan" ng-options="plan.name for plan in plans" ng-required="true">
+                        <option value="">Select a Plan</option>
+                    </select>
+				</div>
+				<div ng-messages="Form.plan.$error" ng-show="Form.plan.$dirty && Form.plan.$invalid">
+					<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+				</div>
+				<div ng-if="Form.plan.$valid"><i class="fa fa-check-circle-o icon-success" aria-hidden="true"></i></div>
+			</div>
+			<div class="form-group margin-bottom-0">
+				<div class="col-sm-offset-10 col-sm-2">
+					<button class="btn btn-o btn-primary" type="submit">
+                        Save
+                    </button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

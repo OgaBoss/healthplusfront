@@ -163,10 +163,10 @@
                             </legend>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="form-field-select-2">
-                                    Organization
+                                    Organization 
                                 </label>
                                 <div class="col-sm-8">
-                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.selectedOrg"  name="organization" ng-options="org.name for org in organizations" ng-required="true">
+                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.selectedOrg"  ng-change='getPlans()'name="organization" ng-options="org.name for org in organizations" ng-required="true">
                                         <option value="">Select a an Organization</option>
                                     </select>
                                 </div>
@@ -177,6 +177,7 @@
                             </div>
                             <legend class="text-bold">
                                 Plan
+                                <h5 ng-if='planError' class="text-red">The organization selected has no plan(s).</h5>
                             </legend>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="form-field-select-2">

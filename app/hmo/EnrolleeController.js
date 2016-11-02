@@ -1,7 +1,7 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateParams, $uibModal, $aside, $localStorage, EnrolleeService, $rootScope, healthNotify) {
+app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateParams, $uibModal, $aside, $localStorage, EnrolleeService, $rootScope, healthNotify, PlaceService, OrganizationService, PlanService) {
     var vm = this;
 
     //Check for tabIndex in our URL
@@ -17,18 +17,83 @@ app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateP
     }
 
     vm.enrollee = {};
-    vm.dependents = {}
+    vm.dependents = {};
+    vm.editEnrollee = {};
+
     var user_id = $stateParams.id;
+    vm.email = "";
+    vm.image_url = "";
     $rootScope.spinner = { active: true };
     $scope.status = false;
-
+    vm.enrollee.status = false;
+    
     //Get This enrollee data
     EnrolleeService.getEnrollee(user_id).then(function (res) {
         vm.enrollee = res.enrollee.data;
-        console.log(vm.enrollee.status, $scope.status.toString());
+        console.log(vm.enrollee);
         if (vm.enrollee.status !== $scope.status.toString()) {
             $scope.status = vm.enrollee.status
         }
+        vm.email = vm.enrollee.email
+        vm.image_url = vm.enrollee.image_url;
+
+        //Set State for Edit tab
+
+        //Set all the enrollee values
+        vm.editEnrollee.first_name = vm.enrollee.first_name
+        vm.editEnrollee.last_name = vm.enrollee.last_name
+        var dob = vm.enrollee.dob.split('-');
+        console.log(vm.enrollee.sex)
+        vm.editEnrollee.day = parseInt(dob[2]);
+        vm.editEnrollee.month = parseInt(dob[1]);
+        vm.editEnrollee.year = parseInt(dob[0]);
+        vm.editEnrollee.selectedSex = vm.enrollee.sex
+        vm.editEnrollee.email = vm.enrollee.email
+        vm.editEnrollee.phone = vm.enrollee.phone
+        vm.editEnrollee.city = vm.enrollee.city
+        vm.editEnrollee.address = vm.enrollee.street
+        vm.editEnrollee.country = vm.enrollee.country
+        vm.editEnrollee.uid = vm.enrollee.generated_id
+
+
+        //Get States
+        PlaceService.getAllStates().then(function (res) {
+            $scope.states = res.state;
+            angular.forEach($scope.states, function (state) {
+                if (state.state == vm.enrollee.state) {
+                    vm.editEnrollee.selectedState = state;
+                }
+            });
+
+            var id = vm.editEnrollee.selectedState.id;
+            PlaceService.getAllLgs(id).then(function (res) {
+                $scope.lgs = res.lg;
+                angular.forEach($scope.lgs, function (lg) {
+                    if (lg.lga == vm.enrollee.lg) {
+                        vm.editEnrollee.selectedLg = lg;
+                    }
+                })
+            });
+            //Get all Organization for this HMO
+            OrganizationService.getAllOrganization().then(function (res) {
+                $scope.organizations = res.organizations.data
+                angular.forEach($scope.organizations, function (org) {
+                    if (org.name == vm.enrollee.organization) {
+                        vm.editEnrollee.selectedOrg = org;
+                    }
+                })
+            })
+
+            //Get all Plans for this HMO
+            PlanService.getAllPlans().then(function (res) {
+                $scope.plans = res.plans.data
+                angular.forEach($scope.plans, function (plan) {
+                    if (plan.name == vm.enrollee.plan_name) {
+                        vm.editEnrollee.plan = plan;
+                    }
+                })
+            })
+        });
     });
 
     //Get this enrollee's dependents (if any)
@@ -41,16 +106,23 @@ app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateP
         $aside.open({
             templateUrl: 'assets/views/hmo/clients-partials/modals/image_upload.html',
             placement: 'right',
-            size: '',
+            size: 'lg',
             backdrop: true,
-            controller: 'ImageUploadMoadal',
-            controllerAs: 'uploadCtrl'
+            controller: 'ImageUploadModal',
+            controllerAs: 'uploadCtrl',
+            resolve: {
+                data: function () {
+                    return { 'id': user_id, 'email': vm.email };
+                }
+            }
         });
     };
 
     vm.activateEnrollee = function () {
         if ($scope.status == false) {
             $scope.status = true
+            vm.enrollee.status = true;
+
             var obj = { status: 1 }
             EnrolleeService.updateEnrollee(obj, user_id).then(function (res) {
                 if (res.success) {
@@ -61,6 +133,7 @@ app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateP
             })
         } else {
             $scope.status = false
+            vm.enrollee.status = false;
             var obj = { status: 0 }
             EnrolleeService.updateEnrollee(obj, user_id).then(function (res) {
                 if (res.success) {
@@ -80,160 +153,98 @@ app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateP
         }
     }
 
+    $scope.$on('enrolleeImage', function (e, arg) {
+        vm.image_url = arg;
+    })
 
+    //Redirect to Enrollee Page
+    vm.showEnrollee = function (id) {
+        $state.go('partners.clients.enrollee', { id: id });
+    };
 
+    //======================================//
+    //                                      //
+    //       EDIT TAB OF ENROLLEE SECTION   //
+    //                                      //
+    //======================================//
 
+    $scope.states = [];
+    $scope.lgs = [];
+    $scope.organizations = [];
+    $scope.plans = [];
 
+    var day_range = [];
+    for (var i = 1; i < 32; i++) {
+        day_range.push(i);
+    }
+    $scope.days = day_range;
 
+    var month_range = []
+    for (var i = 1; i < 12; i++) {
+        month_range.push(i);
+    }
+    $scope.months = month_range;
 
+    var year = new Date().getFullYear();
+    var year_range = [];
+    year_range.push(year);
+    for (var i = 0; i < 101; i++) {
+        year_range.push(year - i);
+    }
+    $scope.years = year_range;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $scope.month_name = 'September';
-
-    $scope.setMonth = function (month) {
-        $scope.month_name = month;
+    $scope.getLgs = function () {
+        var id = vm.editEnrollee.selectedState.id;
+        PlaceService.getAllLgs(id).then(function (res) {
+            $scope.lgs = res.lg;
+            angular.forEach($scope.lgs, function (lg) {
+                if (lg.lga == vm.enrollee.lg) {
+                    vm.editEnrollee.selectedLg = lg;
+                }
+            })
+        });
     }
 
-    $scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'];
+    vm.editAction = function (form) {
+        if (form.$invalid) {
+            var field = null,
+                firstError = null;
 
-    $scope.max = 200;
-
-    $scope.random = function () {
-        var value = Math.floor((Math.random() * 100) + 1);
-        var type, text;
-
-        if (value < 25) {
-            type = 'success';
-            text = value + '%';
-        } else if (value < 50) {
-            type = 'info';
-            text = value + '%';
-        } else if (value < 75) {
-            type = 'warning';
-            text = value + '%';
-        } else {
-            type = 'danger';
-            text = value + '%';
-        }
-
-        $scope.showWarning = (type === 'danger' || type === 'warning');
-
-        $scope.dynamic = value;
-        $scope.type = type;
-        $scope.text = text;
-    };
-    $scope.random();
-
-    $timeout(function () {
-        $scope.renderChart = true;
-        console.log('Rendering chart')
-    }, 1000);
-
-    $scope.labels = ['Hospital', 'Pharmacy'];
-    $scope.data = [200, 150];
-
-    $scope.colors = ['#F7464A', '#46BFBD'];
-    // Chart.js Options - complete list at http://www.chartjs.org/docs/
-    $scope.options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        tooltipFontSize: 11,
-        tooltipFontFamily: "'Helvetica', 'Arial', sans-serif",
-        tooltipCornerRadius: 0,
-        tooltipCaretSize: 2,
-        segmentShowStroke: true,
-        segmentStrokeColor: '#fff',
-        segmentStrokeWidth: 2,
-        percentageInnerCutout: 50,
-        animationSteps: 100,
-        animationEasing: 'easeOutBounce',
-        animateRotate: true,
-        animateScale: false
-    };
-
-    $scope.dates = {
-        startDate: moment('2013-09-20'),
-        endDate: moment('2013-09-25')
-    };
-    $scope.dates2 = {
-        startDate: moment().subtract(1, 'day').format('MM/DD/YYYY'),
-        endDate: moment().subtract(1, 'day').format('MM/DD/YYYY')
-    };
-    $scope.ranges = {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 days': [moment().subtract(7, 'days'), moment()],
-        'Last 30 days': [moment().subtract(30, 'days'), moment()],
-        'This month': [moment().startOf('month'), moment().endOf('month')]
-    };
-
-    // Modals
-    $scope.pending = true;
-    $scope.approved = false;
-    $scope.not_approved = false
-    $scope.openAside = function (position, type) {
-        console.log(type)
-        $aside.open({
-            templateUrl: 'asideContent.html',
-            placement: position,
-            size: 'sm',
-            backdrop: true,
-            controller: function ($scope, $uibModalInstance) {
-                if (type == 'pending') {
-                    $scope.pending = true;
-                    $scope.approved = false;
-                    $scope.not_approved = false
-                } else if (type == 'approved') {
-                    $scope.pending = false;
-                    $scope.approved = true;
-                    $scope.not_approved = false
-                } else if (type == 'not_approved') {
-                    $scope.pending = false;
-                    $scope.approved = false;
-                    $scope.not_approved = true
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
                 }
-                $scope.ok = function (e) {
-                    $uibModalInstance.close();
-                    e.stopPropagation();
-                };
-                $scope.cancel = function (e) {
-                    $uibModalInstance.dismiss();
-                    e.stopPropagation();
-                };
             }
-        });
-    };
+            angular.element('.ng-invalid[name=' + firstError + ']').focus();
+            healthNotify.set('Please make sure all field are filled', 'error')
+        } else {
+            var obj = {
+                'organization_id': vm.editEnrollee.selectedOrg.organization_id,
+                'plan_id': vm.editEnrollee.plan.plan_id,
+                'first_name': vm.editEnrollee.first_name,
+                'last_name': vm.editEnrollee.last_name,
+                'phone': vm.editEnrollee.phone,
+                'email': vm.editEnrollee.email,
+                'lg': vm.editEnrollee.selectedLg.lga,
+                'street_address': vm.editEnrollee.selectedLg.address,
+                'city': vm.editEnrollee.city,
+                'state': vm.editEnrollee.selectedState.state,
+                'sex': vm.editEnrollee.sex,
+                'dob': vm.editEnrollee.year + "-" + vm.editEnrollee.month + "-" + vm.editEnrollee.day
+            }
+            EnrolleeService.updateEnrollee(obj, user_id).then(function (res) {
+                if (res.success) {
+                    healthNotify.set('This enrollee data was successfully updated', 'success')
+                } else {
+                    healthNotify.set('Please try again, something went wrong', 'error')
+                }
+            });
+        }
+    }
+
 });
