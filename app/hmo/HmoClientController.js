@@ -42,7 +42,12 @@ app.controller('HmoClientController', ['$scope','EnrolleeService','$uibModal','$
             size: '',
             backdrop: true,
             controller: 'ModalController',
-            controllerAs: 'modalCtrl'
+            controllerAs: 'modalCtrl',
+            resolve: {
+                data: function(){
+                    return {};
+                }
+            }
         });
     };
 
@@ -53,7 +58,12 @@ app.controller('HmoClientController', ['$scope','EnrolleeService','$uibModal','$
             size: '',
             backdrop: true,
             controller: 'ModalController',
-            controllerAs: 'modalCtrl'
+            controllerAs: 'modalCtrl',
+            resolve: {
+                data: function(){
+                    return {};
+                }
+            }
         });
     };
 

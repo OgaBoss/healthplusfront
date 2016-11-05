@@ -3,12 +3,22 @@
  */
 app.factory('PlanService',['$http','apiConfig', function($http,apiConfig){
     return {
-        getAllPlans : getAllPlans
+        getAllPlans : getAllPlans,
+        createPlan: createPlan
     };
 
     function getAllPlans(){
         var request = $http({
             method: "get",
+            url: apiConfig.apiBaseUrl + 'plans'
+        });
+        return( request.then( handleSuccess, handleError ) );
+    }
+
+    function createPlan(obj){
+        var request = $http({
+            method: "post",
+            params: obj,
             url: apiConfig.apiBaseUrl + 'plans'
         });
         return( request.then( handleSuccess, handleError ) );

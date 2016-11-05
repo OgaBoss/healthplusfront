@@ -1,91 +1,43 @@
 <!-- start: BREADCRUMB -->
 <div class="breadcrumb-wrapper">
-    <h4 class="mainTitle no-margin">Health Plans</h4>
-    <div ncy-breadcrumb class="pull-right"></div>
+	<h4 class="mainTitle no-margin">Health Plans</h4>
+	<div ncy-breadcrumb class="pull-right"></div>
 </div>
+<ng-include src=" 'assets/views/hmo/clients-partials/modals/create_plan.html' "></ng-include>
+
 <!-- end: BREADCRUMB -->
 <div class="container-fluid container-fullw padding-bottom-10">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-white" id="activities">
-                <div class="panel-heading border-light">
-                    <h4 class="panel-title text-primary">Health Plans Statistics <button type="button" class="btn btn-success btn-wide btn-scroll btn-scroll-top ti-plus pull-right margin-top-minus-5" ng-click="healthPlanCtrl.createPlan()">
-                        <span>Create Plan</span>
-                    </button></h4>
-
-                    <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
-                </div>
-                <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-3 hvr-grow-shadow" onclick="location.href='#/health-plan/plan/1';" style="cursor: pointer;">
-                                <div class="panel panel-green no-border no-radius">
-                                    <div class="panel-body no-padding">
-                                        <div class="space10 padding-15">
-                                            <h5 class="text-bold text-super-large  text-uppercase no-margin">Gold Plan</h5>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 2,500 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Premium</span></h2>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 250,000 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Cover Limit</span></h2>
-                                            <span class="label background-light text-dark margin-top-10 margin-right-5">150</span><span class="text-extra-small">45% of all Enrollees</span>
-                                        </div>
-                                        <div>
-                                            <canvas class="chart chart-line height-80" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3 hvr-grow-shadow" onclick="location.href='#/health-plan/plan/1';" style="cursor: pointer;">
-                                <div class="panel panel-azure no-border no-radius">
-                                    <div class="panel-body no-padding">
-                                        <div class="space10 padding-15">
-                                            <h5 class="text-bold text-super-large  text-uppercase no-margin">Diamond Plan</h5>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 3,500 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Premium</span></h2>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 350,000 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Cover Limit</span></h2>
-                                            <span class="label background-light text-dark margin-top-10 margin-right-5">110</span><span class="text-extra-small">45% of all Enrollees</span>
-                                        </div>
-                                        <div>
-                                            <canvas class="chart chart-line height-80" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3 hvr-grow-shadow" onclick="location.href='#/health-plan/plan/1';" style="cursor: pointer;">
-                                <div class="panel panel-pink no-border no-radius">
-                                    <div class="panel-body no-padding">
-                                        <div class="space10 padding-15">
-                                            <h5 class="text-bold text-super-large  text-uppercase no-margin">Bronze Plan</h5>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 4,500 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Premium</span></h2>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 550,000 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Cover Limit</span></h2>
-                                            <span class="label background-light text-dark margin-top-10 margin-right-5">90</span><span class="text-extra-small">25% of all Enrollees</span>
-                                        </div>
-                                        <div>
-                                            <canvas class="chart chart-line height-80" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-sm-3 hvr-grow-shadow" onclick="location.href='#/health-plan/plan/1';" style="cursor: pointer;">
-                                <div class="panel panel-purple no-border no-radius">
-                                    <div class="panel-body no-padding">
-                                        <div class="space10 padding-15">
-                                            <h5 class="text-bold text-super-large  text-uppercase no-margin">Silver Plan</h5>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 5,500 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Premium</span></h2>
-                                            <h2 class="text-white margin-top-15 margin-bottom-10">N 750,000 <span class="label label-success margin-right-5" style="font-size: 12px !important;">Cover Limit</span></h2>
-                                            <span class="label background-light text-dark margin-top-10 margin-right-5">70</span><span class="text-extra-small">15% of all Enrollees</span>
-                                        </div>
-                                        <div>
-                                            <canvas class="chart chart-line height-80" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-white" id="activities">
+				<div class="panel-heading border-light" style="padding-bottom: 50px !important;">
+					<div class="pull-right">
+						<a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="openCreateView()"><i class="fa fa-plus"></i> Create a Plan</a>
+					</div>
+				</div>
+				<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+					<div class="panel-body">
+						<table class="table table-striped table-hover" id="sample-table-3">
+							<thead>
+								<tr>
+									<th class="center">Name</th>
+									<th class="center">Cover Limit</th>
+									<th class="center">Premuim</th>
+									<th class="center">Enrollee Count</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="plan in healthPlanCtrl.plans" on-last-repeat ng-click="healthPlanCtrl.showPlan(plan.plan_id)" style="cursor: pointer;">
+									<td class="center">{{ plan.name }}</td>
+									<td class="center">{{ plan.cover | currency:"Naira "}}</td>
+									<td class="center">{{ plan.premium | currency:"Naira "}}</td>
+									<td class="center">{{ plan.enrollee_count}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

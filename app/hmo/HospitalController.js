@@ -1,15 +1,11 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/9/16.
  */
-app.controller('HospitalController', ['$scope','HospitalService', function($scope,HospitalService){
+app.controller('HospitalController', ['$scope','HospitalService','$state', function($scope,HospitalService,$state){
     var vm = this
 
-    vm.hospitals = {};
 
-    HospitalService.getAllHospital().then(function(res){
-        console.log(res);
-        vm.hospitals = res.data.hospitals;
-    })
+
 
 
 

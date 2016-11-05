@@ -103,5 +103,8 @@ app.constant('JS_REQUIRES', {
     },{
         name: 'permission.ui',
         files: ['lib/angular-permission/dist/angular-permission-ui.min.js']
+    },{
+        name: 'ui.select',
+        files: ['lib/angular-ui-select/dist/select.min.js']
     }]
 });

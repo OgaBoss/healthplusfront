@@ -112,12 +112,8 @@
                                     Plan
                                 </label>
                                 <div class="col-sm-8">
-                                    <div isteven-multi-select input-model="modalCtrl.allPlans" output-model="modalCtrl.organizationCreation.outPutPlan" button-label="name" item-label="icon name maker" tick-property="ticked"></div>
+                                    <div isteven-multi-select input-model="modalCtrl.allPlans" output-model="modalCtrl.organizationCreation.outPutPlan" button-label="name" item-label="icon name maker" tick-property="ticked" orientation="horizontal"></div>
                                 </div>
-                                <div ng-messages="Form.plan.$error" ng-show="Form.plan.$dirty && Form.plan.$invalid">
-                                    <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
-                                </div>
-                                <div ng-if="Form.plan.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
                             </div>
                             <div class="form-group margin-bottom-0">
                                 <div class="col-sm-offset-10 col-sm-2">

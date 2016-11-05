@@ -1,7 +1,11 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateParams, $uibModal, $aside, $localStorage, EnrolleeService, $rootScope, healthNotify, PlaceService, OrganizationService, PlanService) {
+app.controller('EnrolleeController', 
+function ($scope, $timeout, $state, $stateParams, 
+            $uibModal, $aside, $localStorage, EnrolleeService, 
+            $rootScope, healthNotify, PlaceService, OrganizationService, 
+            PlanService, EnrolleeRecordService) {
     var vm = this;
 
     //Check for tabIndex in our URL
@@ -100,6 +104,10 @@ app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateP
     EnrolleeService.getEnrolleeDependents(user_id).then(function (res) {
         vm.dependents = res.dependents.data;
     });
+
+    $scope.$on('dependent', function (e, arg) {
+        vm.dependents = arg;
+    })
 
     //Image Upload
     $scope.imageChange = function (position, type) {
@@ -245,6 +253,88 @@ app.controller('EnrolleeController', function ($scope, $timeout, $state, $stateP
                 }
             });
         }
+    }
+
+
+    //======================================//
+    //                                      //
+    //       Create an Enrollee Depenent    //
+    //                                      //
+    //======================================//
+
+    $scope.addDependent = function(id){
+        $aside.open({
+            templateUrl: 'assets/views/hmo/clients-partials/modals/create_dependent.html',
+            placement: 'right',
+            size: '',
+            backdrop: true,
+            controller: 'ModalController',
+            controllerAs: 'modalCtrl',
+            resolve: {
+                data: function () {
+                    return { 'id': user_id};
+                }
+            }
+        });
+    }
+
+    //======================================//
+    //                                      //
+    //       Clai page Code                 //
+    //                                      //
+    //======================================//
+
+
+    //Get Enrollee Medical Record
+    vm.enrolleeRecords = {}
+    $scope.months = [
+        'January',
+        'Feburary',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August', 
+        'September',
+        'October',
+        'November',
+        'December'
+    ];
+    EnrolleeRecordService.getEnrolleeRecord(user_id).then(function(res){
+        vm.enrolleeRecords = res.records.data
+    });
+
+    vm.showFullRecord = function(record_id){
+        $aside.open({
+            templateUrl: 'assets/views/hmo/clients-partials/modals/full_record.html',
+            placement: 'left',
+            size: 'lg',
+            backdrop: true,
+            controller: 'ClaimsModalController',
+            controllerAs: 'claimsCtrl',
+            resolve: {
+                data: function () {
+                    return { 'id': record_id,'type': 'view'};
+                }
+            }
+        });
+    };
+
+    vm.editMedicalRecord = function(record_id){
+        $aside.open({
+            templateUrl: 'assets/views/hmo/clients-partials/modals/edit_record.html',
+            placement: 'left',
+            size: 'lg',
+            backdrop: true,
+            controller: 'ClaimsModalController',
+            controllerAs: 'claimsCtrl',
+            resolve: {
+                data: function () {
+                    return { 'id': record_id,'type': 'view'};
+                }
+            }
+        });
     }
 
 });

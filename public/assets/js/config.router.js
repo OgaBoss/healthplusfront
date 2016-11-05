@@ -119,15 +119,18 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         templateUrl: "assets/views/app.html",
         resolve: loadSequence('ngNotify'),
         abstract: true,
-        controller: 'DashBoardController',
-        controllerAs: 'dashboard'
+        ncyBreadcrumb: {
+            skip: 'true'
+        }
     }).state('partners.home', {
         url: "/dashboard/home",
         templateUrl: "assets/views/hmo/home.html",
         title: 'Dashboard',
+        controller: 'DashBoardController',
+        controllerAs: 'dashboardCtrl',
         resolve: loadSequence('ngNotify', 'countTo', 'chartjs', 'chart.js', 'InboxController'),
         ncyBreadcrumb: {
-            label: 'Dashboard'
+            skip: 'true'
         }
     }).state('partners.home.inbox', {
         url: "/messages/:id",
@@ -141,7 +144,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         template: '<div ui-view class="fade-in-up"></div>',
         title: 'Clients Page',
         ncyBreadcrumb: {
-            label: 'Clients'
+            skip: 'true'
         }
     }).state('partners.clients.home', {
         url: '/home',
@@ -150,7 +153,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         controllerAs: 'hmoClient',
         title: 'Clients Page',
         ncyBreadcrumb: {
-            label: 'Home'
+            label: 'Clients'
         }
     }).state('partners.clients.organization', {
         url: '/organization/:id',

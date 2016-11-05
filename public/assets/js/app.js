@@ -36,5 +36,6 @@ angular.module("packet", [
 	'treasure-overlay-spinner',
 	'ngMessages',
 	'angularFileUpload',
-	'isteven-multi-select'
+	'isteven-multi-select',
+	'ui.select'
 ]);

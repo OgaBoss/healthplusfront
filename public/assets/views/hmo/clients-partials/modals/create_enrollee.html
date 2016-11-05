@@ -135,7 +135,7 @@
                                     State
                                 </label>
                                 <div class="col-sm-8">
-                                    <select class="cs-select cs-skin-slide" ng-change="getLgs()" ng-model="modalCtrl.enrolleeCreation.selectedState" name="state" ng-options="state.state for state in states" ng-required="true">
+                                    <select class="cs-select cs-skin-slide" ng-change="getEnrolleeLgs()" ng-model="modalCtrl.enrolleeCreation.selectedState" name="state" ng-options="state.state for state in states" ng-required="true">
                                         <option value="">Select a State</option>
                                     </select>
                                 </div>
@@ -167,7 +167,7 @@
                                 </label>
                                 <div class="col-sm-8">
                                     <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.selectedOrg"  ng-change='getPlans()'name="organization" ng-options="org.name for org in organizations" ng-required="true">
-                                        <option value="">Select a an Organization</option>
+                                        <option value="">Select an Organization</option>
                                     </select>
                                 </div>
                                 <div ng-messages="Form.organization.$error" ng-show="Form.organization.$dirty && Form.organization.$invalid">
@@ -192,6 +192,23 @@
                                     <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
                                 </div>
                                 <div ng-if="Form.plan.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
+                            </div>
+                            <legend class="text-bold">
+                                Primary HealthCare
+                            </legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="form-field-select-2">
+                                    Hospital 
+                                </label>
+                                <div class="col-sm-8">
+                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.selectedHospital"  name="hospital" ng-options="hospital.name for hospital in hospitals" ng-required="true">
+                                        <option value="">Select an Hospital</option>
+                                    </select>
+                                </div>
+                                <div ng-messages="Form.hospital.$error" ng-show="Form.hospital.$dirty && Form.hospital.$invalid">
+                                    <div ng-message="required" ><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+                                </div>
+                                <div ng-if="Form.hospital.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></div>
                             </div>
                             <div class="form-group margin-bottom-0">
                                 <div class="col-sm-offset-10 col-sm-2">

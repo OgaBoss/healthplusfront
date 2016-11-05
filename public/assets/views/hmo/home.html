@@ -6,7 +6,14 @@
 <!-- end: BREADCRUMB -->
 <!-- start: YOUR CONTENT HERE -->
 <!-- end: YOUR CONTENT HERE -->
-<div ng-if="currentUser.data.role.data.name == 'admin'">
+
+<!--CLIENT SERVICE DASHBAORD-->
+<ng-include src=" 'assets/views/hmo/clients-partials/home/client-service.html' "></ng-include>
+
+
+
+
+<!--<div ng-if="currentUser.data.role.data.name == 'admin'">
     <ng-include src=" 'assets/views/hmo/clients-partials/home/admin.html' "></ng-include>
 </div>
 
@@ -26,5 +33,5 @@
 <div ng-if="currentUser.data.role.data.name == 'customer care'" ng-controller="InboxController">
     <ng-include src=" 'assets/views/hmo/clients-partials/home/customer-care.html' "></ng-include>
 </div>
-
+-->
 

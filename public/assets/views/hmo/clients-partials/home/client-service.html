@@ -1,0 +1,166 @@
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-white">
+				<div class="panel-body">
+					<uib-tabset class="tabbable">
+						<uib-tab>
+							<uib-tab-heading>
+								<i class="fa fa-user"></i> Refferral Code List
+							</uib-tab-heading>
+							<div class="row">
+								<div class="col-sm-12">
+
+								</div>
+							</div>
+						</uib-tab>
+						<uib-tab>
+							<uib-tab-heading>
+								<i class="fa fa-building"></i> Create Refferral Code
+							</uib-tab-heading>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="panel panel-white">
+										<div class="panel-heading border-light">
+											<h4 class="panel-title">Search for <span class="text-bold">Enrollee</span> with email</h4>
+										</div>
+										<div class="panel-body">
+											<form role="form" class="form-horizontal" name="Form" ng-submit="dashboardCtrl.searchForEnrollee(Form)" novalidate>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="inputEmail3">Email</label>
+													<div class="col-sm-6">
+														<input type="email" placeholder="e.g johnsnow@gmail.com" id="inputEmail3" class="form-control" name="email" ng-model="dashboardCtrl.email"
+															required>
+													</div>
+													<div ng-messages="Form.email.$error" ng-if="Form.email.$dirty">
+														<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+														<span ng-if="Form.email.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+													</div>
+												</div>
+
+												<div class="form-group margin-bottom-0">
+													<div class="col-sm-offset-8 col-sm-2">
+														<button class="btn btn-o btn-primary" type="submit">Search</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row" ng-if=show>
+								<div class="col-sm-12">
+									<div class="panel panel-white">
+										<div class="panel-heading border-light">
+											<h4 class="panel-title">Create <span class="text-bold">Refferral Code</span></h4>
+										</div>
+										<div class="panel-body">
+											<form role="form" class="form-horizontal" name="Form" novalidate>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="form-field-select-2">Ailment</label>
+													<div class="col-sm-8">
+														<div isteven-multi-select input-model="ailments" output-model="dashboardCtrl.enrollee.outPutPlan" button-label="short_description"
+															item-label="icon short_description maker" tick-property="ticked" on-search-change="getAilment( data )"></div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="inputEmail3">Name</label>
+													<div class="col-sm-6">
+														<input type="text" id="inputEmail3" class="form-control" name="name" ng-model="dashboardCtrl.enrollee.name" required disabled="disabled">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="inputEmail3">ID</label>
+													<div class="col-sm-6">
+														<input type="text" id="inputEmail3" class="form-control" name="id" ng-model="dashboardCtrl.enrollee.generated_id" required
+															disabled="disabled">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="form-field-select-2">Hospital</label>
+													<div class="col-sm-6">
+														<select class="cs-select cs-skin-slide" ng-model="dashboardCtrl.enrollee.selectedHospital" name="hospital" ng-options="hospital.name for hospital in hospitals"
+															ng-required="true">
+                                                            <option value="">Select an Hospital</option>
+                                                        </select>
+													</div>
+												
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="form-field-select-2">Description</label>
+													<div class="col-sm-6">
+														<div class="panel-body">
+															<div class="form-group">
+																<textarea class="form-control autosize area-animated msd-elastic: \n;" ng-model="dashboardCtrl.enrollee.description" name="desc"></textarea>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<!--<div class="form-group">
+													<label class="col-sm-2 control-label" for="form-field-select-2">Description</label>
+													<div class="col-sm-6">
+														<input type="text" ng-model="asyncSelected" uib-typeahead="ailment for ailments in getAilment($viewValue)"
+															typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+														<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+														<div ng-show="noResults">
+															<i class="glyphicon glyphicon-remove"></i> No Results Found
+														</div>
+													</div>
+													<div ng-messages="Form.desc.$error" ng-show="Form.desc.$dirty && Form.desc.$invalid">
+														<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+													</div>
+													<div ng-if="Form.desc.$valid"><i class="fa fa-check-circle-o icon-success" aria-hidden="true"></i></div>
+												</div>-->
+
+												<div class="form-group margin-bottom-0">
+													<div class="col-sm-offset-8 col-sm-2">
+														<button class="btn btn-o btn-primary" type="submit" ng-click="dashboardCtrl.createCode()">Search</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row" ng-if=show_result>
+								<div class="col-sm-12">
+									<div class="panel panel-white">
+										<div class="panel-heading border-light">
+											<h4 class="panel-title">Create <span class="text-bold">Send Referral Code to hospital</span></h4>
+										</div>
+										<div class="panel-body">
+											<form role="form" class="form-horizontal" name="Form" ng-submit="dashboardCtrl.searchForEnrollee(Form)" novalidate>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="inputEmail3">Referral Code</label>
+													<div class="col-sm-6">
+														<span class="text-extra-large text-green"> {{ dashboardCtrl.result.referral_code }}</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="inputEmail3">Hopital Email</label>
+													<div class="col-sm-6">
+														<input type="email" placeholder="e.g johnsnow@gmail.com" id="inputEmail3" class="form-control" name="hospital_email" ng-model="dashboardCtrl.enrollee.selectedHospital.email"
+															required disabled="disabled">
+													</div>
+												</div>
+
+												<div class="form-group margin-bottom-0">
+													<div class="col-sm-offset-8 col-sm-2">
+														<button class="btn btn-o btn-primary" type="submit">Send</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</uib-tab>
+					</uib-tabset>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end: TABS -->
