@@ -13,6 +13,7 @@ app.controller('DashBoardController', ['$scope', "$state", "$interval",
     vm.enrollee = {};
     vm.result = {};
     vm.codeSearch = {};
+    vm.codes = {};
     $scope.ailments = {};
     $scope.show = false;
     $scope.show_result = false;
@@ -21,7 +22,29 @@ app.controller('DashBoardController', ['$scope', "$state", "$interval",
     //Get HMOs Hospital 
     HospitalService.getAllHospital().then(function (res) {
         $scope.hospitals = res.hospitals.data
-    })
+    });
+
+    CodeService.getReferralCode().then(function(res){
+        vm.codes = res.codes.data;
+    });
+
+    $scope.months = [
+        'January',
+        'Feburary',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ];
+
+    var d = new Date();
+    vm.current_month = $scope.months[d.getMonth()];
 
     //Get Ailment
     // $scope.getAilment = function (data) {

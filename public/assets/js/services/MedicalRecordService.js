@@ -52,7 +52,6 @@ app.factory('MedicalRecordService', ['$http', 'apiConfig', '$localStorage', func
         return (request.then(handleSuccess, handleError));
     }
 
-
     // private functions
     function handleSuccess(res) {
         return res.data;

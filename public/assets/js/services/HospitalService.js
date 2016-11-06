@@ -7,7 +7,8 @@ app.factory('HospitalService', ['$http', 'apiConfig', '$localStorage', function 
         getHospital: getHospital,
         deleteHospital: deleteHospital,
         updateHospital: updateHospital,
-        createHospital: createHospital
+        createHospital: createHospital,
+        getHospitalClaims : getHospitalClaims
     };
 
     function getAllHospital() {
@@ -40,6 +41,14 @@ app.factory('HospitalService', ['$http', 'apiConfig', '$localStorage', function 
             url: apiConfig.apiBaseUrl + 'hospitals/' + id
         });
         return (request.then(handleSuccess, handleError)); 
+    }
+
+    function getHospitalClaims(hospital_id){
+        var request = $http({
+            method: "get",
+            url: apiConfig.apiBaseUrl + 'hospital/' + hospital_id + '/claims'
+        });
+        return (request.then(handleSuccess, handleError));
     }
 
     function createHospital(formData){

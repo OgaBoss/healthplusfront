@@ -145,7 +145,7 @@ function ($scope, $timeout, $state, $stateParams,
                 if (res.success) {
                     healthNotify.set('This enrollee has being deactivated', 'success')
                 } else {
-                    healthNotify.set('Please try again, something wetn wrong', 'error')
+                    healthNotify.set('Please try again, something went wrong', 'error')
                 }
             })
         }
@@ -284,7 +284,7 @@ function ($scope, $timeout, $state, $stateParams,
 
 
     //Get Enrollee Medical Record
-    vm.enrolleeRecords = {}
+    vm.enrolleeRecords = {};
     $scope.months = [
         'January',
         'Feburary',

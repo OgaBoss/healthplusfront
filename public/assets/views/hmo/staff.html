@@ -10,82 +10,13 @@
             <div class="panel panel-white" id="activities">
                 <div class="panel-heading border-light">
                     <div ng-if="currentUser.data.role.data.name == 'admin'">
-                        <h4 class="panel-title text-primary">Staff <button type="button" class="btn btn-success btn-wide btn-scroll btn-scroll-top ti-plus pull-right margin-top-minus-5" ng-click="staffCtrl.createStaff()">
+                        <h4 class="panel-title text-primary text-bold">Staff <button type="button" class="btn btn-success btn-wide btn-scroll btn-scroll-top ti-plus pull-right margin-top-minus-5" ng-click="staffCtrl.createStaff()">
                             <span>Create Staff</span>
                         </button></h4>
                     </div>
-
-                    <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
                 </div>
                 <div uib-collapse="activities" class="panel-wrapper" active="staffCtrl.tabIndex">
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-4 hvr-grow-shadow" onclick="location.href='#/staff/info/1';" style="cursor: pointer;">
-                                <div class="panel panel-white panel-carousel dots-left no-border no-radius">
-                                    <div class="panel-body no-padding height-200">
-                                        <!-- start: CAROUSEL -->
-                                        <slick rtl=true dots =true arrows=false infinite=false speed=300 autoplay=true autoplay-speed=6000 slides-to-show=1 slides-to-scroll=1 class="carousel">
-                                            <div class="slide padding-20 height-200 text-left" style="background: url('assets/images/carousel/03.jpg')">
-                                                <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase">Dashboard Users <i class="fa fa-arrow-circle-o-right"></i></h5>
-                                                <h3><a ui-sref="staff.info ({id:1})">Baldwin Hayes</a></h3>
-                                                <span class="label partition-green">IT Administrator</span>
-									            <span class="cl-effect-3 links block margin-top-10">
-                                                    b.hayes@gmail.com
-                                                </span>
-                                                <span class="cl-effect-3 links block margin-top-10">
-                                                   Lagos, Nigeria <small>(Branch)</small>
-                                                </span>
-                                            </div>
-                                        </slick>
-                                        <!-- end: CAROUSEL -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 hvr-grow-shadow" onclick="location.href='#/staff/info/1';" style="cursor: pointer;">
-                                <div class="panel panel-white panel-carousel dots-left no-border no-radius">
-                                    <div class="panel-body no-padding height-200">
-                                        <!-- start: CAROUSEL -->
-                                        <slick rtl=true dots =true arrows=false infinite=false speed=300 autoplay=true autoplay-speed=6000 slides-to-show=1 slides-to-scroll=1 class="carousel">
-                                            <div class="slide padding-20 height-200 text-left" style="background: url('assets/images/carousel/05.jpg')">
-                                                <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase">Dashboard Users <i class="fa fa-arrow-circle-o-right"></i></h5>
-                                                <h3><a  ui-sref="staff.info ({id:1})">John Doe</a></h3>
-                                                <span class="label partition-orange">IT Administrator</span>
-									            <span class="cl-effect-3 links block margin-top-10">
-                                                   johndoe@gmail.com
-                                                </span>
-                                                <span class="cl-effect-3 links block margin-top-10">
-                                                   Lagos, Nigeria <small>(Branch)</small>
-                                                </span>
-                                            </div>
-                                        </slick>
-                                        <!-- end: CAROUSEL -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 hvr-grow-shadow" onclick="location.href='#/staff/info/1';" style="cursor: pointer;">
-                                <div class="panel panel-white panel-carousel dots-left no-border no-radius">
-                                    <div class="panel-body no-padding height-200">
-                                        <!-- start: CAROUSEL -->
-                                        <slick rtl=true dots =true arrows=false infinite=false speed=300 autoplay=true autoplay-speed=6000 slides-to-show=1 slides-to-scroll=1 class="carousel">
-                                            <div class="slide padding-20 height-200 text-left" style="background: url('assets/images/carousel/04.jpg')">
-                                                <h5 class="text-bold text-extra-small text-dark-transparent text-uppercase">Dashboard Users <i class="fa fa-arrow-circle-o-right"></i></h5>
-                                                <h3><a ui-sref="staff.info ({id:1})">Jane Myers</a></h3>
-                                                <span class="label partition-purple">Accountant</span>
-									            <span class="cl-effect-3 links block margin-top-10">
-                                                   j.myers@gmail.com
-                                                </span>
-                                                <span class="cl-effect-3 links block margin-top-10">
-                                                   Lagos, Nigeria <small>(Branch)</small>
-                                                </span>
-                                            </div>
-                                        </slick>
-                                        <!-- end: CAROUSEL -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

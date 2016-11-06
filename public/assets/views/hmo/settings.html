@@ -10,33 +10,11 @@
             <div >
                 <!-- start: USER TABSET -->
                 <uib-tabset class="tabbable">
-                    <!-- start: TAB OVERVIEW -->
-                    <uib-tab heading="Add Hospital"  ng-if="currentUser.data.role.data.name == 'admin'">
-                        <div class="row">
-                            <ng-include src=" 'assets/views/hmo/clients-partials/settings/add-hospital.html' "></ng-include>
-                        </div>
-                    </uib-tab>
-                    <!-- end: TAB OVERVIEW -->
-                    <!-- start: TAB EDIT ACCOUNT -->
-                    <uib-tab heading="Add Pharmacy" active="editActive"  ng-if="currentUser.data.role.data.name == 'admin'">
-                        <div class="row">
-                            <ng-include src=" 'assets/views/hmo/clients-partials/settings/add-pharmacy.html' "></ng-include>
-                        </div>
-                    </uib-tab>
-                    <!-- end: TAB EDIT ACCOUNT -->
-                    <!-- start: TAB PROJECTS -->
-                    <uib-tab heading="Add Enrollee"  ng-if="currentUser.data.role.data.name == 'admin'">
-                        <div class="row">
-                            <ng-include src=" 'assets/views/hmo/clients-partials/settings/add-enrollee.html' "></ng-include>
-                        </div>
-                    </uib-tab>
-                    <!-- end: TAB PROJECTS -->
-
                     <uib-tab heading="Drug Price List">
                         <ng-include src=" 'assets/views/hmo/clients-partials/settings/drug-list.html' "></ng-include>
                     </uib-tab>
 
-                    <uib-tab heading="Claims Price List">
+                    <uib-tab heading="Procedure Price List">
                         <ng-include src=" 'assets/views/hmo/clients-partials/settings/claims-price.html' "></ng-include>
                     </uib-tab>
 

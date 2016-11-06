@@ -1,84 +1,37 @@
-<div class="col-md-4">
-    <div class="user-left">
-        <div class="center">
-            <div flow-init="{singleFile:true}" flow-name="obj.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
-                <div class="user-image">
-                    <div class="thumbnail">
-                        <img src="assets/images/portfolio/image01_th.jpg" class="img-responsive img-rounded" alt="">
+    <div class="col-md-12">
+        <div class="panel panel-white">
+            <div class="panel-heading border-light">
+                <h4 class="panel-title text-primary text-bold">
+                    Treated Enrollees
+                </h4>
+            </div>
+            <div uib-collapse="activities" class="panel-wrapper">
+                <div class="panel-body">
+                    <div class="row">
+                        <h2 ng-if="hospitalCtrl.hospitalClaims.length < 1">This enrollee has no Medical Records yet</h2>
+                        <table class="table table-striped table-hover" id="sample-table-3" ng-if="hospitalCtrl.hospitalClaims.length > 0">
+                            <thead>
+                            <tr>
+                                <th class="hidden-xs center">Referral Code</th>
+                                <th class="center">Hospital</th>
+                                <th class="center">Procedure</th>
+                                <th class="center">Month</th>
+                                <th class="center">Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="record in hospitalCtrl.hospitalClaims"  ng-click="hospitalCtrl.showEnrolleeClaim(record.enrollee_id)" style="cursor: pointer;">
+                                <td class="text-bold center">{{ record.referral_code }}</td>
+                                <td class="center"> {{ record.hospital_name }}</td>
+                                <td class="center">{{ record.procedure }}</td>
+                                <td class="center">{{ record.month }}</td>
+                                <td class="center">{{ record.prices[0].price || record.prices[1].price }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <table class="table table-condensed">
-            <thead>
-            <tr>
-                <th colspan="3">Contact Information</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Name</td>
-                <td>
-                    <a href="#">
-                        Johnson Pharmacy
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td>
-                    <a href>
-                        mtnafrca@mtn.com
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Phone:</td>
-                <td>+234 80-98567-234</td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td>
-                    <a href>
-                        No 12 Awolowo way, Lekki Lagos, Nogeria
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>HMO Reg Code</td>
-                <td>
-                    <a href>
-                        hmo34hjt/119/001
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Status</td>
-                <td><span class="label label-success">active</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed">
-            <thead>
-            <tr>
-                <th colspan="3">Administrator Data</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Name</td>
-                <td>{{currentUser.data.name}}</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>{{currentUser.data.email}}</td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td>+234-808-1234-789</td>
-            </tr>
-            </tbody>
-        </table>
     </div>
-</div>
+

@@ -153,7 +153,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         controllerAs: 'hmoClient',
         title: 'Clients Page',
         ncyBreadcrumb: {
-            label: 'Clients'
+            skip: 'true'
         }
     }).state('partners.clients.organization', {
         url: '/organization/:id',
@@ -163,7 +163,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         controllerAs: 'orgCtrl',
         resolve: loadSequence('healthNotify','ngNotify','chartjs', 'chart.js'),
         ncyBreadcrumb: {
-            label: 'Organization Profile'
+            skip: 'true'
         }
     }).state('partners.clients.enrollee', {
         url: '/enrollee/:id?tabIndex',
