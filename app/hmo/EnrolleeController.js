@@ -5,7 +5,7 @@ app.controller('EnrolleeController',
 function ($scope, $timeout, $state, $stateParams, 
             $uibModal, $aside, $localStorage, EnrolleeService, 
             $rootScope, healthNotify, PlaceService, OrganizationService, 
-            PlanService, EnrolleeRecordService) {
+            PlanService, EnrolleeRecordService,MedicalRecordService) {
     var vm = this;
 
     //Check for tabIndex in our URL
@@ -40,8 +40,6 @@ function ($scope, $timeout, $state, $stateParams,
         }
         vm.email = vm.enrollee.email
         vm.image_url = vm.enrollee.image_url;
-
-        //Set State for Edit tab
 
         //Set all the enrollee values
         vm.editEnrollee.first_name = vm.enrollee.first_name
@@ -280,7 +278,7 @@ function ($scope, $timeout, $state, $stateParams,
 
     //======================================//
     //                                      //
-    //       Clai page Code                 //
+    //       Claims page Code                 //
     //                                      //
     //======================================//
 
@@ -301,37 +299,48 @@ function ($scope, $timeout, $state, $stateParams,
         'November',
         'December'
     ];
-    EnrolleeRecordService.getEnrolleeRecord(user_id).then(function(res){
-        vm.enrolleeRecords = res.records.data
+    //EnrolleeRecordService.getEnrolleeRecord(user_id).then(function(res){
+    //    vm.enrolleeRecords = res.records.data
+    //});
+
+    //Get Enrollee Claims Records
+    MedicalRecordService.getEnrolleeClaims(user_id).then(function(res){
+       vm.enrolleeClaimsRecords = res.claims_records.data;
     });
 
-    vm.showFullRecord = function(record_id){
-        $aside.open({
-            templateUrl: 'assets/views/hmo/clients-partials/modals/full_record.html',
-            placement: 'left',
-            size: 'lg',
-            backdrop: true,
-            controller: 'ClaimsModalController',
-            controllerAs: 'claimsCtrl',
-            resolve: {
-                data: function () {
-                    return { 'id': record_id,'type': 'view'};
-                }
-            }
-        });
-    };
+    //Get HealthInfo
+    MedicalRecordService.getEnrolleeHealth(user_id).then(function(res){
+        vm.enrolleeHealthRecords = res.health_records.data;
+    });
+
+
+    //vm.showFullRecord = function(record_id){
+    //    $aside.open({
+    //        templateUrl: 'assets/views/hmo/clients-partials/modals/full_record.html',
+    //        placement: 'left',
+    //        size: 'lg',
+    //        backdrop: true,
+    //        controller: 'ClaimsModalController',
+    //        controllerAs: 'claimsCtrl',
+    //        resolve: {
+    //            data: function () {
+    //                return { 'id': record_id,'type': 'view'};
+    //            }
+    //        }
+    //    });
+    //};
 
     vm.editMedicalRecord = function(record_id){
         $aside.open({
             templateUrl: 'assets/views/hmo/clients-partials/modals/edit_record.html',
             placement: 'left',
-            size: 'lg',
+            size: '',
             backdrop: true,
             controller: 'ClaimsModalController',
             controllerAs: 'claimsCtrl',
             resolve: {
                 data: function () {
-                    return { 'id': record_id,'type': 'view'};
+                    return { 'id': record_id,'enr_id': user_id};
                 }
             }
         });

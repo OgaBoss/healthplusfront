@@ -1,9 +1,16 @@
-app.controller('ModalController', ['$scope', 'EnrolleeService', '$uibModalInstance', '$aside', '$state', '$stateParams', 'OrganizationService', '$rootScope', 'PlaceService', '$timeout', 'PlanService', 'healthNotify', 'HospitalService', 'data','AilmentService',
-    function ($scope, EnrolleeService, $uibModalInstance, $aside, $state, $stateParams, OrganizationService, $rootScope, PlaceService, $timeout, PlanService, healthNotify, HospitalService, data, AilmentService) {
+app.controller('ModalController', ['$scope', 'EnrolleeService', '$uibModalInstance',
+    '$aside', '$state', '$stateParams', 'OrganizationService', '$rootScope',
+    'PlaceService', '$timeout', 'PlanService', 'healthNotify', 'HospitalService',
+    'data','AilmentService','BandService',
+    function ($scope, EnrolleeService, $uibModalInstance, $aside,
+              $state, $stateParams, OrganizationService, $rootScope,
+              PlaceService, $timeout, PlanService, healthNotify,
+              HospitalService, data, AilmentService, BandService) {
         var vm = this;
         vm.enrolleeCreation = {};
         vm.organizationCreation = {};
         vm.dependentCreation = {};
+        vm.hospitalCreation = {};
         $scope.states = [];
         $scope.lgs = [];
         $scope.organizations = [];
@@ -70,6 +77,10 @@ app.controller('ModalController', ['$scope', 'EnrolleeService', '$uibModalInstan
         }
 
 
+        BandService.getAllBand().then(function(res){
+            $scope.bands = res.bands.data;
+        });
+
         //Get all Plans
         PlanService.getAllPlans().then(function (res) {
             vm.allPlans = res.plans.data
@@ -85,6 +96,13 @@ app.controller('ModalController', ['$scope', 'EnrolleeService', '$uibModalInstan
 
         $scope.getEnrolleeDependentLgs = function () {
             var id = vm.dependentCreation.selectedState.id;
+            PlaceService.getAllLgs(id).then(function (res) {
+                $scope.lgs = res.lg;
+            });
+        }
+
+        $scope.getHospitalLgs = function () {
+            var id = vm.hospitalCreation.selectedState.id;
             PlaceService.getAllLgs(id).then(function (res) {
                 $scope.lgs = res.lg;
             });
@@ -198,6 +216,36 @@ app.controller('ModalController', ['$scope', 'EnrolleeService', '$uibModalInstan
                         healthNotify.set('Please try again something went wrong', 'error')
                     }
                 });
+            }
+        }
+
+        vm.createHospital = function(form){
+            if (form.$invalid) {
+                var field = null,
+                    firstError = null;
+
+                for (field in form) {
+                    if (field[0] != '$') {
+                        if (firstError === null && !form[field].$valid) {
+                            firstError = form[field].$name;
+                        }
+                        if (form[field].$pristine) {
+                            form[field].$dirty = true;
+                        }
+                    }
+                }
+                angular.element('.ng-invalid[name=' + firstError + ']').focus();
+            } else {
+                HospitalService.createHospital(vm.hospitalCreation).then(function(res){
+                    if(res.hospital){
+                        var url = '/#/partners/dashboard/care-providers/hospital/' + res.hospital.id;
+                        $uibModalInstance.dismiss();
+                        healthNotify.set('New hospital created, view <a href="' + url + '"> here</a>', 'success')
+                    }else{
+                        $uibModalInstance.dismiss();
+                        healthNotify.set('Please try again something went wrong', 'error')
+                    }
+                })
             }
         }
     }]);

@@ -2,11 +2,14 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-white">
-				<div class="panel-heading border-light">
+				<div class="panel-heading border-light" >
 					<h4 class="panel-title">Edit <span class="text-bold">Medical Record</span></h4>
+					<div class=" pull-right">
+						<a class="btn btn-wide btn-success create-enrollee" href="#" href="#" style="margin-top: -33px" ng-click="claimsCtrl.approveRecord()"><i class="fa fa-plus"></i> Approve Record</a>
+					</div>
 				</div>
 				<div class="panel-body">
-					<form role="form" class="form-horizontal" name="Form" ng-submit="modalCtrl.createEnrollee(Form)" novalidate>
+					<form role="form" class="form-horizontal" name="Form"  novalidate>
 						<legend class="text-bold">
 							Basic Inofrmation
 						</legend>
@@ -17,6 +20,61 @@
 							</div>
 						</div>
 
+						<legend class="text-bold">
+							Treated For
+						</legend>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="inputEmail3">Referral Code</label>
+							<div class="col-sm-8">
+								<div isteven-multi-select input-model="ailments" output-model="claimsCtrl.record.outPutPlan" button-label="short_description"
+									 item-label="icon short_description maker" tick-property="ticked"></div>
+							</div>
+						</div>
+
+						<legend class="text-bold">
+							Report
+						</legend>
+						<table class="table table-striped table-hover" id="sample-table-3">
+							<thead>
+							<tr>
+								<th class="center">con</th>
+								<th class="center">cf</th>
+								<th class="center">ir</th>
+								<th class="center">im</th>
+								<th class="center">ih</th>
+								<th class="center">is</th>
+								<th class="center">rs1</th>
+								<th class="center">rx2</th>
+								<th class="center"> rx3</th>
+								<th class="center">refill</th>
+								<th class="center">rec</th>
+								<th class="center">transfer</th>
+								<th class="center">died</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.con"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.cf"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.ir"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.im"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.ih"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.is"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.rs1"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.rx2"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.rx3"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.refill"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.rec"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.transfer"></td>
+								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.died"></td>
+							</tr>
+							</tbody>
+						</table>
+						<div class="form-group margin-bottom-0">
+							<div class="col-sm-offset-10 col-sm-2">
+								<button class="btn btn-o btn-primary" type="submit" ng-click="claimsCtrl.editHealthInfo()">Update</button>
+							</div>
+						</div>
 					</form>
 				</div>
 			</div>

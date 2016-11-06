@@ -147,7 +147,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
             skip: 'true'
         }
     }).state('partners.clients.home', {
-        url: '/home',
+        url: '/home?tabIndex',
         templateUrl: 'assets/views/hmo/clients.html',
         controller: 'HmoClientController',
         controllerAs: 'hmoClient',

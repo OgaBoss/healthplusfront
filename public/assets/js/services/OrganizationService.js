@@ -7,7 +7,9 @@ app.factory('OrganizationService', ['$http', 'apiConfig', '$localStorage', funct
         getOrganization: getOrganization,
         getOrganizationEnrollees: getOrganizationEnrollees,
         getOrganizationPlans: getOrganizationPlans,
-        createOrganization: createOrganization
+        createOrganization: createOrganization,
+        getOtherPlans : getOtherPlans,
+        updateOrganization : updateOrganization
     };
 
     function getAllOrganization() {
@@ -42,6 +44,14 @@ app.factory('OrganizationService', ['$http', 'apiConfig', '$localStorage', funct
         return (request.then(handleSuccess, handleError));
     }
 
+    function getOtherPlans(id) {
+        var request = $http({
+            method: "get",
+            url: apiConfig.apiBaseUrl + 'organizations/' + id + '/others'
+        });
+        return (request.then(handleSuccess, handleError));
+    }
+
     function createOrganization(formData) {
         var plan_id = [];
         angular.forEach(formData.outPutPlan, function (value, key) {
@@ -62,6 +72,29 @@ app.factory('OrganizationService', ['$http', 'apiConfig', '$localStorage', funct
                 'lg': formData.selectedLg.lga,
                 'address': formData.address,
                 'plan': plan_id.toString()
+            }
+        });
+        return (request.then(handleSuccess, handleError));
+    }
+
+    function updateOrganization(formData,id) {
+        var plan_id = [];
+        angular.forEach(formData.outPutPlan, function (value, key) {
+            plan_id.push(value.plan_id);
+        })
+        console.log(formData);
+        var request = $http({
+            method: "PATCH",
+            url: apiConfig.apiBaseUrl + 'organizations/'  + id,
+            params: {
+                'city': formData.city,
+                'email': formData.email,
+                'name': formData.name,
+                'phone': formData.phone,
+                'state': formData.selectedState.state,
+                'lg': formData.selectedLg.lga,
+                'street_address': formData.street,
+                'plan_ids': plan_id.toString()
             }
         });
         return (request.then(handleSuccess, handleError));

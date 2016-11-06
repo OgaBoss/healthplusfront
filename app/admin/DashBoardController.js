@@ -3,13 +3,20 @@
  * controllers used for the dashboard
  */
 
-app.controller('DashBoardController', ['$scope', "$state", "$interval", "$stateParams", 'EnrolleeService', 'healthNotify', 'HospitalService', 'AilmentService','$localStorage','MedicalRecordService', function ($scope, $state, $interval, $stateParams, EnrolleeService, healthNotify, HospitalService, AilmentService, $localStorage, MedicalRecordService) {
+app.controller('DashBoardController', ['$scope', "$state", "$interval",
+    "$stateParams", 'EnrolleeService', 'healthNotify', 'HospitalService',
+    'AilmentService','$localStorage','MedicalRecordService','CodeService',
+    function ($scope, $state, $interval, $stateParams, EnrolleeService,
+              healthNotify, HospitalService, AilmentService,
+              $localStorage, MedicalRecordService,CodeService) {
     var vm = this;
     vm.enrollee = {};
     vm.result = {};
+    vm.codeSearch = {};
     $scope.ailments = {};
     $scope.show = false;
     $scope.show_result = false;
+    $scope.show_claims = false;
 
     //Get HMOs Hospital 
     HospitalService.getAllHospital().then(function (res) {
@@ -32,7 +39,7 @@ app.controller('DashBoardController', ['$scope', "$state", "$interval", "$stateP
 
     AilmentService.getAllAilment().then(function (res) {
         $scope.ailments = res.ailments.data
-    })
+    });
 
     vm.searchForEnrollee = function (form) {
         console.log(vm.email)
@@ -62,33 +69,51 @@ app.controller('DashBoardController', ['$scope', "$state", "$interval", "$stateP
                 }
             });
         }
-    }
+    };
 
 
     vm.createCode = function(){
         console.log(vm.enrollee);
         //build Object to create new medical record
-        var d_array = [];
-        var c_array = []
-        angular.forEach(vm.enrollee.outPutPlan, function(value, key){
-             d_array.push(value.short_description);
-             c_array.push(value.code);
-        })
+
         var obj = {
             'hmo_id' : $localStorage.currentUser.data.hmo.data.hmo_id,
             'enrollee_id' : vm.enrollee.enrollee_id,
-            'hospital_id' : vm.enrollee.selectedHospital.hospital_id,
-            'disease' : d_array.join(','),
-            'description' : vm.enrollee.description,
-            'code': c_array.join('/')
-        }
+            'hospital_id' : vm.enrollee.selectedHospital.hospital_id
+        };
 
-        MedicalRecordService.createMedicalRecord(obj).then(function(res){
+        CodeService.createReferralCode(obj).then(function(res){
             console.log(res);
-            vm.result = res.record.data
+            vm.result = res.code.data
             $scope.show_result = true;
 
         })
+    }
+
+    vm.getClaimsRecord =  function(form){
+        console.log(vm.codeSearch)
+        if (form.$invalid) {
+            var field = null,
+                firstError = null;
+
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
+            }
+            angular.element('.ng-invalid[name=' + firstError + ']').focus();
+        } else {
+            MedicalRecordService.getClaimswithCode(vm.codeSearch.referral_code).then(function(res){
+                vm.claimsRecord = res.claims.data;
+                $scope.show_claims = true;
+
+            });
+        }
     }
 }]);
 

@@ -23,7 +23,7 @@
                                     <div class="panel panel-white no-radius">
                                         <div class="panel-heading border-light" style="padding-bottom: 50px !important;">
                                             <div class=" pull-right">
-                                                <a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="createEnrollee()"><i class="fa fa-plus"></i> Create Hospital</a>
+                                                <a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="openCreateView()"><i class="fa fa-plus"></i> Create Hospital</a>
                                             </div>
                                         </div>
                                         <treasure-overlay-spinner active='spinner.active'>
@@ -39,7 +39,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr ng-repeat="hospital in careCtrl.hospitals" on-last-repeat ng-click="careCtrl.showHospital(enrollee.enrollee_id)" style="cursor: pointer;">
+                                                    <tr ng-repeat="hospital in careCtrl.hospitals" on-last-repeat ng-click="careCtrl.showHospital(hospital.hospital_id)" style="cursor: pointer;">
                                                         <td class="hidden-xs">{{hospital.generated_id}}</td>
                                                         <td class="hidden-xs">{{ hospital.name }}</td>
                                                         <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ hospital.email }} </a></td>

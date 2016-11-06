@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="panel panel-white">
                 <div class="panel-body">
-                    <uib-tabset class="tabbable">
+                    <uib-tabset class="tabbable" active="hmoClient.tabIndex">
                         <uib-tab>
                             <uib-tab-heading>
                                 <i class="fa fa-user"></i> Enrollees
@@ -160,16 +160,12 @@
                                                     <div class="panel panel-white">
                                                         <div class="panel-body">
                                                             <h5 class="over-title margin-bottom-15">Uploads <span class="text-bold">CSV files only</span></h5>
-                                                            <p>
-                                                                with canvas preview
-                                                            </p>
                                                             <div nv-file-drop="" uploader="uploaderImages">
                                                                 <div class="row">
                                                                     <div class="col-md-3">
-                                                                        <h5>Select files</h5>
                                                                         <div class="panel panel-white">
                                                                             <div class="panel-body">
-															                    <span class="btn btn-primary btn-o btn-file">Select an image file
+															                    <span class="btn btn-primary btn-o btn-file">Select an csv file
                                                                                     <input type="file" nv-file-select="" uploader="uploaderImages" multiple />
                                                                                 </span>
                                                                                 <br />
@@ -246,6 +242,203 @@
                                     </div>
                                 </div>
                             </div>
+                        </uib-tab>
+
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <i class="fa fa-user"></i> NHIS Enrollee
+                            </uib-tab-heading>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-white no-radius">
+                                        <div class="panel-heading border-light">
+                                            <h4 class="text-bold">New NHIS Enrollee</h4>
+                                        </div>
+                                        <treasure-overlay-spinner active='spinner.active'>
+                                            <div class="panel-body">
+                                                <table class="table table-striped table-hover" id="sample-table-3">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="hidden-xs">Image</th>
+                                                        <th class="">Enrollee ID</th>
+                                                        <th>Full Name</th>
+                                                        <th>Email</th>
+                                                        <th class="hidden-xs">Plan</th>
+                                                        <th class="hidden-xs center" >Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="enrollee in hmoClient.nhisEnrollee" on-last-repeat ng-click="hmoClient.nhisEnrollee(enrollee.enrollee_id)" style="cursor: pointer;" ng-class=getClass(enrollee.nhis_status) ng-if="enrollee.nhis_status == 'new'">
+                                                        <td class="center" >
+                                                            <img src="{{ enrollee.image_url}}" class="img-rounded" alt="image" height="50px" ng-if="hmoClient.checkForNull(enrollee.image_url)"/>
+                                                            <img src="{{ enrollee.sex == 'Male' ? 'assets/images/backbone/businessman.svg' : 'assets/images/backbone/businesswoman.svg'}}" class="img-rounded" alt="image" height="50px" ng-if="!hmoClient.checkForNull(enrollee.image_url)"/>
+                                                        </td>
+                                                        <td class="hidden-xs">{{enrollee.generated_id}}</td>
+                                                        <td class="hidden-xs">{{ enrollee.first_name }}, {{ enrollee.last_name }}</td>
+                                                        <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ enrollee.email }} </a></td>
+                                                        <td class="hidden-xs">{{enrollee.plan_name}}</td>
+                                                        <td class="hidden-xs center">
+                                                            <span class="label label-success" ng-show="{{enrollee.status}}">active</span>
+                                                            <span class="label  danger-gradient" ng-hide="{{enrollee.status}}">inactive</span>
+                                                        </td>
+                                                        <td class="center">
+                                                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                                <a href="/#/partners/dashboard/clients/enrollee/{{enrollee.enrollee_id}}?tabIndex=1" class="btn btn-transparent btn-xs" tooltip-placement="top" uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                                                </a>
+                                                                <a href="#" class="btn btn-transparent btn-xs tooltips" ng-click="delete(enrollee.email, enrollee.enrollee_id)" tooltip-placement="top" uib-tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                                            </div>
+                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                                <div class="btn-group" uib-dropdown>
+                                                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" uib-dropdown-toggle>
+                                                                        <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                                                        <li>
+                                                                            <a href="#"> Byes </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#"> Remove </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </treasure-overlay-spinner>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-white no-radius">
+                                        <div class="panel-heading border-light">
+                                            <h4 class="text-bold">Old NHIS Enrollee</h4>
+                                        </div>
+                                        <treasure-overlay-spinner active='spinner.active'>
+                                            <div class="panel-body">
+                                                <table class="table table-striped table-hover" id="sample-table-3">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="hidden-xs">Image</th>
+                                                        <th class="">Enrollee ID</th>
+                                                        <th>Full Name</th>
+                                                        <th>Email</th>
+                                                        <th class="hidden-xs">Plan</th>
+                                                        <th class="hidden-xs center" >Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="enrollee in hmoClient.nhisEnrollee" on-last-repeat ng-click="hmoClient.nhisEnrollee(enrollee.enrollee_id)" style="cursor: pointer;" ng-class=getClass(enrollee.nhis_status) ng-if="enrollee.nhis_status == 'old'">
+                                                        <td class="center" >
+                                                            <img src="{{ enrollee.image_url}}" class="img-rounded" alt="image" height="50px" ng-if="hmoClient.checkForNull(enrollee.image_url)"/>
+                                                            <img src="{{ enrollee.sex == 'Male' ? 'assets/images/backbone/businessman.svg' : 'assets/images/backbone/businesswoman.svg'}}" class="img-rounded" alt="image" height="50px" ng-if="!hmoClient.checkForNull(enrollee.image_url)"/>
+                                                        </td>
+                                                        <td class="hidden-xs">{{enrollee.generated_id}}</td>
+                                                        <td class="hidden-xs">{{ enrollee.first_name }}, {{ enrollee.last_name }}</td>
+                                                        <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ enrollee.email }} </a></td>
+                                                        <td class="hidden-xs">{{enrollee.plan_name}}</td>
+                                                        <td class="hidden-xs center">
+                                                            <span class="label label-success" ng-show="{{enrollee.status}}">active</span>
+                                                            <span class="label  danger-gradient" ng-hide="{{enrollee.status}}">inactive</span>
+                                                        </td>
+                                                        <td class="center">
+                                                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                                <a href="/#/partners/dashboard/clients/enrollee/{{enrollee.enrollee_id}}?tabIndex=1" class="btn btn-transparent btn-xs" tooltip-placement="top" uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                                                </a>
+                                                                <a href="#" class="btn btn-transparent btn-xs tooltips" ng-click="delete(enrollee.email, enrollee.enrollee_id)" tooltip-placement="top" uib-tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                                            </div>
+                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                                <div class="btn-group" uib-dropdown>
+                                                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" uib-dropdown-toggle>
+                                                                        <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                                                        <li>
+                                                                            <a href="#"> Byes </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#"> Remove </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </treasure-overlay-spinner>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-white no-radius">
+                                        <div class="panel-heading border-light">
+                                            <h4 class="text-bold">Flagged NHIS Enrollee</h4>
+                                        </div>
+                                        <treasure-overlay-spinner active='spinner.active'>
+                                            <div class="panel-body">
+                                                <table class="table table-striped table-hover" id="sample-table-3">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="hidden-xs">Image</th>
+                                                        <th class="">Enrollee ID</th>
+                                                        <th>Full Name</th>
+                                                        <th>Email</th>
+                                                        <th class="hidden-xs">Plan</th>
+                                                        <th class="hidden-xs center" >Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="enrollee in hmoClient.nhisEnrollee" on-last-repeat ng-click="hmoClient.nhisEnrollee(enrollee.enrollee_id)" style="cursor: pointer;" ng-class=getClass(enrollee.nhis_status) ng-if="enrollee.nhis_status == ''">
+                                                        <td class="center" >
+                                                            <img src="{{ enrollee.image_url}}" class="img-rounded" alt="image" height="50px" ng-if="hmoClient.checkForNull(enrollee.image_url)"/>
+                                                            <img src="{{ enrollee.sex == 'Male' ? 'assets/images/backbone/businessman.svg' : 'assets/images/backbone/businesswoman.svg'}}" class="img-rounded" alt="image" height="50px" ng-if="!hmoClient.checkForNull(enrollee.image_url)"/>
+                                                        </td>
+                                                        <td class="hidden-xs">{{enrollee.generated_id}}</td>
+                                                        <td class="hidden-xs">{{ enrollee.first_name }}, {{ enrollee.last_name }}</td>
+                                                        <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ enrollee.email }} </a></td>
+                                                        <td class="hidden-xs">{{enrollee.plan_name}}</td>
+                                                        <td class="hidden-xs center">
+                                                            <span class="label label-success" ng-show="{{enrollee.status}}">active</span>
+                                                            <span class="label  danger-gradient" ng-hide="{{enrollee.status}}">inactive</span>
+                                                        </td>
+                                                        <td class="center">
+                                                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                                <a href="/#/partners/dashboard/clients/enrollee/{{enrollee.enrollee_id}}?tabIndex=1" class="btn btn-transparent btn-xs" tooltip-placement="top" uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                                                </a>
+                                                                <a href="#" class="btn btn-transparent btn-xs tooltips" ng-click="delete(enrollee.email, enrollee.enrollee_id)" tooltip-placement="top" uib-tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                                            </div>
+                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                                <div class="btn-group" uib-dropdown>
+                                                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" uib-dropdown-toggle>
+                                                                        <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                                                        <li>
+                                                                            <a href="#"> Byes </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#"> Remove </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </treasure-overlay-spinner>
+                                    </div>
+                                </div>
+                            </div>
+
                         </uib-tab>
                     </uib-tabset>
                 </div>

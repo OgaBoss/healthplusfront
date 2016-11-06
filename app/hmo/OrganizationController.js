@@ -1,25 +1,69 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/6/16.
  */
-app.controller('OrganizationController', function($scope, healthNotify, $timeout, $localStorage, OrganizationService, $stateParams, $rootScope, $state, $aside){
+app.controller('OrganizationController', function($scope, healthNotify, $timeout, $localStorage, $stateParams, $rootScope, $state, $aside,PlaceService,OrganizationService,PlanService){
 
     var vm = this;
 
     vm.org = {};
+    vm.orgEdit = {}
     vm.orgEnrollees = {};
     vm.orgPlans = {};
     var organization_id = $stateParams.id;
     $rootScope.spinner = {active: true};
 
+    var org_id = $stateParams.id;
     $scope.$on('onRepeatLast', function(scope, element, attrs){
         //work your magic
         $rootScope.spinner = {active: false};
     });
 
+
+
     OrganizationService.getOrganization(organization_id).then(function(res){
-        console.log(res)
         vm.org = res.organization.data;
-    })
+        vm.orgEdit = vm.org;
+
+        PlaceService.getAllStates().then(function (res) {
+            $scope.states = res.state;
+            angular.forEach($scope.states, function (state) {
+                if (state.state == vm.org.state) {
+                    vm.org.selectedState = state;
+                }
+            });
+
+            var id = vm.org.selectedState.id;
+            PlaceService.getAllLgs(id).then(function (res) {
+                $scope.lgs = res.lg;
+                angular.forEach($scope.lgs, function (lg) {
+                    if (lg.lga == vm.org.lg) {
+                        vm.org.selectedLg = lg;
+                    }
+                })
+            });
+
+            //Get all the Plan
+
+
+
+            //Get all Plans for this Org
+            OrganizationService.getOrganizationPlans(org_id).then(function (res) {
+                $scope.plans = res.plans.data;
+                $scope.complete_plans = [];
+
+                PlanService.getAllPlans().then(function (res) {
+                    $scope.all_plans = res.plans.data;
+                    angular.forEach($scope.plans, function (plan, index) {
+                        angular.forEach($scope.all_plans, function(value, index){
+                            if(value.name == plan.name){
+                                value.ticked = true;
+                            }
+                        });
+                    });
+                });
+            })
+        });
+    });
 
     OrganizationService.getOrganizationEnrollees(organization_id).then(function(res){
         vm.orgEnrollees = res.enrollees.data
@@ -36,7 +80,7 @@ app.controller('OrganizationController', function($scope, healthNotify, $timeout
     //Get This Organizatin Plan(s)
     OrganizationService.getOrganizationPlans(organization_id).then(function(res){
         vm.orgPlans = res.plans.data;
-    })
+    });
 
     //Redirect to Enrollee Page
     vm.showEnrollee = function (id) {
@@ -60,154 +104,35 @@ app.controller('OrganizationController', function($scope, healthNotify, $timeout
         });
     };
 
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    if($localStorage.currentUser.data.role.data.name == 'claims'){
-        vm.overview = 2;
-    }else{
-        vm.overview = 0;
-    }
-
-    $scope.update = function(){
-        healthNotify.set('Data Updated successfully', 'success');
-    }
-
-    vm.activeEnrollees = true
-    vm.inActiveEnrollees = true
-    vm.allEnrollees = true
-
-    vm.allBtn = true
-    vm.activeBtn = false
-    vm.inActiveBtn = false
-
-    vm.setTabIndex = function(index, type, plan){
-        vm.overview = index;
-        if(type == 'active'){
-            vm.inActiveEnrollees = false;
-        }else if(type == 'inactive'){
-            vm.activeEnrollees = false
-        }
-    }
-
-    vm.enrolleeFilter = function(type){
-        if(type == 'active'){
-            vm.activeBtn = true
-            vm.inActiveBtn = false
-            vm.allBtn = false
-
-            vm.activeEnrollees = true
-            vm.inActiveEnrollees = false
-        }else if(type == 'inactive'){
-            vm.activeBtn = false
-            vm.inActiveBtn = true
-            vm.allBtn = false
-
-            vm.activeEnrollees = false
-            vm.inActiveEnrollees = true
+    vm.updateOrganization = function (form){
+        console.log(vm.orgEdit)
+        if(vm.orgEdit.outPutPlan.length == 0){
+            healthNotify.set('Plan cannot be empty !', 'error')
         }else{
-            vm.activeBtn = false
-            vm.inActiveBtn = false
-            vm.allBtn = true
+            if (form.$invalid) {
+                var field = null,
+                    firstError = null;
 
-            vm.activeEnrollees = true
-            vm.inActiveEnrollees = true
+                for (field in form) {
+                    if (field[0] != '$') {
+                        if (firstError === null && !form[field].$valid) {
+                            firstError = form[field].$name;
+                        }
+                        if (form[field].$pristine) {
+                            form[field].$dirty = true;
+                        }
+                    }
+                }
+                angular.element('.ng-invalid[name=' + firstError + ']').focus();
+            }else{
+                OrganizationService.updateOrganization(vm.orgEdit,org_id).then(function(res){
+                    if(res.success){
+                        healthNotify.set('Organization data successfully updated', 'success');
+                    }else{
+                        healthNotify.set('Please try again something went wrong', 'error');
+                    }
+                });
+            }
         }
     }
-
-    $timeout(function() {
-        $scope.renderChartOrg= true;
-        console.log('Rendering chart')
-    }, 1000);
-
-    $scope.labels = ['Hospital', 'Pharmacy'];
-    $scope.data = [200, 150];
-
-    $scope.colors = ['#F7464A', '#46BFBD'];
-    // Chart.js Options - complete list at http://www.chartjs.org/docs/
-    $scope.options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        tooltipFontSize: 11,
-        tooltipFontFamily: "'Helvetica', 'Arial', sans-serif",
-        tooltipCornerRadius: 0,
-        tooltipCaretSize: 2,
-        segmentShowStroke: true,
-        segmentStrokeColor: '#fff',
-        segmentStrokeWidth: 2,
-        percentageInnerCutout: 50,
-        animationSteps: 100,
-        animationEasing: 'easeOutBounce',
-        animateRotate: true,
-        animateScale: false
-    };
-
-    $scope.dates = {
-        startDate: moment('2013-09-20'),
-        endDate: moment('2013-09-25')
-    };
-    $scope.dates2 = {
-        startDate: moment().subtract(1, 'day').format('MM/DD/YYYY'),
-        endDate: moment().subtract(1, 'day').format('MM/DD/YYYY')
-    };
-    $scope.ranges = {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 days': [moment().subtract(7, 'days'), moment()],
-        'Last 30 days': [moment().subtract(30, 'days'), moment()],
-        'This month': [moment().startOf('month'), moment().endOf('month')]
-    };
 })

@@ -1,7 +1,7 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/9/16.
  */
-app.controller('CareProviderController', ['$scope','HospitalService','$state','$rootScope', function($scope,HospitalService,$state,$rootScope){
+app.controller('CareProviderController', ['$scope','HospitalService','$state','$rootScope','$aside', function($scope,HospitalService,$state,$rootScope,$aside){
     var vm = this
 
     vm.hospitals = {};
@@ -20,5 +20,21 @@ app.controller('CareProviderController', ['$scope','HospitalService','$state','$
 
     vm.showHospital = function (id){
         $state.go('partners.care-providers.hospital', { id: id });
+    }
+
+    $scope.openCreateView = function (){
+        $aside.open({
+            templateUrl: 'assets/views/hmo/clients-partials/modals/create_hospital.html',
+            placement: 'right',
+            size: '',
+            backdrop: true,
+            controller: 'ModalController',
+            controllerAs: 'modalCtrl',
+            resolve: {
+                data: function () {
+                    return {};
+                }
+            }
+        });
     }
 }])

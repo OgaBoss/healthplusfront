@@ -45,6 +45,19 @@ app.factory('HospitalService', ['$http', 'apiConfig', '$localStorage', function 
     function createHospital(formData){
         var request = $http({
             method: "post",
+            params: {
+                'name' :formData.name,
+                'phone' : formData.phone,
+                'email' : formData.email,
+                'street_address' : formData.address,
+                'account_number' :  formData.account,
+                'bank' : formData.bank,
+                'state' : formData.selectedState.state,
+                'lg' : formData.selectedLg.lga,
+                'band_id' : formData.selectedBand.id,
+                'city' : formData.city,
+                'country' : 'Nigeria'
+            },
             url: apiConfig.apiBaseUrl + 'hospitals'
         });
         return (request.then(handleSuccess, handleError)); 

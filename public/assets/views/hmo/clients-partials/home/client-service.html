@@ -58,13 +58,6 @@
 										<div class="panel-body">
 											<form role="form" class="form-horizontal" name="Form" novalidate>
 												<div class="form-group">
-													<label class="col-sm-2 control-label" for="form-field-select-2">Ailment</label>
-													<div class="col-sm-8">
-														<div isteven-multi-select input-model="ailments" output-model="dashboardCtrl.enrollee.outPutPlan" button-label="short_description"
-															item-label="icon short_description maker" tick-property="ticked" on-search-change="getAilment( data )"></div>
-													</div>
-												</div>
-												<div class="form-group">
 													<label class="col-sm-2 control-label" for="inputEmail3">Name</label>
 													<div class="col-sm-6">
 														<input type="text" id="inputEmail3" class="form-control" name="name" ng-model="dashboardCtrl.enrollee.name" required disabled="disabled">
@@ -87,33 +80,6 @@
 													</div>
 												
 												</div>
-												<div class="form-group">
-													<label class="col-sm-2 control-label" for="form-field-select-2">Description</label>
-													<div class="col-sm-6">
-														<div class="panel-body">
-															<div class="form-group">
-																<textarea class="form-control autosize area-animated msd-elastic: \n;" ng-model="dashboardCtrl.enrollee.description" name="desc"></textarea>
-															</div>
-														</div>
-													</div>
-												</div>
-
-												<!--<div class="form-group">
-													<label class="col-sm-2 control-label" for="form-field-select-2">Description</label>
-													<div class="col-sm-6">
-														<input type="text" ng-model="asyncSelected" uib-typeahead="ailment for ailments in getAilment($viewValue)"
-															typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
-														<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-														<div ng-show="noResults">
-															<i class="glyphicon glyphicon-remove"></i> No Results Found
-														</div>
-													</div>
-													<div ng-messages="Form.desc.$error" ng-show="Form.desc.$dirty && Form.desc.$invalid">
-														<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
-													</div>
-													<div ng-if="Form.desc.$valid"><i class="fa fa-check-circle-o icon-success" aria-hidden="true"></i></div>
-												</div>-->
-
 												<div class="form-group margin-bottom-0">
 													<div class="col-sm-offset-8 col-sm-2">
 														<button class="btn btn-o btn-primary" type="submit" ng-click="dashboardCtrl.createCode()">Search</button>
@@ -152,6 +118,75 @@
 													</div>
 												</div>
 											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</uib-tab>
+						<uib-tab>
+							<uib-tab-heading>
+								<i class="fa fa-user"></i> Health Info Staff
+							</uib-tab-heading>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="panel panel-white">
+										<div class="panel-heading border-light">
+											<h4 class="panel-title">Search for <span class="text-bold">Claims</span> with <span class="text-bold">Referral</span> Code</h4>
+										</div>
+										<div class="panel-body">
+											<form role="form" class="form-horizontal" name="Form" ng-submit="dashboardCtrl.getClaimsRecord(Form)" novalidate>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="inputEmail3">Email</label>
+													<div class="col-sm-6">
+														<input type="text" placeholder="e.g johnsnow@gmail.com" id="inputEmail3" class="form-control" name="code" ng-model="dashboardCtrl.codeSearch.referral_code"
+															   required>
+													</div>
+													<div ng-messages="Form.code.$error" ng-if="Form.code.$dirty">
+														<div ng-message="required"><i class="fa fa-times-circle icon-error" aria-hidden="true"></i></div>
+														<span ng-if="Form.code.$valid"><i class="fa fa-check-circle-o icon-success"  aria-hidden="true"></i></span>
+													</div>
+												</div>
+
+												<div class="form-group margin-bottom-0">
+													<div class="col-sm-offset-8 col-sm-2">
+														<button class="btn btn-o btn-primary" type="submit">Search</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row" ng-show="show_claims">
+								<div class="col-sm-12">
+									<div class="panel panel-white">
+										<div class="panel-heading border-light">
+											<h4 class="panel-title">Claims attached to the  <span class="text-bold">Referral Code ( {{ dashboardCtrl.codeSearch.referral_code }} )</span> </h4>
+										</div>
+										<div class="panel-body">
+											<table class="table table-striped table-hover" id="sample-table-3">
+												<thead>
+												<tr>
+													<th class="hidden-xs">Enrollee Name</th>
+													<th class="">Procedure</th>
+													<th>Hospital</th>
+													<th>Hospital Band</th>
+													<th class="hidden-xs">Price</th>
+													<th class="hidden-xs center" >Month</th>
+												</tr>
+												</thead>
+												<tbody>
+												<tr ng-repeat="record in dashboardCtrl.claimsRecord.claims.data">
+													<td class="hidden-xs">{{dashboardCtrl.claimsRecord.enrollee_name}}</td>
+													<td class="hidden-xs">{{ record.procedure }}</td>
+													<td class="hidden-xs">{{dashboardCtrl.claimsRecord.hospital_name}}</td>
+													<td class="hidden-xs">{{record.band_name}}</td>
+													<td class="hidden-xs">{{record.prices[0].price || record.prices[1].price}}</td>
+													<td class="hidden-xs">{{record.month}}</td>
+												</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>
