@@ -166,7 +166,7 @@
                                     Organization 
                                 </label>
                                 <div class="col-sm-8">
-                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.selectedOrg"  ng-change='getPlans()'name="organization" ng-options="org.name for org in organizations" ng-required="true">
+                                    <select class="cs-select cs-skin-slide" ng-model="modalCtrl.enrolleeCreation.selectedOrg"  ng-change='getPlans("enrollee")' name="organization" ng-options="org.name for org in organizations" ng-required="true">
                                         <option value="">Select an Organization</option>
                                     </select>
                                 </div>

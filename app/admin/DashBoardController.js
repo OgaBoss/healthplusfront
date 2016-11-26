@@ -65,23 +65,9 @@ app.controller('DashBoardController', ['$scope', "$state", "$interval",
     });
 
     vm.searchForEnrollee = function (form) {
-        console.log(vm.email)
-        if (form.$invalid) {
-            var field = null,
-                firstError = null;
-
-            for (field in form) {
-                if (field[0] != '$') {
-                    if (firstError === null && !form[field].$valid) {
-                        firstError = form[field].$name;
-                    }
-                    if (form[field].$pristine) {
-                        form[field].$dirty = true;
-                    }
-                }
-            }
-            angular.element('.ng-invalid[name=' + firstError + ']').focus();
-        } else {
+        if(vm.email == undefined){
+            healthNotify.set('Please provide an email to search with', 'error')
+        }else{
             EnrolleeService.searchForEnrollee(vm.email).then(function (res) {
                 if (res.enrollee) {
                     $scope.show = true;
@@ -134,7 +120,6 @@ app.controller('DashBoardController', ['$scope', "$state", "$interval",
             MedicalRecordService.getClaimswithCode(vm.codeSearch.referral_code).then(function(res){
                 vm.claimsRecord = res.claims.data;
                 $scope.show_claims = true;
-
             });
         }
     }
