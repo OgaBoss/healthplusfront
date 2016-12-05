@@ -1,10 +1,13 @@
-app.controller('ImageUploadModal',function(MailService, $scope, $uibModal, $aside, $localStorage, FileUploader,data,healthNotify, $rootScope, apiConfig){
-    var vm = this;
-    // FileUploader
+/**
+ * Created by OluwadamilolaAdebayo on 9/9/16.
+ */
+app.controller('EmailImageUploadController', ['$scope','$state','FileUploader', function($scope,$state,FileUploader){
+    var vm = this
+
     var uploaderImages = $scope.uploaderImages = new FileUploader({
-        url: 'http://projectx-api.dev/api/uploadImage/'+ data.id,
+        url: 'http://projectx-api.dev/api/uploadImage/',
         alias: 'image',
-        formData: [{email: data.email}]
+        //formData: [{email: data.email}]
     });
 
     // FILTERS
@@ -30,15 +33,4 @@ app.controller('ImageUploadModal',function(MailService, $scope, $uibModal, $asid
         }
     }
 
-    $scope.sendLink = function(){
-        var obj = {};
-        obj.name = data.name;
-        obj.email = data.email;
-        obj.url = apiConfig.clientBaseUrl+'imageUpload/'+data.email
-
-        MailService.sendMailParams(obj).then(function(res){
-
-        });
-        console.log(obj);
-    }
-});
+}])

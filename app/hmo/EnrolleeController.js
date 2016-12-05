@@ -40,6 +40,7 @@ function ($scope, $timeout, $state, $stateParams,
         }
         vm.email = vm.enrollee.email
         vm.image_url = vm.enrollee.image_url;
+        vm.name = vm.enrollee.first_name
 
         //Set all the enrollee values
         vm.editEnrollee.first_name = vm.enrollee.first_name
@@ -118,7 +119,7 @@ function ($scope, $timeout, $state, $stateParams,
             controllerAs: 'uploadCtrl',
             resolve: {
                 data: function () {
-                    return { 'id': user_id, 'email': vm.email };
+                    return { 'id': user_id, 'email': vm.email, 'name': vm.name };
                 }
             }
         });

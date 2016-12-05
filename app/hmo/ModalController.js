@@ -58,13 +58,12 @@ app.controller('ModalController', ['$scope', 'EnrolleeService', '$uibModalInstan
         })
 
         //Get all Plans for the selected Organization
-        $scope.getPlans = function () {
-            if (vm.enrolleCreation !== undefined) {
+        $scope.getPlans = function (type) {
+            if(type == 'enrollee'){
                 var org_id = vm.enrolleeCreation.selectedOrg.organization_id;
-            } else if (vm.dependentCreation !== undefined) {
+            }else{
                 var org_id = vm.dependentCreation.selectedOrg.organization_id;
             }
-            console.log(org_id);
             OrganizationService.getOrganizationPlans(org_id).then(function (res) {
                 if (res.plans.data.length > 0) {
                     $scope.plans = res.plans.data

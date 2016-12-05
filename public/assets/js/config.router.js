@@ -16,12 +16,14 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
 
     if(location.host == 'localhost:5000' ){
         app.value('apiConfig',{
-            apiBaseUrl: 'http://projectx-api.dev/api/'
+            apiBaseUrl: 'http://projectx-api.dev/api/',
+            clientBaseUrl: 'http://localhost:5000/#/'
         });
         $authProvider.loginUrl = 'http://projectx-api.dev/api/authenticate';
     }else{
         app.value('apiConfig',{
-            apiBaseUrl: 'https://backboneapi.herokuapp.com/api/'
+            apiBaseUrl: 'https://backboneapi.herokuapp.com/api/',
+            clientBaseUrl: 'https://healthplusng.herokuapp.com/#/'
         });
         $authProvider.loginUrl = 'https://backboneapi.herokuapp.com/api/authenticate';
 
@@ -61,6 +63,15 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     // For any unmatched url, redirect to /app/dashboard
     $urlRouterProvider.otherwise("/login");
     // Set up the states
+
+    $stateProvider.state('imageUpload', {
+        url: '/imageUpload/:email',
+        templateUrl: 'assets/views/hmo/clients-partials/enrollee/image_upload.html',
+        controller: 'EmailImageUploadController',
+        controllerAs: 'imageCtrl',
+        resolve: loadSequence('healthNotify', 'ngNotify', 'LoginService'),
+    });
+
     $stateProvider.state('login', {
         url: '/login',
         templateUrl: 'assets/views/auth/login.html',
@@ -68,7 +79,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         controllerAs: 'login',
         resolve: loadSequence('healthNotify', 'ngNotify', 'LoginService'),
     })
-
+    
     // Admin Route
     .state('app', {
         url: "/admin",
