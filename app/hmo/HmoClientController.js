@@ -2,12 +2,12 @@ app.controller('HmoClientController', [
         '$scope','EnrolleeService','$uibModal','$aside','$state',
         '$stateParams', 'OrganizationService','$rootScope',
         'PlaceService','FileUploader','$localStorage',
-        'healthNotify','NhisService',
+        'healthNotify','NhisService','ngTableParams',
     function($scope, EnrolleeService, $uibModal,
          $aside, $state, $stateParams,
          OrganizationService, $rootScope,
          PlaceService,FileUploader,$localStorage,
-         healthNotify,NhisService)
+         healthNotify,NhisService,ngTableParams)
     {
     var vm = this;
 
@@ -47,6 +47,17 @@ app.controller('HmoClientController', [
     //Get all Enrollees
     EnrolleeService.getAllEnrollees().then(function(res){
         vm.enrollees = res.enrollees.data;
+
+        //Pagination
+        vm.tableParams = new ngTableParams({
+            page: 1, // show first page
+            count: 5 // count per page
+        }, {
+            total: vm.enrollees.length, // length of data
+            getData: function ($defer, params) {
+                $defer.resolve(vm.enrollees.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            }
+        });
     });
 
     //Get all Organization

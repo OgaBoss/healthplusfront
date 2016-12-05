@@ -152,6 +152,7 @@ function ($authProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         controller: 'HmoClientController',
         controllerAs: 'hmoClient',
         title: 'Clients Page',
+        resolve: loadSequence('ngTable'),
         ncyBreadcrumb: {
             skip: 'true'
         }

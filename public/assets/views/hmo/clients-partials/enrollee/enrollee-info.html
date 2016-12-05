@@ -10,14 +10,16 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="user-left" style="border-right: 0px solid #dddddd;">
-						<div class="">
-							<h4 class="center"><b>{{enrolleeCtrl.enrollee.first_name}}, {{enrolleeCtrl.enrollee.last_name}}</b></h4>
-							<div class="user-image">
-								<div class="thumbnail hvr-grow-shadow">
-									<img src="{{enrolleeCtrl.enrollee.image_url}}" class="img-responsive img-rounded" alt="" height="150px" width="150px" ng-if="enrolleeCtrl.checkForNull(enrolleeCtrl.enrollee.image_url)">
-									<img ng-src="{{ enrolleeCtrl.enrollee.sex === 'Male' ? 'assets/images/backbone/businessman.svg' : 'assets/images/backbone/businesswoman.svg'}}" class="img-responsive img-rounded" alt="" height="150px" width="150px" ng-if="!enrolleeCtrl.checkForNull(enrolleeCtrl.enrollee.image_url)">
-								</div>
+						<h4 class="center"><b>{{enrolleeCtrl.enrollee.first_name}}, {{enrolleeCtrl.enrollee.last_name}}</b></h4>
+						<div class="user-image">
+							<div class="thumbnail hvr-grow-shadow">
+								<img src="{{enrolleeCtrl.enrollee.image_url}}" class="img-responsive img-rounded" alt="" height="150px" width="150px" ng-if="enrolleeCtrl.checkForNull(enrolleeCtrl.enrollee.image_url)">
+								<img ng-src="{{ enrolleeCtrl.enrollee.sex === 'Male' ? 'assets/images/backbone/businessman.svg' : 'assets/images/backbone/businesswoman.svg'}}" class="img-responsive img-rounded" alt="" height="150px" width="150px" ng-if="!enrolleeCtrl.checkForNull(enrolleeCtrl.enrollee.image_url)">
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
 							<a class="btn btn-wide btn-primary create-enrollee center" href="#" ng-click="imageChange()" style="margin-left: 18px"><i class="fa fa-plus"></i> Edit Image </a>
 						</div>
 					</div>
