@@ -24,7 +24,7 @@
 							Treated For
 						</legend>
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="inputEmail3">Referral Code</label>
+							<label class="col-sm-2 control-label" for="inputEmail3">Ailments</label>
 							<div class="col-sm-8">
 								<div isteven-multi-select input-model="ailments" output-model="claimsCtrl.record.outPutPlan" button-label="short_description"
 									 item-label="icon short_description maker" tick-property="ticked"></div>
@@ -43,14 +43,6 @@
 								<th class="center">im</th>
 								<th class="center">ih</th>
 								<th class="center">is</th>
-								<th class="center">rs1</th>
-								<th class="center">rx2</th>
-								<th class="center"> rx3</th>
-								<th class="center">refill</th>
-								<th class="center">rec</th>
-								<th class="center">transfer</th>
-								<th class="center">died</th>
-							</tr>
 							</thead>
 							<tbody>
 							<tr>
@@ -60,9 +52,41 @@
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.im"></td>
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.ih"></td>
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.is"></td>
+							</tr>
+							</tbody>
+						</table>
+
+						<legend class="text-bold">
+							Tests
+						</legend>
+						<table class="table table-striped table-hover" id="sample-table-3">
+							<thead>
+							<tr>
+								<th class="center">rs1</th>
+								<th class="center">rx2</th>
+								<th class="center">rx3</th>
+							<tbody>
+							<tr>
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.rs1"></td>
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.rx2"></td>
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.rx3"></td>
+							</tbody>
+						</table>
+
+						<legend class="text-bold">
+							Others
+						</legend>
+						<table class="table table-striped table-hover" id="sample-table-3">
+							<thead>
+							<tr>
+								<th class="center">refill</th>
+								<th class="center">rec</th>
+								<th class="center">transfer</th>
+								<th class="center">died</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.refill"></td>
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.rec"></td>
 								<td class="center"><input type="checkbox" ng-model="claimsCtrl.record.transfer"></td>

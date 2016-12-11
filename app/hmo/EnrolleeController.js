@@ -304,17 +304,32 @@ function ($scope, $timeout, $state, $stateParams,
     //    vm.enrolleeRecords = res.records.data
     //});
 
+    var currentMonth= new Date();
+    vm.currentMonthClaims = $scope.months[currentMonth.getMonth()];
+    vm.currentMonthHealth = $scope.months[currentMonth.getMonth()];
+
     //Get Enrollee Claims Records
-    MedicalRecordService.getEnrolleeClaims(user_id).then(function(res){
+    MedicalRecordService.getEnrolleeClaims(user_id, vm.currentMonthClaims).then(function(res){
        vm.enrolleeClaimsRecords = res.claims_records.data;
     });
 
     //Get HealthInfo
-    MedicalRecordService.getEnrolleeHealth(user_id).then(function(res){
+    MedicalRecordService.getEnrolleeHealth(user_id, vm.currentMonthHealth).then(function(res){
         vm.enrolleeHealthRecords = res.health_records.data;
     });
 
-
+    $scope.getMedicalRecords = function(type){
+        console.log('hello');
+        if(type == 'health'){
+            MedicalRecordService.getEnrolleeHealth(user_id, vm.currentMonthHealth).then(function(res){
+                vm.enrolleeHealthRecords = res.health_records.data;
+            });
+        }else{
+            MedicalRecordService.getEnrolleeClaims(user_id, vm.currentMonthClaims).then(function(res){
+                vm.enrolleeClaimsRecords = res.claims_records.data;
+            });
+        }
+    };
     //vm.showFullRecord = function(record_id){
     //    $aside.open({
     //        templateUrl: 'assets/views/hmo/clients-partials/modals/full_record.html',

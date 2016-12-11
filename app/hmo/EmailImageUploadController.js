@@ -1,13 +1,13 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/9/16.
  */
-app.controller('EmailImageUploadController', ['$scope','$state','FileUploader', function($scope,$state,FileUploader){
-    var vm = this
+app.controller('EmailImageUploadController', ['$scope','$state','FileUploader','$stateParams', 'healthNotify', function($scope,$state,FileUploader,$stateParams,healthNotify){
+    var vm = this;
 
     var uploaderImages = $scope.uploaderImages = new FileUploader({
-        url: 'http://projectx-api.dev/api/uploadImage/',
+        url: 'http://projectx-api.dev/api/uploadImage/'+$stateParams.id,
         alias: 'image',
-        //formData: [{email: data.email}]
+        formData: [{email: $stateParams.email}]
     });
 
     // FILTERS
@@ -26,7 +26,6 @@ app.controller('EmailImageUploadController', ['$scope','$state','FileUploader', 
     uploaderImages.onSuccessItem =function (fileItem, response, status, headers) {
         if(status == 200){
             console.log(response);
-            $rootScope.$broadcast('enrolleeImage', response.url);
             return healthNotify.set('Enrollee Image uploaded', 'success');
         }else{
             return healthNotify.set('Please try again something went wrong', 'error');

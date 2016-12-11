@@ -11,18 +11,18 @@ app.factory('MedicalRecordService', ['$http', 'apiConfig', '$localStorage', func
         updateHealthInfo : updateHealthInfo,
     };
 
-    function getEnrolleeClaims (id){
+    function getEnrolleeClaims (id, month){
         var request = $http({
             method: "get",
-            url: apiConfig.apiBaseUrl + 'enrollee/' + id + '/claims'
+            url: apiConfig.apiBaseUrl + 'enrollee/' + id + '/claims?month='+ month
         });
         return (request.then(handleSuccess, handleError));
     }
 
-    function getEnrolleeHealth (id){
+    function getEnrolleeHealth (id, month){
         var request = $http({
             method: "get",
-            url: apiConfig.apiBaseUrl + 'enrollee/' + id + '/healths'
+            url: apiConfig.apiBaseUrl + 'enrollee/' + id + '/healths?month='+ month
         });
         return (request.then(handleSuccess, handleError));
     }

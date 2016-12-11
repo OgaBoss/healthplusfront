@@ -1,4 +1,4 @@
-app.controller('ImageUploadModal',function(MailService, $scope, $uibModal, $aside, $localStorage, FileUploader,data,healthNotify, $rootScope, apiConfig){
+app.controller('ImageUploadModal',function(MailService, $scope, $uibModal, $aside, $localStorage, FileUploader,data,healthNotify, $rootScope, apiConfig,$uibModalInstance){
     var vm = this;
     // FileUploader
     var uploaderImages = $scope.uploaderImages = new FileUploader({
@@ -22,7 +22,6 @@ app.controller('ImageUploadModal',function(MailService, $scope, $uibModal, $asid
 
     uploaderImages.onSuccessItem =function (fileItem, response, status, headers) {
         if(status == 200){
-            console.log(response);
             $rootScope.$broadcast('enrolleeImage', response.url);
             return healthNotify.set('Enrollee Image uploaded', 'success');
         }else{
@@ -34,10 +33,13 @@ app.controller('ImageUploadModal',function(MailService, $scope, $uibModal, $asid
         var obj = {};
         obj.name = data.name;
         obj.email = data.email;
-        obj.url = apiConfig.clientBaseUrl+'imageUpload/'+data.email
+        obj.url = apiConfig.clientBaseUrl+'imageUpload/'+data.email +'/'+data.id
 
         MailService.sendMailParams(obj).then(function(res){
-
+            if(res.success){
+                $uibModalInstance.dismiss();
+                return healthNotify.set('Email Sent to Enrollee', 'success');
+            }
         });
         console.log(obj);
     }

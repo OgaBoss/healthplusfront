@@ -14,7 +14,7 @@ app.factory('MailService',['$http','apiConfig','FileUploader', function($http, a
                 'email' : params.email,
                 'url' : params.url
             },
-            url: apiConfig.apiBaseUrl + 'hospitals'
+            url: apiConfig.apiBaseUrl + 'mailParams'
         });
         return (request.then(handleSuccess, handleError)); 
     }
