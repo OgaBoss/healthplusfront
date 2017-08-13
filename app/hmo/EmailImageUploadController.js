@@ -1,11 +1,11 @@
 /**
  * Created by OluwadamilolaAdebayo on 9/9/16.
  */
-app.controller('EmailImageUploadController', ['$scope','$state','FileUploader','$stateParams', 'healthNotify', function($scope,$state,FileUploader,$stateParams,healthNotify){
+app.controller('EmailImageUploadController', ['$scope','$state','FileUploader','$stateParams', 'healthNotify','apiConfig', function($scope,$state,FileUploader,$stateParams,healthNotify,apiConfig){
     var vm = this;
 
     var uploaderImages = $scope.uploaderImages = new FileUploader({
-        url: 'http://projectx-api.dev/api/uploadImage/'+$stateParams.id,
+        url: apiConfig.apiBaseUrl +'/uploadImage/'+$stateParams.id,
         alias: 'image',
         formData: [{email: $stateParams.email}]
     });

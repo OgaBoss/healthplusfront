@@ -11,21 +11,9 @@ app.controller('HealthPlanController', ['$scope','$state','$stateParams','PlanSe
         vm.plans = res.plans.data;
     });
 
-    //$scope.createPlan = function(){
-    //    $aside.open({
-    //        templateUrl: 'assets/views/hmo/clients-partials/modals/create_plan.html',
-    //        placement: 'right',
-    //        size: 'lg',
-    //        backdrop: true,
-    //        controller: 'PlansModalController',
-    //        controllerAs: 'planCtrl',
-    //        resolve: {
-    //            data: function () {
-    //                return {};
-    //            }
-    //        }
-    //    });
-    //}
+    vm.showPlan = function(id){
+        $state.go('healthPlan.plan', {id: id});
+    };
 
     $scope.openCreateView = function() {
         var modalInstance = $uibModal.open({

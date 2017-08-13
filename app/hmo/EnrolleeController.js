@@ -252,7 +252,7 @@ function ($scope, $timeout, $state, $stateParams,
                 }
             });
         }
-    }
+    };
 
 
     //======================================//

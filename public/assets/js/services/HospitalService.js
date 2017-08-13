@@ -27,7 +27,7 @@ app.factory('HospitalService', ['$http', 'apiConfig', '$localStorage', function 
         return (request.then(handleSuccess, handleError));
     }
 
-    function deleteHospital(){
+    function deleteHospital(id){
          var request = $http({
             method: "delete",
             url: apiConfig.apiBaseUrl + 'hospitals/' + id
@@ -35,9 +35,10 @@ app.factory('HospitalService', ['$http', 'apiConfig', '$localStorage', function 
         return (request.then(handleSuccess, handleError));   
     }
 
-    function updateHospital(){
+    function updateHospital(obj,id){
         var request = $http({
             method: "patch",
+            params: obj,
             url: apiConfig.apiBaseUrl + 'hospitals/' + id
         });
         return (request.then(handleSuccess, handleError)); 

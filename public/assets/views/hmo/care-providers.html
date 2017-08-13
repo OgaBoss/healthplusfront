@@ -35,12 +35,12 @@
                                                         <th>Name</th>
                                                         <th>Email</th>
                                                         <th class="hidden-xs">Phone</th>
-                                                        <th></th>
+                                                        <th class="center">Action</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr ng-repeat="hospital in careCtrl.hospitals" on-last-repeat ng-click="careCtrl.showHospital(hospital.hospital_id)" style="cursor: pointer;">
-                                                        <td class="hidden-xs">{{hospital.generated_id}}</td>
+                                                    <tr ng-repeat="hospital in careCtrl.hospitals" on-last-repeat>
+                                                        <td class="hidden-xs" ng-click="careCtrl.showHospital(hospital.hospital_id)" style="cursor: pointer;">{{hospital.generated_id}}</td>
                                                         <td class="hidden-xs">{{ hospital.name }}</td>
                                                         <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{ hospital.email }} </a></td>
                                                         <td class="hidden-xs">{{hospital.phone}}</td>

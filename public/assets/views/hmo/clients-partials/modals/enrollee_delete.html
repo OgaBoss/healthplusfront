@@ -21,3 +21,27 @@
         <button class="btn  btn-danger danger-gradient" ng-click="deleteEnrollee()">Delete</button>
     </div>
 </script>
+
+<script type="text/ng-template" id="deleteHospital.html">
+    <div class="modal-header">
+        <h4 class="modal-title center">Delete Hospital</h4>
+    </div>
+    <div class="modal-body">
+        <p>
+            Deleting an hospital is irreversible. Enter your the hospital's email
+            ({{email}}) below to confirm you want to permanently delete the hospital:
+        </p>
+        <h4 class="text-danger text-large" ng-show="wrong_email">The email does not match for this hospital</h4>
+        <h4 class="text-danger text-large" ng-show="empty_input">Please type the correct email into the box</h4>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="email"  id="inputPassword3" class="form-control" name="email" ng-model="delete_email" required>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+        <button class="btn  btn-danger danger-gradient" ng-click="deleteHospital()">Delete</button>
+    </div>
+</script>

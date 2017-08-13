@@ -253,7 +253,7 @@ app.config(['$authProvider','$stateProvider', '$urlRouterProvider', '$controller
             }).state('healthPlan.home', {
                 url: "/home",
                 templateUrl: "assets/views/hmo/health-plan.html",
-                resolve: loadSequence('chartjs', 'chart.js'),
+                resolve: loadSequence('chartjs', 'chart.js', 'angularSpectrumColorpicker', 'spectrum-plugin'),
                 controller: 'HealthPlanController',
                 controllerAs: 'healthPlanCtrl',
                 ncyBreadcrumb: {

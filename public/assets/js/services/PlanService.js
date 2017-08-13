@@ -10,7 +10,8 @@ app.factory('PlanService',['$http','apiConfig', function($http,apiConfig){
     function getAllPlans(){
         var request = $http({
             method: "get",
-            url: apiConfig.apiBaseUrl + 'plans'
+            //url: apiConfig.apiBaseUrl + 'plans'
+            url: '/users'
         });
         return( request.then( handleSuccess, handleError ) );
     }

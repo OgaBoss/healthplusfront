@@ -5,36 +5,45 @@
 </div>
 <ng-include src=" 'assets/views/hmo/clients-partials/modals/create_plan.html' "></ng-include>
 
-<!-- end: BREADCRUMB -->
 <div class="container-fluid container-fullw padding-bottom-10">
 	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-white" id="activities">
-				<div class="panel-heading border-light" style="padding-bottom: 50px !important;">
-					<div class="pull-right">
-						<a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="openCreateView()"><i class="fa fa-plus"></i> Create a Plan</a>
+		<div class="panel-heading border-light" style="padding-bottom: 50px !important;">
+			<div class="pull-right">
+				<a class="btn btn-wide btn-primary create-enrollee" href="#" ng-click="openCreateView()"><i class="fa fa-plus"></i> Create a Plan</a>
+			</div>
+		</div>
+		<div class="col-md-4 col-lg-3" ng-repeat="plan in healthPlanCtrl.plans" on-last-repeat ng-click="healthPlanCtrl.showPlan(plan.plan_id)" style="cursor: pointer;">
+			<div class="panel panel-white hvr-grow-shadow">
+				<div class="panel-heading border-bottom" style="border-left: 10px solid #5A8770 !important;">
+					<h4 class="panel-title text-bold">{{ plan.name }}</h4>
+				</div>
+				<div class="panel-body">
+					<h5 class="text-bold">Description</h5>
+					<p class="text-light text-small">
+						A simple HMO plan
+					</p>
+					<div class="row">
+						<div class="col-xs-12 no-padding">
+							<div class="padding-10 text-center">
+								<i class="ti-pencil-alt text-green large-letters"></i>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
-					<div class="panel-body">
-						<table class="table table-striped table-hover" id="sample-table-3">
-							<thead>
-								<tr>
-									<th class="center">Name</th>
-									<th class="center">Cover Limit</th>
-									<th class="center">Premuim</th>
-									<th class="center">Enrollee Count</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="plan in healthPlanCtrl.plans" on-last-repeat ng-click="healthPlanCtrl.showPlan(plan.plan_id)" style="cursor: pointer;">
-									<td class="center">{{ plan.name }}</td>
-									<td class="center">{{ plan.cover | currency:"Naira "}}</td>
-									<td class="center">{{ plan.premium | currency:"Naira "}}</td>
-									<td class="center">{{ plan.enrollee_count}}</td>
-								</tr>
-							</tbody>
-						</table>
+				<div class="panel-footer">
+					<div class="clearfix padding-5 padding-top-10 padding-bottom-10 space5">
+						<div class="col-xs-6 text-center">
+							<div class="">
+								<span class="text-bold block text-large">{{ plan.premium | currency:"&#8358"}}</span>
+								<span class="text-light text-extra-small">Premium</span>
+							</div>
+						</div>
+						<div class="col-xs-6 text-center ">
+							<div>
+								<span class="text-bold block text-large">{{ plan.cover | currency: '&#8358;'}}</span>
+								<span class="text-light text-extra-small">Cover Limit</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

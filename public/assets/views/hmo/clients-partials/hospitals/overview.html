@@ -1,6 +1,8 @@
+
+<select name="month" ng-change="getMedicalRecords('health')" class="pull-right" style="margin-right: 16px;margin-bottom: 30px;" ng-options="o for o in months track by o" ng-model="currentMonthClaims"></select>
     <div class="col-md-12">
         <div class="panel panel-white">
-            <div class="panel-heading border-light">
+            <div class="panel-heading border-light" style="">
                 <h4 class="panel-title text-primary text-bold">
                     Treated Enrollees
                 </h4>
@@ -13,6 +15,7 @@
                             <thead>
                             <tr>
                                 <th class="hidden-xs center">Referral Code</th>
+                                <th class="hidden-xs center">Enrollee</th>
                                 <th class="center">Hospital</th>
                                 <th class="center">Procedure</th>
                                 <th class="center">Month</th>
@@ -22,6 +25,7 @@
                             <tbody>
                             <tr ng-repeat="record in hospitalCtrl.hospitalClaims"  ng-click="hospitalCtrl.showEnrolleeClaim(record.enrollee_id)" style="cursor: pointer;">
                                 <td class="text-bold center">{{ record.referral_code }}</td>
+                                <td class="text-bold center">{{ record.enrolle_name }}</td>
                                 <td class="center"> {{ record.hospital_name }}</td>
                                 <td class="center">{{ record.procedure }}</td>
                                 <td class="center">{{ record.month }}</td>

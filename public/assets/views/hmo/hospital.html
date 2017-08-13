@@ -1,5 +1,6 @@
 <div class="breadcrumb-wrapper">
-    <h4 class="mainTitle no-margin">Inlad Medicals Profile</h4>
+    <h4 class="mainTitle no-margin">{{ hospitalCtrl.hospital.name }} </h4>
+    <span class="badge badge-success">Enrollee Count: {{ hospitalCtrl.enrolleeCount }}</span>
     <div ncy-breadcrumb class="pull-right"></div>
 </div>
 
@@ -14,6 +15,12 @@
                     <uib-tab heading="Overview">
                         <div class="row">
                             <ng-include src=" 'assets/views/hmo/clients-partials/hospitals/overview.html' "></ng-include>
+                        </div>
+                    </uib-tab>
+
+                    <uib-tab heading="Edit">
+                        <div class="row">
+                            <ng-include src=" 'assets/views/hmo/clients-partials/hospitals/edit.html' "></ng-include>
                         </div>
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->

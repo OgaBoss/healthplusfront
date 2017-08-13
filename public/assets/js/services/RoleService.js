@@ -14,7 +14,6 @@ app.factory('RoleService',['$http','$localStorage', function($http,$localStorage
         }
     }
 
-
     function getRole(){
         return $localStorage.currentUser.data.role.data.name;
     }

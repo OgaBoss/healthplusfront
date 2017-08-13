@@ -2,7 +2,7 @@ app.controller('ImageUploadModal',function(MailService, $scope, $uibModal, $asid
     var vm = this;
     // FileUploader
     var uploaderImages = $scope.uploaderImages = new FileUploader({
-        url: 'http://projectx-api.dev/api/uploadImage/'+ data.id,
+        url: apiConfig.apiBaseUrl + '/uploadImage/'+ data.id,
         alias: 'image',
         formData: [{email: data.email}]
     });
